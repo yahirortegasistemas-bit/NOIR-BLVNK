@@ -118,6 +118,66 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ============================================================
+    // ========== THEME TOGGLE (Modo Claro / Oscuro) ==============
+    // ============================================================
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+
+    // Función para cambiar el tema
+    function toggleTheme() {
+        const isLight = document.body.classList.toggle('light-mode');
+        const icon = isLight ? '☀️' : '🌙';
+        if (themeIcon) themeIcon.textContent = icon;
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    // Función para aplicar el tema guardado o el del sistema
+    function applyTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            if (themeIcon) themeIcon.textContent = '☀️';
+        } else if (savedTheme === 'dark') {
+            document.body.classList.remove('light-mode');
+            if (themeIcon) themeIcon.textContent = '🌙';
+        } else {
+            // Si no hay preferencia guardada, usar la del sistema
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (!prefersDark) {
+                document.body.classList.add('light-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            }
+        }
+    }
+
+    // Evento del botón
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Aplicar tema al cargar la página
+    applyTheme();
+
+    // Escuchar cambios en la preferencia del sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            // Solo si el usuario no ha elegido manualmente
+            if (e.matches) {
+                document.body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            } else {
+                document.body.classList.add('light-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            }
+        }
+    });
+
     console.log('✅ NOIR BLVNK — Listo');
 });
 
