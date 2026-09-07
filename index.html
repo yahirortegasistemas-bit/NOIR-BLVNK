@@ -36,127 +36,196 @@
             <a href="#lookbook">Lookbook</a>
             <a href="#contacto">Contacto</a>
         </div>
-       <div class="nav-actions">
-       <a href="#" class="nav-icon">🔍</a>
-       <a href="#" class="nav-icon">🛒</a>
-       <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
-        <span class="theme-icon">🌙</span>
-    </button>
-</div>
+        <div class="nav-actions">
+            <a href="#" class="nav-icon">🔍</a>
+            <a href="#" class="nav-icon">🛒</a>
+            <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
     </nav>
 
-    <!-- ========================================== -->
-<!-- ========== HERO CON TARJETAS 3D ========== -->
+   <!-- ========================================== -->
+<!-- ========== HERO PREMIUM ================== -->
 <!-- ========================================== -->
-<section class="hero">
-    <!-- Fondo de pista -->
-    <div class="hero-track-bg"></div>
+<section class="hero-premium">
+    <!-- Fondo con gradiente y patrón sutil -->
+    <div class="hero-premium-bg">
+        <div class="hero-premium-gradient"></div>
+        <div class="hero-premium-pattern"></div>
+    </div>
 
-    <div class="hero-flare"></div>
-
-    <div class="hero-container">
-        <!-- Texto izquierdo -->
-        <div class="hero-text">
-            <div class="hero-badge">✦ COLECCIÓN 2026</div>
-            <h1>PLAYERAS<br><span>NOIR</span></h1>
-            <p class="hero-desc">Diseñadas para quienes caminan solos de noche y no le temen a nada — más que a no intentarlo.</p>
-            <div class="hero-actions">
-                <a href="#coleccion" class="btn-primary">VER COLECCIÓN</a>
-                <a href="#manifiesto" class="btn-secondary">EL MANIFIESTO</a>
-            </div>
-        </div>
-
-        <!-- Tarjetas flotantes 3D (derecha) -->
-        <div class="hero-products">
-            <!-- Tarjeta 1 -->
-            <div class="product-float" data-speed="1.2">
-                <div class="product-card-3d">
-                    <div class="product-inner">
-                        <!-- FRENTE -->
-                        <div class="product-front">
-                            <img src="feardeath.jpg" alt="Fear Of Death Tee" class="product-img-real">
-                            <div class="product-label">FEAR OF DEATH</div>
+    <div class="hero-premium-container">
+        <!-- CARRUSEL PREMIUM -->
+        <div class="hero-premium-carousel-wrapper">
+            <div class="hero-premium-carousel" id="heroPremiumCarousel">
+                
+                <!-- Slide 1 -->
+                <div class="hero-premium-slide">
+                    <div class="hero-premium-product">
+                        <div class="hero-premium-image-wrapper">
+                            <div class="hero-premium-image-glow"></div>
+                            <img src="feardeath.jpg" alt="Fear Of Death Tee" class="hero-premium-image">
+                            <div class="hero-premium-badge">✦ EDICIÓN LIMITADA</div>
                         </div>
-                        <!-- REVERSO -->
-                        <div class="product-back">
-                            <div class="product-back-content">
-                                <span class="back-tag">✦ N°05</span>
-                                <h4>I HAVE NO</h4>
-                                <h4 class="back-red">FEAR OF DEATH</h4>
-                                <span class="back-price">$890 MXN</span>
-                                <a href="https://wa.me/526647587072" target="_blank" class="back-whatsapp">💬 COMPRAR</a>
+                        <div class="hero-premium-info">
+                            <span class="hero-premium-number">N°05</span>
+                            <h2 class="hero-premium-title">I HAVE NO</h2>
+                            <h2 class="hero-premium-title hero-premium-title-red">FEAR OF DEATH</h2>
+                            <div class="hero-premium-details">
+                                <span class="hero-premium-price">$890 MXN</span>
+                                <span class="hero-premium-divider">•</span>
+                                <span class="hero-premium-size">Oversized 280g</span>
+                            </div>
+                            <div class="hero-premium-colors">
+                                <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
+                                <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
+                                <span class="hero-premium-color-dot" style="background:#8c1c1c;"></span>
+                            </div>
+                            <div class="hero-premium-actions">
+                                <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Fear%20Of%20Death%20Tee*%20%F0%9F%96%A4%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24890%20MXN%0A%F0%9F%93%A6%20N%C2%B005%20%E2%80%94%20HIELO" target="_blank" class="hero-premium-btn">
+                                    💬 COMPRAR AHORA
+                                </a>
+                                <a href="#coleccion" class="hero-premium-btn-secondary">VER DETALLES</a>
                             </div>
                         </div>
                     </div>
-                    <div class="product-shadow"></div>
                 </div>
-            </div>
 
-            <!-- Tarjeta 2 -->
-            <div class="product-float" data-speed="0.9">
-                <div class="product-card-3d">
-                    <div class="product-inner">
-                        <div class="product-front">
-                            <img src="run.jpg" alt="Solo Run Tee" class="product-img-real">
-                            <div class="product-label">SOLO RUN</div>
+                <!-- Slide 2 -->
+                <div class="hero-premium-slide">
+                    <div class="hero-premium-product">
+                        <div class="hero-premium-image-wrapper">
+                            <div class="hero-premium-image-glow"></div>
+                            <img src="run.jpg" alt="Solo Run Tee" class="hero-premium-image">
+                            <div class="hero-premium-badge">✦ BEST SELLER</div>
                         </div>
-                        <div class="product-back">
-                            <div class="product-back-content">
-                                <span class="back-tag">✦ N°01</span>
-                                <h4>I JUST</h4>
-                                <h4 class="back-red">WANNA RUN</h4>
-                                <span class="back-price">$780 MXN</span>
-                                <a href="https://wa.me/526647587072" target="_blank" class="back-whatsapp">💬 COMPRAR</a>
+                        <div class="hero-premium-info">
+                            <span class="hero-premium-number">N°01</span>
+                            <h2 class="hero-premium-title">I JUST</h2>
+                            <h2 class="hero-premium-title hero-premium-title-red">WANNA RUN</h2>
+                            <div class="hero-premium-details">
+                                <span class="hero-premium-price">$780 MXN</span>
+                                <span class="hero-premium-divider">•</span>
+                                <span class="hero-premium-size">Oversized 280g</span>
+                            </div>
+                            <div class="hero-premium-colors">
+                                <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
+                                <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
+                            </div>
+                            <div class="hero-premium-actions">
+                                <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Solo%20Run%20Tee*%20%F0%9F%8F%83%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B001%20%E2%80%94%20MADRUGADA" target="_blank" class="hero-premium-btn">
+                                    💬 COMPRAR AHORA
+                                </a>
+                                <a href="#coleccion" class="hero-premium-btn-secondary">VER DETALLES</a>
                             </div>
                         </div>
                     </div>
-                    <div class="product-shadow"></div>
                 </div>
-            </div>
 
-            <!-- Tarjeta 3 -->
-            <div class="product-float" data-speed="1.5">
-                <div class="product-card-3d">
-                    <div class="product-inner">
-                        <div class="product-front">
-                            <img src="race.jpg" alt="Corners Tee" class="product-img-real">
-                            <div class="product-label">CORNERS</div>
+                <!-- Slide 3 -->
+                <div class="hero-premium-slide">
+                    <div class="hero-premium-product">
+                        <div class="hero-premium-image-wrapper">
+                            <div class="hero-premium-image-glow"></div>
+                            <img src="race.jpg" alt="Corners Tee" class="hero-premium-image">
+                            <div class="hero-premium-badge">✦ NUEVO DROP</div>
                         </div>
-                        <div class="product-back">
-                            <div class="product-back-content">
-                                <span class="back-tag">✦ N°02</span>
-                                <h4>RACES ARE WON</h4>
-                                <h4 class="back-red">IN THE CORNERS</h4>
-                                <span class="back-price">$780 MXN</span>
-                                <a href="https://wa.me/526647587072" target="_blank" class="back-whatsapp">💬 COMPRAR</a>
+                        <div class="hero-premium-info">
+                            <span class="hero-premium-number">N°02</span>
+                            <h2 class="hero-premium-title">RACES ARE WON</h2>
+                            <h2 class="hero-premium-title hero-premium-title-red">IN THE CORNERS</h2>
+                            <div class="hero-premium-details">
+                                <span class="hero-premium-price">$780 MXN</span>
+                                <span class="hero-premium-divider">•</span>
+                                <span class="hero-premium-size">Oversized 280g</span>
+                            </div>
+                            <div class="hero-premium-colors">
+                                <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
+                                <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
+                                <span class="hero-premium-color-dot" style="background:#8c1c1c;"></span>
+                            </div>
+                            <div class="hero-premium-actions">
+                                <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Corners%20Tee*%20%F0%9F%8F%8E%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B002%20%E2%80%94%20PISTA" target="_blank" class="hero-premium-btn">
+                                    💬 COMPRAR AHORA
+                                </a>
+                                <a href="#coleccion" class="hero-premium-btn-secondary">VER DETALLES</a>
                             </div>
                         </div>
                     </div>
-                    <div class="product-shadow"></div>
                 </div>
-            </div>
 
-            <!-- Tarjeta 4 -->
-            <div class="product-float" data-speed="1.1">
-                <div class="product-card-3d">
-                    <div class="product-inner">
-                        <div class="product-front">
-                            <img src="noirclub.jpg" alt="Noir Club Tee" class="product-img-real">
-                            <div class="product-label">NOIR CLUB</div>
+                <!-- Slide 4 -->
+                <div class="hero-premium-slide">
+                    <div class="hero-premium-product">
+                        <div class="hero-premium-image-wrapper">
+                            <div class="hero-premium-image-glow"></div>
+                            <img src="noirclub.jpg" alt="Noir Club Tee" class="hero-premium-image">
+                            <div class="hero-premium-badge">✦ EDICIÓN ESPECIAL</div>
                         </div>
-                        <div class="product-back">
-                            <div class="product-back-content">
-                                <span class="back-tag">✦ N°03</span>
-                                <h4>1989 · PARIS</h4>
-                                <h4 class="back-red">FRANCE</h4>
-                                <span class="back-price">$820 MXN</span>
-                                <a href="https://wa.me/526647587072" target="_blank" class="back-whatsapp">💬 COMPRAR</a>
+                        <div class="hero-premium-info">
+                            <span class="hero-premium-number">N°03</span>
+                            <h2 class="hero-premium-title">1989 · PARIS</h2>
+                            <h2 class="hero-premium-title hero-premium-title-red">FRANCE</h2>
+                            <div class="hero-premium-details">
+                                <span class="hero-premium-price">$820 MXN</span>
+                                <span class="hero-premium-divider">•</span>
+                                <span class="hero-premium-size">Oversized 280g</span>
+                            </div>
+                            <div class="hero-premium-colors">
+                                <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
+                                <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
+                            </div>
+                            <div class="hero-premium-actions">
+                                <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Noir%20Club%20Tee*%20%F0%9F%97%BC%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24820%20MXN%0A%F0%9F%93%A6%20N%C2%B003%20%E2%80%94%20MEDIANOCHE" target="_blank" class="hero-premium-btn">
+                                    💬 COMPRAR AHORA
+                                </a>
+                                <a href="#coleccion" class="hero-premium-btn-secondary">VER DETALLES</a>
                             </div>
                         </div>
                     </div>
-                    <div class="product-shadow"></div>
                 </div>
+
+                <!-- Slide 5 -->
+                <div class="hero-premium-slide">
+                    <div class="hero-premium-product">
+                        <div class="hero-premium-image-wrapper">
+                            <div class="hero-premium-image-glow"></div>
+                            <img src="boxing.jpg" alt="Keep Fighting Tee" class="hero-premium-image">
+                            <div class="hero-premium-badge">✦ BEST SELLER</div>
+                        </div>
+                        <div class="hero-premium-info">
+                            <span class="hero-premium-number">N°04</span>
+                            <h2 class="hero-premium-title">FALL DOWN.</h2>
+                            <h2 class="hero-premium-title hero-premium-title-red">GET UP. AGAIN.</h2>
+                            <div class="hero-premium-details">
+                                <span class="hero-premium-price">$780 MXN</span>
+                                <span class="hero-premium-divider">•</span>
+                                <span class="hero-premium-size">Oversized 280g</span>
+                            </div>
+                            <div class="hero-premium-colors">
+                                <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
+                                <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
+                            </div>
+                            <div class="hero-premium-actions">
+                                <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Keep%20Fighting%20Tee*%20%F0%9F%A5%8A%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B004%20%E2%80%94%20CUADRIL%C3%81TERO" target="_blank" class="hero-premium-btn">
+                                    💬 COMPRAR AHORA
+                                </a>
+                                <a href="#coleccion" class="hero-premium-btn-secondary">VER DETALLES</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Controles -->
+            <button class="hero-premium-btn-prev" id="heroPremiumPrev">‹</button>
+            <button class="hero-premium-btn-next" id="heroPremiumNext">›</button>
+            <div class="hero-premium-dots" id="heroPremiumDots"></div>
+            
+            <!-- Indicador de slide -->
+            <div class="hero-premium-counter" id="heroPremiumCounter">01 / 05</div>
         </div>
     </div>
 
@@ -165,7 +234,7 @@
         <div class="scroll-line"></div>
     </div>
 </section>
-
+    
     <!-- ========================================== -->
     <!-- ========== MARQUEE ======================= -->
     <!-- ========================================== -->
@@ -469,7 +538,7 @@
     <!-- ========================================== -->
     <!-- ========== FOOTER ======================== -->
     <!-- ========================================== -->
-    <footer id="contacto">
+    <footer>
         <div class="wrap">
             <div class="foot-grid">
                 <div>

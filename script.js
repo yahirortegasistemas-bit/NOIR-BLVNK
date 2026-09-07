@@ -36,32 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== EFECTO 3D EN PLAYERAS ==========
-    const productCards = document.querySelectorAll('.product-card-3d');
-    const heroProducts = document.querySelector('.hero-products');
-    
-    if (heroProducts) {
-        heroProducts.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            
-            productCards.forEach(function(card, index) {
-                const speed = 8 + index * 2;
-                const rotY = x * speed;
-                const rotX = -y * speed * 0.7;
-                card.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg)`;
-            });
-        });
-
-        heroProducts.addEventListener('mouseleave', function() {
-            productCards.forEach(function(card) {
-                card.style.transform = '';
-            });
-        });
-    }
-
-    // ========== CARRUSEL 3D ==========
+    // ========== CARRUSEL LOOKBOOK ==========
     const carousel = document.getElementById('carousel3d');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -125,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
 
-    // Función para cambiar el tema
     function toggleTheme() {
         const isLight = document.body.classList.toggle('light-mode');
         const icon = isLight ? '☀️' : '🌙';
@@ -133,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
     }
 
-    // Función para aplicar el tema guardado o el del sistema
     function applyTheme() {
         const savedTheme = localStorage.getItem('theme');
         
@@ -144,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('light-mode');
             if (themeIcon) themeIcon.textContent = '🌙';
         } else {
-            // Si no hay preferencia guardada, usar la del sistema
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (!prefersDark) {
                 document.body.classList.add('light-mode');
@@ -156,18 +128,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Evento del botón
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
 
-    // Aplicar tema al cargar la página
     applyTheme();
 
-    // Escuchar cambios en la preferencia del sistema
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
         if (!localStorage.getItem('theme')) {
-            // Solo si el usuario no ha elegido manualmente
             if (e.matches) {
                 document.body.classList.remove('light-mode');
                 if (themeIcon) themeIcon.textContent = '🌙';
@@ -177,6 +145,94 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // ============================================================
+    // ========== HERO CARRUSEL ====================================
+    // ============================================================
+
+    const heroCarousel = document.getElementById('heroCarousel');
+    const heroPrevBtn = document.getElementById('heroPrevBtn');
+    const heroNextBtn = document.getElementById('heroNextBtn');
+    const heroDots = document.getElementById('heroDots');
+
+    if (heroCarousel && heroPrevBtn && heroNextBtn) {
+        const scrollAmount = 300;
+        
+        const items = heroCarousel.querySelectorAll('.hero-carousel-item');
+        const totalItems = items.length;
+        
+        items.forEach((item, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('hero-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.dataset.index = index;
+            dot.addEventListener('click', () => {
+                heroCarousel.scrollTo({
+                    left: index * scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+            heroDots.appendChild(dot);
+        });
+        
+        function updateDots() {
+            const scrollLeft = heroCarousel.scrollLeft;
+            const activeIndex = Math.round(scrollLeft / scrollAmount);
+            document.querySelectorAll('.hero-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        }
+        
+        heroCarousel.addEventListener('scroll', updateDots);
+        
+        heroPrevBtn.addEventListener('click', function() {
+            heroCarousel.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        heroNextBtn.addEventListener('click', function() {
+            heroCarousel.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        let heroAutoScroll = setInterval(function() {
+            if (!heroCarousel.matches(':hover')) {
+                heroCarousel.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }, 4500);
+        
+        heroCarousel.addEventListener('mouseenter', function() {
+            clearInterval(heroAutoScroll);
+        });
+        
+        heroCarousel.addEventListener('mouseleave', function() {
+            heroAutoScroll = setInterval(function() {
+                heroCarousel.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }, 4500);
+        });
+        
+        heroCarousel.addEventListener('scroll', function() {
+            clearInterval(heroAutoScroll);
+            heroAutoScroll = setInterval(function() {
+                if (!heroCarousel.matches(':hover')) {
+                    heroCarousel.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 4500);
+        });
+    }
 
     console.log('✅ NOIR BLVNK — Listo');
 });
@@ -227,4 +283,120 @@ if ($form) {
             $btnText.style.pointerEvents = "auto";
         }
     });
+
+    // ============================================================
+// ========== HERO CARRUSEL PREMIUM ============================
+// ============================================================
+
+const heroPremiumCarousel = document.getElementById('heroPremiumCarousel');
+const heroPremiumPrev = document.getElementById('heroPremiumPrev');
+const heroPremiumNext = document.getElementById('heroPremiumNext');
+const heroPremiumDots = document.getElementById('heroPremiumDots');
+const heroPremiumCounter = document.getElementById('heroPremiumCounter');
+
+if (heroPremiumCarousel && heroPremiumPrev && heroPremiumNext) {
+    const premiumSlides = heroPremiumCarousel.querySelectorAll('.hero-premium-slide');
+    const totalPremium = premiumSlides.length;
+    let currentPremium = 0;
+    
+    // Crear dots
+    premiumSlides.forEach((slide, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('hero-premium-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.dataset.index = index;
+        dot.addEventListener('click', () => {
+            currentPremium = index;
+            heroPremiumCarousel.scrollTo({
+                left: index * heroPremiumCarousel.offsetWidth,
+                behavior: 'smooth'
+            });
+            updatePremiumUI();
+        });
+        heroPremiumDots.appendChild(dot);
+    });
+    
+    function updatePremiumUI() {
+        const scrollLeft = heroPremiumCarousel.scrollLeft;
+        const width = heroPremiumCarousel.offsetWidth;
+        const activeIndex = Math.round(scrollLeft / width);
+        currentPremium = activeIndex;
+        
+        document.querySelectorAll('.hero-premium-dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === activeIndex);
+        });
+        
+        if (heroPremiumCounter) {
+            const current = String(activeIndex + 1).padStart(2, '0');
+            const total = String(totalPremium).padStart(2, '0');
+            heroPremiumCounter.textContent = `${current} / ${total}`;
+        }
+    }
+    
+    heroPremiumCarousel.addEventListener('scroll', updatePremiumUI);
+    
+    // Botones
+    heroPremiumPrev.addEventListener('click', () => {
+        if (currentPremium > 0) {
+            currentPremium--;
+        } else {
+            currentPremium = totalPremium - 1;
+        }
+        heroPremiumCarousel.scrollTo({
+            left: currentPremium * heroPremiumCarousel.offsetWidth,
+            behavior: 'smooth'
+        });
+        updatePremiumUI();
+    });
+    
+    heroPremiumNext.addEventListener('click', () => {
+        if (currentPremium < totalPremium - 1) {
+            currentPremium++;
+        } else {
+            currentPremium = 0;
+        }
+        heroPremiumCarousel.scrollTo({
+            left: currentPremium * heroPremiumCarousel.offsetWidth,
+            behavior: 'smooth'
+        });
+        updatePremiumUI();
+    });
+    
+    // Auto-scroll
+    let premiumAutoScroll = setInterval(() => {
+        if (!heroPremiumCarousel.matches(':hover')) {
+            currentPremium = (currentPremium + 1) % totalPremium;
+            heroPremiumCarousel.scrollTo({
+                left: currentPremium * heroPremiumCarousel.offsetWidth,
+                behavior: 'smooth'
+            });
+            updatePremiumUI();
+        }
+    }, 5000);
+    
+    heroPremiumCarousel.addEventListener('mouseenter', () => {
+        clearInterval(premiumAutoScroll);
+    });
+    
+    heroPremiumCarousel.addEventListener('mouseleave', () => {
+        premiumAutoScroll = setInterval(() => {
+            currentPremium = (currentPremium + 1) % totalPremium;
+            heroPremiumCarousel.scrollTo({
+                left: currentPremium * heroPremiumCarousel.offsetWidth,
+                behavior: 'smooth'
+            });
+            updatePremiumUI();
+        }, 5000);
+    });
+    
+    window.addEventListener('resize', () => {
+        heroPremiumCarousel.scrollTo({
+            left: currentPremium * heroPremiumCarousel.offsetWidth,
+            behavior: 'auto'
+        });
+    });
+    
+    // Inicializar
+    updatePremiumUI();
+}
 }
