@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIR BLVNK — Detalle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="producto.css">
+</head>
+<body>
+
+    <div class="grain"></div>
+    <div class="spotlight" id="spotlight"></div>
+
+    <!-- ========================================== -->
+    <!-- ========== NAV =========================== -->
+    <!-- ========================================== -->
+    <nav>
+        <div class="nav-mark">
+            <span class="led led-d1">N</span>
+            <span class="led led-d2">O</span>
+            <span class="led led-d3">I</span>
+            <span class="led led-d4">R</span>
+            <span class="space"></span>
+            <span class="led led-d6">B</span>
+            <span class="led led-d7">L</span>
+            <span class="led led-d8">V</span>
+            <span class="led led-d9">N</span>
+            <span class="led led-d1">K</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#coleccion">Colección</a>
+            <a href="index.html#manifiesto">Manifiesto</a>
+            <a href="index.html#lookbook">Lookbook</a>
+            <a href="index.html#contacto">Contacto</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="nav-icon">🔍</a>
+            <a href="#" class="nav-icon">🛒</a>
+            <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- ========== DETALLE PRODUCTO ============== -->
+    <!-- ========================================== -->
+    <section class="product-detail" id="productDetail">
+        <div class="product-detail-grid">
+            <!-- IMAGEN -->
+            <div class="product-detail-image">
+                <img id="productImage" src="feardeath.jpg" alt="Fear Of Death Tee">
+                <span class="product-detail-badge" id="productBadge">✦ EDICIÓN LIMITADA</span>
+            </div>
+
+            <!-- INFO -->
+            <div class="product-detail-info">
+                <span class="product-detail-number" id="productNumber">✦ N°05</span>
+                <h1 class="product-detail-title" id="productTitle">I HAVE NO</h1>
+                <h1 class="product-detail-title product-detail-title-red" id="productSubtitle">FEAR OF DEATH</h1>
+                <span class="product-detail-price" id="productPrice">$890 MXN</span>
+                <p class="product-detail-desc" id="productDesc">La gráfica insignia de la temporada: un motor invertido, trazado a mano en rojo sobre crema — una cruz hecha de fierro y velocidad.</p>
+
+                <!-- TEXTURA -->
+                <div class="product-detail-texture">
+                    <div class="product-detail-texture-item">
+                        <span>Material</span>
+                        <span id="productMaterial">Algodón peinado 280g</span>
+                    </div>
+                    <div class="product-detail-texture-item">
+                        <span>Corte</span>
+                        <span id="productFit">Oversized / Corte caído</span>
+                    </div>
+                    <div class="product-detail-texture-item">
+                        <span>Impresión</span>
+                        <span id="productPrint">Serigrafía / Tinta plastisol</span>
+                    </div>
+                </div>
+
+                <!-- TALLAS -->
+                <div class="product-detail-sizes">
+                    <span class="product-detail-sizes-label">Tallas disponibles</span>
+                    <div class="product-detail-sizes-grid" id="productSizes">
+                        <button class="product-detail-size active" data-size="S">S</button>
+                        <button class="product-detail-size" data-size="M">M</button>
+                        <button class="product-detail-size" data-size="L">L</button>
+                        <button class="product-detail-size" data-size="XL">XL</button>
+                        <button class="product-detail-size out-of-stock" data-size="XXL">XXL</button>
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="product-detail-actions">
+                    <a href="#" id="whatsappBtn" class="product-detail-whatsapp" target="_blank">
+                        💬 COMPRAR POR WHATSAPP
+                    </a>
+                    <a href="index.html#coleccion" class="product-detail-btn-secondary">
+                        ← VOLVER A LA COLECCIÓN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ========== FOOTER ======================== -->
+    <!-- ========================================== -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <div class="foot-mark">
+                        <span class="led led-d1">N</span>
+                        <span class="led led-d2">O</span>
+                        <span class="led led-d3">I</span>
+                        <span class="led led-d4">R</span>
+                        <span class="space"></span>
+                        <span class="led led-d6">B</span>
+                        <span class="led led-d7">L</span>
+                        <span class="led led-d8">V</span>
+                        <span class="led led-d9">N</span>
+                        <span class="led led-d1">K</span>
+                    </div>
+                    <p class="foot-desc">Ropa nacida en el asfalto. París, 1989 — el mundo, ahora. Cada prenda es un recordatorio de que el único límite eres tú.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>Tienda</h5>
+                    <a href="index.html#coleccion">Colección completa</a>
+                    <a href="#">Nuevos drops</a>
+                    <a href="#">Guía de tallas</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Marca</h5>
+                    <a href="index.html#manifiesto">Manifiesto</a>
+                    <a href="index.html#lookbook">Lookbook</a>
+                    <a href="index.html#contacto">Contacto</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Síguenos</h5>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">WhatsApp</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© 2026 NOIR BLVNK. TODOS LOS DERECHOS RESERVADOS.</span>
+                <span>HECHO PARA LOS QUE NO SE DETIENEN.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="producto.js"></script>
+</body>
+</html>
