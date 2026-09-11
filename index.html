@@ -11,6 +11,9 @@
 </head>
 <body>
 
+    <!-- ========================================== -->
+    <!-- ========== OVERLAYS GLOBALES ============= -->
+    <!-- ========================================== -->
     <div class="grain"></div>
     <div class="spotlight" id="spotlight"></div>
 
@@ -37,8 +40,6 @@
             <a href="#contacto">Contacto</a>
         </div>
         <div class="nav-actions">
-            <a href="#" class="nav-icon">🔍</a>
-            <a href="#" class="nav-icon">🛒</a>
             <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
                 <span class="theme-icon">🌙</span>
             </button>
@@ -46,182 +47,55 @@
     </nav>
 
     <!-- ========================================== -->
-    <!-- ========== HERO PREMIUM ================== -->
+    <!-- ========== HERO MINIMALISTA ============== -->
     <!-- ========================================== -->
     <section class="hero-premium">
+        <!-- FONDO -->
         <div class="hero-premium-bg">
             <div class="hero-premium-gradient"></div>
             <div class="hero-premium-pattern"></div>
+            <div class="hero-premium-lines"></div>
+            <div class="hero-premium-watermark">NOIR BLVNK</div>
+            <div class="hero-premium-year">1989</div>
         </div>
 
         <div class="hero-premium-container">
-            <div class="hero-premium-carousel-wrapper">
-                <div class="hero-premium-carousel" id="heroPremiumCarousel">
-                    
-                    <!-- Slide 1 -->
-                    <div class="hero-premium-slide">
-                        <div class="hero-premium-product">
-                            <div class="hero-premium-image-wrapper">
-                                <div class="hero-premium-image-glow"></div>
-                                <img src="feardeath.jpg" alt="Fear Of Death Tee" class="hero-premium-image">
-                                <div class="hero-premium-badge">✦ EDICIÓN LIMITADA</div>
-                            </div>
-                            <div class="hero-premium-info">
-                                <span class="hero-premium-number">N°05</span>
-                                <h2 class="hero-premium-title">I HAVE NO</h2>
-                                <h2 class="hero-premium-title hero-premium-title-red">FEAR OF DEATH</h2>
-                                <div class="hero-premium-details">
-                                    <span class="hero-premium-price">$890 MXN</span>
-                                    <span class="hero-premium-divider">•</span>
-                                    <span class="hero-premium-size">Oversized 280g</span>
-                                </div>
-                                <div class="hero-premium-colors">
-                                    <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#8c1c1c;"></span>
-                                </div>
-                                <div class="hero-premium-actions">
-                                    <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Fear%20Of%20Death%20Tee*%20%F0%9F%96%A4%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24890%20MXN%0A%F0%9F%93%A6%20N%C2%B005%20%E2%80%94%20HIELO" target="_blank" class="hero-premium-btn">
-                                        💬 COMPRAR AHORA
-                                    </a>
-                                    <a href="producto.html?id=feardeath" class="hero-premium-btn-secondary">VER DETALLES</a>
-                                </div>
-                            </div>
+            <div class="hero-premium-grid">
+                
+                <!-- ===== COLUMNA IZQUIERDA ===== -->
+                <div class="hero-premium-left">
+                    <!-- INFO DEL PRODUCTO ACTIVO -->
+                    <div class="hero-premium-product-info" id="productInfo">
+                        <span class="hero-premium-product-number" id="productNumber">✦ N°05</span>
+                        <h2 class="hero-premium-product-title" id="productTitle">
+                            I HAVE NO <span class="hero-premium-product-red" id="productSubtitle">FEAR OF DEATH</span>
+                        </h2>
+                        <div class="hero-premium-product-details">
+                            <span class="hero-premium-product-price" id="productPrice">$890 MXN</span>
+                            <span class="hero-premium-product-divider">●</span>
+                            <span class="hero-premium-product-size" id="productSize">Oversized 280g</span>
+                        </div>
+                        <div class="hero-premium-product-actions">
+                            <a href="#" id="productWhatsapp" target="_blank" class="hero-premium-product-btn">💬 COMPRAR AHORA</a>
+                            <a href="#" id="productDetail" class="hero-premium-product-btn-secondary">VER DETALLES</a>
                         </div>
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class="hero-premium-slide">
-                        <div class="hero-premium-product">
-                            <div class="hero-premium-image-wrapper">
-                                <div class="hero-premium-image-glow"></div>
-                                <img src="run.jpg" alt="Solo Run Tee" class="hero-premium-image">
-                                <div class="hero-premium-badge">✦ BEST SELLER</div>
-                            </div>
-                            <div class="hero-premium-info">
-                                <span class="hero-premium-number">N°01</span>
-                                <h2 class="hero-premium-title">I JUST</h2>
-                                <h2 class="hero-premium-title hero-premium-title-red">WANNA RUN</h2>
-                                <div class="hero-premium-details">
-                                    <span class="hero-premium-price">$780 MXN</span>
-                                    <span class="hero-premium-divider">•</span>
-                                    <span class="hero-premium-size">Oversized 280g</span>
-                                </div>
-                                <div class="hero-premium-colors">
-                                    <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
-                                </div>
-                                <div class="hero-premium-actions">
-                                    <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Solo%20Run%20Tee*%20%F0%9F%8F%83%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B001%20%E2%80%94%20MADRUGADA" target="_blank" class="hero-premium-btn">
-                                        💬 COMPRAR AHORA
-                                    </a>
-                                    <a href="producto.html?id=run" class="hero-premium-btn-secondary">VER DETALLES</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="hero-premium-slide">
-                        <div class="hero-premium-product">
-                            <div class="hero-premium-image-wrapper">
-                                <div class="hero-premium-image-glow"></div>
-                                <img src="race.jpg" alt="Corners Tee" class="hero-premium-image">
-                                <div class="hero-premium-badge">✦ NUEVO DROP</div>
-                            </div>
-                            <div class="hero-premium-info">
-                                <span class="hero-premium-number">N°02</span>
-                                <h2 class="hero-premium-title">RACES ARE WON</h2>
-                                <h2 class="hero-premium-title hero-premium-title-red">IN THE CORNERS</h2>
-                                <div class="hero-premium-details">
-                                    <span class="hero-premium-price">$780 MXN</span>
-                                    <span class="hero-premium-divider">•</span>
-                                    <span class="hero-premium-size">Oversized 280g</span>
-                                </div>
-                                <div class="hero-premium-colors">
-                                    <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#8c1c1c;"></span>
-                                </div>
-                                <div class="hero-premium-actions">
-                                    <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Corners%20Tee*%20%F0%9F%8F%8E%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B002%20%E2%80%94%20PISTA" target="_blank" class="hero-premium-btn">
-                                        💬 COMPRAR AHORA
-                                    </a>
-                                    <a href="producto.html?id=race" class="hero-premium-btn-secondary">VER DETALLES</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="hero-premium-slide">
-                        <div class="hero-premium-product">
-                            <div class="hero-premium-image-wrapper">
-                                <div class="hero-premium-image-glow"></div>
-                                <img src="noirclub.jpg" alt="Noir Club Tee" class="hero-premium-image">
-                                <div class="hero-premium-badge">✦ EDICIÓN ESPECIAL</div>
-                            </div>
-                            <div class="hero-premium-info">
-                                <span class="hero-premium-number">N°03</span>
-                                <h2 class="hero-premium-title">1989 · PARIS</h2>
-                                <h2 class="hero-premium-title hero-premium-title-red">FRANCE</h2>
-                                <div class="hero-premium-details">
-                                    <span class="hero-premium-price">$820 MXN</span>
-                                    <span class="hero-premium-divider">•</span>
-                                    <span class="hero-premium-size">Oversized 280g</span>
-                                </div>
-                                <div class="hero-premium-colors">
-                                    <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
-                                </div>
-                                <div class="hero-premium-actions">
-                                    <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Noir%20Club%20Tee*%20%F0%9F%97%BC%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24820%20MXN%0A%F0%9F%93%A6%20N%C2%B003%20%E2%80%94%20MEDIANOCHE" target="_blank" class="hero-premium-btn">
-                                        💬 COMPRAR AHORA
-                                    </a>
-                                    <a href="producto.html?id=noirclub" class="hero-premium-btn-secondary">VER DETALLES</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="hero-premium-slide">
-                        <div class="hero-premium-product">
-                            <div class="hero-premium-image-wrapper">
-                                <div class="hero-premium-image-glow"></div>
-                                <img src="boxing.jpg" alt="Keep Fighting Tee" class="hero-premium-image">
-                                <div class="hero-premium-badge">✦ BEST SELLER</div>
-                            </div>
-                            <div class="hero-premium-info">
-                                <span class="hero-premium-number">N°04</span>
-                                <h2 class="hero-premium-title">FALL DOWN.</h2>
-                                <h2 class="hero-premium-title hero-premium-title-red">GET UP. AGAIN.</h2>
-                                <div class="hero-premium-details">
-                                    <span class="hero-premium-price">$780 MXN</span>
-                                    <span class="hero-premium-divider">•</span>
-                                    <span class="hero-premium-size">Oversized 280g</span>
-                                </div>
-                                <div class="hero-premium-colors">
-                                    <span class="hero-premium-color-dot active" style="background:#1a1a1a;"></span>
-                                    <span class="hero-premium-color-dot" style="background:#2d2d2d;"></span>
-                                </div>
-                                <div class="hero-premium-actions">
-                                    <a href="https://wa.me/526647587072?text=Hola%20quiero%20comprar%20la%20playera%20*Keep%20Fighting%20Tee*%20%F0%9F%A5%8A%0A%F0%9F%8F%B7%EF%B8%8F%20Precio%3A%20%24780%20MXN%0A%F0%9F%93%A6%20N%C2%B004%20%E2%80%94%20CUADRIL%C3%81TERO" target="_blank" class="hero-premium-btn">
-                                        💬 COMPRAR AHORA
-                                    </a>
-                                    <a href="producto.html?id=boxing" class="hero-premium-btn-secondary">VER DETALLES</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- Controles -->
-                <button class="hero-premium-btn-prev" id="heroPremiumPrev">‹</button>
-                <button class="hero-premium-btn-next" id="heroPremiumNext">›</button>
-                <div class="hero-premium-dots" id="heroPremiumDots"></div>
-                <div class="hero-premium-counter" id="heroPremiumCounter">01 / 05</div>
+                <!-- ===== COLUMNA DERECHA: CARRUSEL 3D ===== -->
+                <div class="hero-premium-right">
+                    <div class="hero-premium-carousel-3d" id="carousel3d">
+                        <div class="hero-premium-carousel-3d-track" id="carousel3dTrack">
+                            <!-- Los slides se generan con JavaScript -->
+                        </div>
+                        <div class="hero-premium-carousel-3d-controls">
+                            <button class="hero-premium-carousel-3d-prev" id="carousel3dPrev">‹</button>
+                            <div class="hero-premium-carousel-3d-counter" id="carousel3dCounter">01 / 05</div>
+                            <button class="hero-premium-carousel-3d-next" id="carousel3dNext">›</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -242,110 +116,170 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- ========== MANIFESTO ===================== -->
+    <!-- ========== MANIFIESTO INMERSIVO ========== -->
     <!-- ========================================== -->
-    <section class="manifesto" id="manifiesto">
-        <div class="wrap manifesto-grid">
-            <div class="reveal">
-                <div class="tag">Manifiesto</div>
-                <h2>No hacemos ropa para <em>quedarse quieto.</em><br>La hacemos para lo que pasa <em>después de las 11pm</em> y <em>antes de las 6am.</em></h2>
+    <section class="manifesto-immersive" id="manifiesto">
+        <div class="manifesto-immersive-bg">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600" alt="Ciudad nocturna" loading="lazy">
+            <div class="manifesto-immersive-overlay"></div>
+        </div>
+
+        <div class="manifesto-immersive-content">
+            <span class="manifesto-immersive-tag">✦ EL MANIFIESTO</span>
+
+            <div class="manifesto-immersive-text">
+                <p class="manifesto-immersive-line">No hacemos ropa para <span class="highlight">quedarse quieto.</span></p>
+                <p class="manifesto-immersive-line">La hacemos para lo que pasa</p>
+                <p class="manifesto-immersive-line"><span class="highlight">después de las 11pm</span> y <span class="highlight">antes de las 6am.</span></p>
             </div>
-            <div class="manifesto-side reveal">
-                <p>NOIR BLVNK nació en el asfalto, no en un moodboard. Cada gráfico sale de una obsesión real: el corredor que entrena bajo el puente porque el gimnasio ya cerró, el piloto que sabe que la carrera se gana en la curva, el boxeador que se levanta una vez más de lo que cae.</p>
-                <p>Prendas oversized, algodón pesado, tintas que no se rinden. Diseñadas en negro porque el negro no miente — y en las noches donde de verdad se construye algo, no hay luces de neón, solo un farol y la decisión de seguir caminando.</p>
-                <div class="stat-row">
-                    <div class="stat"><b>05</b><span>Cápsulas activas</span></div>
-                    <div class="stat"><b>100%</b><span>Algodón pesado 280g</span></div>
-                    <div class="stat"><b>1989</b><span>Año de origen</span></div>
+
+            <div class="manifesto-immersive-grid">
+                <div class="manifesto-immersive-stat">
+                    <span class="stat-number">05</span>
+                    <span class="stat-label">Cápsulas activas</span>
+                </div>
+                <div class="manifesto-immersive-stat">
+                    <span class="stat-number">280g</span>
+                    <span class="stat-label">Algodón pesado</span>
+                </div>
+                <div class="manifesto-immersive-stat">
+                    <span class="stat-number">1989</span>
+                    <span class="stat-label">Año de origen</span>
                 </div>
             </div>
+
+            <div class="manifesto-immersive-divider"></div>
+
+            <p class="manifesto-immersive-desc">
+                NOIR BLVNK nació en el asfalto, no en un moodboard. Cada gráfico sale de una obsesión real: el corredor que entrena bajo el puente porque el gimnasio ya cerró, el piloto que sabe que la carrera se gana en la curva, el boxeador que se levanta una vez más de lo que cae.
+            </p>
+            <p class="manifesto-immersive-desc">
+                Prendas oversized, algodón pesado, tintas que no se rinden. Diseñadas en negro porque el negro no miente — y en las noches donde de verdad se construye algo, no hay luces de neón, solo un farol y la decisión de seguir caminando.
+            </p>
+
+            <a href="#coleccion" class="manifesto-immersive-btn">VER COLECCIÓN →</a>
         </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- ========== COLECCIÓN ===================== -->
+    <!-- ========== COLECCIÓN NOIR ================ -->
     <!-- ========================================== -->
-    <section class="collection" id="coleccion">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <h3>La<br>colección</h3>
-                <p>Cinco piezas, cinco obsesiones. Cada playera lleva su propio mantra impreso a la espalda — para que lo lean los que se quedan atrás.</p>
+    <section class="collection-noir" id="coleccion">
+        <div class="collection-bg">
+            <div class="collection-bg-overlay"></div>
+        </div>
+
+        <div class="collection-noir-container">
+            <div class="collection-noir-header">
+                <span class="collection-noir-tag">✦ EDICIÓN 2026</span>
+                <h2 class="collection-noir-title">COLECCIÓN</h2>
+                <h2 class="collection-noir-title collection-noir-title-red">NOIR</h2>
+                <div class="collection-noir-subtitle">
+                    <span>1989 · PARIS · FRANCE</span>
+                    <span class="collection-noir-divider">●</span>
+                    <span>ASFALTO · NOCHE</span>
+                </div>
+                <p class="collection-noir-desc">
+                    Cinco piezas, cinco obsesiones. Cada playera lleva su propio mantra impreso a la espalda — para que lo lean los que se quedan atrás.
+                </p>
             </div>
-            <div class="grid reveal">
-                <!-- Fear Of Death -->
-                <div class="card">
-                    <img src="feardeath.jpg" alt="Playera NOIR BLVNK — I Have No Fear Of Death">
-                    <div class="card-price mono">$890 MXN</div>
-                    <div class="card-number">
-                        <span class="led-icon"></span>
-                        N°05 — HIELO
+
+            <div class="collection-noir-grid">
+                <div class="collection-noir-card">
+                    <div class="collection-noir-card-image">
+                        <img src="feardeath.jpg" alt="Fear Of Death Tee">
+                        <div class="collection-noir-card-badge">✦ N°05</div>
                     </div>
-                    <div class="card-info">
-                        <h4>Fear Of Death Tee</h4>
-                        <div class="slogan">I have no fear of death</div>
-                        <a href="producto.html?id=feardeath" class="btn-whatsapp">🔍 Ver detalles</a>
+                    <div class="collection-noir-card-info">
+                        <h4>I HAVE NO</h4>
+                        <h4 class="collection-noir-card-red">FEAR OF DEATH</h4>
+                        <span class="collection-noir-card-price">$890 MXN</span>
+                        <div class="collection-noir-card-meta">
+                            <span>Oversized 280g</span>
+                            <span class="collection-noir-card-divider">•</span>
+                            <span>HIELO</span>
+                        </div>
+                        <a href="producto.html?id=feardeath" class="collection-noir-card-btn">VER DETALLES →</a>
                     </div>
                 </div>
 
-                <!-- Solo Run -->
-                <div class="card">
-                    <img src="run.jpg" alt="Playera NOIR BLVNK — The Only Limit Is Your Mind">
-                    <div class="card-price mono">$780 MXN</div>
-                    <div class="card-number">
-                        <span class="led-icon"></span>
-                        N°01 — MADRUGADA
+                <div class="collection-noir-card">
+                    <div class="collection-noir-card-image">
+                        <img src="run.jpg" alt="Solo Run Tee">
+                        <div class="collection-noir-card-badge">✦ N°01</div>
                     </div>
-                    <div class="card-info">
-                        <h4>Solo Run Tee</h4>
-                        <div class="slogan">I just wanna run</div>
-                        <a href="producto.html?id=run" class="btn-whatsapp">🔍 Ver detalles</a>
-                    </div>
-                </div>
-
-                <!-- Corners -->
-                <div class="card">
-                    <img src="race.jpg" alt="Playera NOIR BLVNK — Races Are Won In The Corners">
-                    <div class="card-price mono">$780 MXN</div>
-                    <div class="card-number">
-                        <span class="led-icon"></span>
-                        N°02 — PISTA
-                    </div>
-                    <div class="card-info">
-                        <h4>Corners Tee</h4>
-                        <div class="slogan">Races are won in the corners</div>
-                        <a href="producto.html?id=race" class="btn-whatsapp">🔍 Ver detalles</a>
+                    <div class="collection-noir-card-info">
+                        <h4>I JUST</h4>
+                        <h4 class="collection-noir-card-red">WANNA RUN</h4>
+                        <span class="collection-noir-card-price">$780 MXN</span>
+                        <div class="collection-noir-card-meta">
+                            <span>Oversized 280g</span>
+                            <span class="collection-noir-card-divider">•</span>
+                            <span>MADRUGADA</span>
+                        </div>
+                        <a href="producto.html?id=run" class="collection-noir-card-btn">VER DETALLES →</a>
                     </div>
                 </div>
 
-                <!-- Noir Club -->
-                <div class="card">
-                    <img src="noirclub.jpg" alt="Playera NOIR BLVNK — Noir Club 1989 Paris France">
-                    <div class="card-price mono">$820 MXN</div>
-                    <div class="card-number">
-                        <span class="led-icon"></span>
-                        N°03 — MEDIANOCHE
+                <div class="collection-noir-card">
+                    <div class="collection-noir-card-image">
+                        <img src="race.jpg" alt="Corners Tee">
+                        <div class="collection-noir-card-badge">✦ N°02</div>
                     </div>
-                    <div class="card-info">
-                        <h4>Noir Club Tee</h4>
-                        <div class="slogan">1989 · Paris · France</div>
-                        <a href="producto.html?id=noirclub" class="btn-whatsapp">🔍 Ver detalles</a>
+                    <div class="collection-noir-card-info">
+                        <h4>RACES ARE WON</h4>
+                        <h4 class="collection-noir-card-red">IN THE CORNERS</h4>
+                        <span class="collection-noir-card-price">$780 MXN</span>
+                        <div class="collection-noir-card-meta">
+                            <span>Oversized 280g</span>
+                            <span class="collection-noir-card-divider">•</span>
+                            <span>PISTA</span>
+                        </div>
+                        <a href="producto.html?id=race" class="collection-noir-card-btn">VER DETALLES →</a>
                     </div>
                 </div>
 
-                <!-- Keep Fighting -->
-                <div class="card">
-                    <img src="boxing.jpg" alt="Playera NOIR BLVNK — Fall Down Get Up Again Keep Fighting">
-                    <div class="card-price mono">$780 MXN</div>
-                    <div class="card-number">
-                        <span class="led-icon"></span>
-                        N°04 — CUADRILÁTERO
+                <div class="collection-noir-card">
+                    <div class="collection-noir-card-image">
+                        <img src="noirclub.jpg" alt="Noir Club Tee">
+                        <div class="collection-noir-card-badge">✦ N°03</div>
                     </div>
-                    <div class="card-info">
-                        <h4>Keep Fighting Tee</h4>
-                        <div class="slogan">Fall down. Get up. Again.</div>
-                        <a href="producto.html?id=boxing" class="btn-whatsapp">🔍 Ver detalles</a>
+                    <div class="collection-noir-card-info">
+                        <h4>1989 · PARIS</h4>
+                        <h4 class="collection-noir-card-red">FRANCE</h4>
+                        <span class="collection-noir-card-price">$820 MXN</span>
+                        <div class="collection-noir-card-meta">
+                            <span>Oversized 280g</span>
+                            <span class="collection-noir-card-divider">•</span>
+                            <span>MEDIANOCHE</span>
+                        </div>
+                        <a href="producto.html?id=noirclub" class="collection-noir-card-btn">VER DETALLES →</a>
                     </div>
                 </div>
+
+                <div class="collection-noir-card">
+                    <div class="collection-noir-card-image">
+                        <img src="boxing.jpg" alt="Keep Fighting Tee">
+                        <div class="collection-noir-card-badge">✦ N°04</div>
+                    </div>
+                    <div class="collection-noir-card-info">
+                        <h4>FALL DOWN.</h4>
+                        <h4 class="collection-noir-card-red">GET UP. AGAIN.</h4>
+                        <span class="collection-noir-card-price">$780 MXN</span>
+                        <div class="collection-noir-card-meta">
+                            <span>Oversized 280g</span>
+                            <span class="collection-noir-card-divider">•</span>
+                            <span>CUADRILÁTERO</span>
+                        </div>
+                        <a href="producto.html?id=boxing" class="collection-noir-card-btn">VER DETALLES →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-noir-decorative">
+                <span class="collection-noir-decorative-word">NOIR</span>
+                <span class="collection-noir-decorative-word">ASFALTO</span>
+                <span class="collection-noir-decorative-word">NOCHE</span>
             </div>
         </div>
     </section>
@@ -438,8 +372,43 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ========== SECCIÓN VIP =================== -->
+    <!-- ========== VIP SECTION =================== -->
     <!-- ========================================== -->
+     <!-- ========================================== -->
+<!-- ========== VIDEO REEL ===================== -->
+<!-- ========================================== -->
+<section class="video-section">
+    <div class="wrap">
+        <div class="video-header">
+            <span class="video-tag">✦ EN MOVIMIENTO</span>
+            <h3 class="video-title">NOIR BLVNK EN ACCIÓN</h3>
+            <p class="video-desc">La playera que no necesita presentación. Oversized. Boxy. NOIR BLVNK.</p>
+        </div>
+
+        <div class="video-container">
+            <video 
+                class="video-player" 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                controls
+                poster="feardeath.jpg">
+                <source src="noir-blvnk-reel.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+            
+            <div class="video-overlay">
+                <a href="https://www.instagram.com/reel/DdAfvHLiIsv/" target="_blank" rel="noopener noreferrer" class="video-instagram-btn">
+                    <svg class="video-instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
+                    </svg>
+                    VER EN INSTAGRAM
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
     <section class="vip-section" id="vip">
         <div class="vip-backdrop"></div>
         <div class="vip-glow-1"></div>
@@ -530,7 +499,7 @@
     <!-- ========================================== -->
     <!-- ========== WHATSAPP FLOTANTE ============= -->
     <!-- ========================================== -->
-    <a href="https://wa.me/526647587072?text=Hola%20NOIR%20BLVNK%20👋%0A%0AVi%20tu%20página%20y%20quiero%20saber%20más%20sobre%20las%20playeras.%0A%0A📦%20¿Tienen%20disponibilidad%3F%0A💰%20¿Cuáles%20son%20los%20precios%3F" 
+    <a href="https://wa.me/526647587072" 
        class="whatsapp-float" 
        target="_blank" 
        rel="noopener noreferrer"
@@ -566,17 +535,28 @@
                     <a href="#">Nuevos drops</a>
                     <a href="#">Guía de tallas</a>
                 </div>
-                <div class="foot-col">
+                <div class="foot-col">5
                     <h5>Marca</h5>
                     <a href="#manifiesto">Manifiesto</a>
                     <a href="#lookbook">Lookbook</a>
                     <a href="#contacto">Contacto</a>
                 </div>
+               <div class="foot-col">
+              <h5>Síguenos</h5>
+              <a href="https://www.instagram.com/noirblvnk" target="_blank" rel="noopener noreferrer">
+    <svg class="foot-social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
+        <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
+    </svg>
+    Instagram
+</a>
+              <a href="#">TikTok</a>
+              <a href="https://wa.me/526647587072" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
                 <div class="foot-col">
-                    <h5>Síguenos</h5>
-                    <a href="#">Instagram</a>
-                    <a href="#">TikTok</a>
-                    <a href="#">WhatsApp</a>
+                    <h5>Legal</h5>
+                    <a href="#" id="openTerms">Términos y Condiciones</a>
+                    <a href="#" id="openPrivacy">Política de Privacidad</a>
+                    <a href="#">Aviso de Cookies</a>
                 </div>
             </div>
             <div class="foot-bottom">
@@ -586,6 +566,77 @@
         </div>
     </footer>
 
+    <!-- ========================================== -->
+    <!-- ========== MODAL TÉRMINOS ================ -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-container">
+            <button class="modal-close" id="closeTerms">✕</button>
+            <div class="modal-content">
+                <h2>TÉRMINOS Y CONDICIONES</h2>
+                <p class="modal-subtitle">NOIR BLVNK — Última actualización: 2026</p>
+
+                <div class="modal-section">
+                    <h3>1. ACEPTACIÓN DE LOS TÉRMINOS</h3>
+                    <p>Al acceder y utilizar este sitio web, aceptas cumplir y estar legalmente obligado por los siguientes términos y condiciones. Si no estás de acuerdo con alguno de estos términos, no utilices este sitio.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>2. DESCRIPCIÓN DEL SERVICIO</h3>
+                    <p>NOIR BLVNK ofrece prendas de vestir de alta calidad, diseñadas y fabricadas bajo los más altos estándares. Todas las imágenes, descripciones y precios son aproximados y pueden estar sujetos a cambios sin previo aviso.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>3. PROCESO DE COMPRA</h3>
+                    <p>Las compras se realizan a través de WhatsApp. Al contactarnos, confirmas que los datos proporcionados son correctos y aceptas recibir información sobre tu pedido. NOIR BLVNK se reserva el derecho de cancelar pedidos en caso de error en el precio o disponibilidad.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>4. PRECIOS Y PAGOS</h3>
+                    <p>Todos los precios están en Pesos Mexicanos (MXN) e incluyen IVA. Los métodos de pago disponibles son: Transferencia bancaria, Mercado Pago, y Efectivo (solo en entregas locales). El pago debe completarse antes de la producción y envío del producto.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>5. ENVÍOS Y ENTREGAS</h3>
+                    <p>Los tiempos de entrega varían según la ubicación. El costo de envío se calcula al momento de la compra. NOIR BLVNK no es responsable por demoras causadas por terceros (paqueterías, aduanas, etc.).</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>6. CAMBIOS Y DEVOLUCIONES</h3>
+                    <p>Aceptamos cambios dentro de los 7 días posteriores a la recepción del producto, siempre que esté en perfectas condiciones (sin uso, con etiquetas originales). Los gastos de envío por cambios corren por cuenta del cliente. No realizamos reembolsos en efectivo.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>7. PROPIEDAD INTELECTUAL</h3>
+                    <p>Todos los diseños, imágenes, textos y logotipos presentes en este sitio son propiedad de NOIR BLVNK. Queda prohibida su reproducción, distribución o uso sin autorización expresa.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>8. PRIVACIDAD Y PROTECCIÓN DE DATOS</h3>
+                    <p>Tu información personal es tratada con confidencialidad. NO compartimos tus datos con terceros. Para más información, consulta nuestra <a href="#" id="privacyLink">Política de Privacidad</a>.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>9. MODIFICACIONES</h3>
+                    <p>NOIR BLVNK se reserva el derecho de modificar estos términos en cualquier momento. Las modificaciones serán efectivas al ser publicadas en este sitio.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>10. CONTACTO</h3>
+                    <p>Para cualquier duda o aclaración sobre estos términos, contáctanos a través de <a href="https://wa.me/526647587072" target="_blank">WhatsApp</a> o en nuestra sección de <a href="#contacto">Contacto</a>.</p>
+                </div>
+
+                <div class="modal-footer-legal">
+                    <span>© 2026 NOIR BLVNK. Todos los derechos reservados.</span>
+                    <span>Hecho para los que no se detienen.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ========== SCRIPTS ======================= -->
+    <!-- ========================================== -->
     <script src="script.js"></script>
 </body>
 </html>
