@@ -35,10 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ============================================================
-    // ========== THEME TOGGLE ====================================
-    // ============================================================
-
+    // ========== THEME TOGGLE ==========
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
 
@@ -69,10 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
     applyTheme();
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
@@ -87,10 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ============================================================
-    // ========== LOOKBOOK CARRUSEL ==============================
-    // ============================================================
-
+    // ========== LOOKBOOK CARRUSEL ==========
     const carousel = document.getElementById('carousel3d');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -126,10 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ============================================================
-    // ========== CARRUSEL 3D (HERO) ==============================
-    // ============================================================
-
+    // ========== CARRUSEL 3D (HERO) ==========
     const products = [
         {
             id: 'feardeath',
@@ -236,17 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (diff > totalSlides / 2) diff -= totalSlides;
                 if (diff < -totalSlides / 2) diff += totalSlides;
 
-                if (diff === 0) {
-                    slide.classList.add('active');
-                } else if (diff === -1) {
-                    slide.classList.add('prev');
-                } else if (diff === 1) {
-                    slide.classList.add('next');
-                } else if (diff === -2) {
-                    slide.classList.add('prev-2');
-                } else if (diff === 2) {
-                    slide.classList.add('next-2');
-                }
+                if (diff === 0) slide.classList.add('active');
+                else if (diff === -1) slide.classList.add('prev');
+                else if (diff === 1) slide.classList.add('next');
+                else if (diff === -2) slide.classList.add('prev-2');
+                else if (diff === 2) slide.classList.add('next-2');
             });
 
             const product = products[index];
@@ -301,10 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Carrusel 3D inicializado con ' + total + ' productos');
     }
 
-    // ============================================================
-    // ========== MODAL TÉRMINOS ==================================
-    // ============================================================
-
+    // ========== MODAL TÉRMINOS ==========
     const termsModal = document.getElementById('termsModal');
     const openTermsBtn = document.getElementById('openTerms');
     const closeTermsBtn = document.getElementById('closeTerms');
@@ -326,14 +305,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (closeTermsBtn) {
-        closeTermsBtn.addEventListener('click', closeModal);
-    }
+    if (closeTermsBtn) closeTermsBtn.addEventListener('click', closeModal);
 
     termsModal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
+        if (e.target === this) closeModal();
     });
 
     document.addEventListener('keydown', function(e) {
@@ -358,10 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ============================================================
-    // ========== CONTACTO - FORMULARIO ===========================
-    // ============================================================
-
+    // ========== CONTACTO - FORMULARIO ==========
     const $form = document.getElementById('form-noir');
     const $status = document.getElementById('form-status');
     const $btnText = document.getElementById('btn-submit-text');
@@ -402,131 +374,234 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ============================================================
-// ========== REFLEJO DE LUZ EN TARJETAS ======================
-// ============================================================
+    // ========== REFLEJO DE LUZ EN TARJETAS ==========
+    const cardsForReflection = document.querySelectorAll('.collection-noir-card');
 
-const collectionCards = document.querySelectorAll('.collection-noir-card');
+    cardsForReflection.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            card.style.setProperty('--mouse-x', `${x}%`);
+            card.style.setProperty('--mouse-y', `${y}%`);
+            
+            const rotateX = ((y - 50) / 50) * -3;
+            const rotateY = ((x - 50) / 50) * 3;
+            
+            card.style.transform = `translateY(-20px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
 
-collectionCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+    // ========== TOQUES EN MÓVIL ==========
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    if (isTouchDevice) {
+        console.log('📱 Dispositivo táctil detectado — activando modo touch');
         
-        card.style.setProperty('--mouse-x', `${x}%`);
-        card.style.setProperty('--mouse-y', `${y}%`);
+        cardsForReflection.forEach(card => {
+            card.addEventListener('touchstart', function(e) {
+                cardsForReflection.forEach(c => c.classList.remove('touched'));
+                this.classList.add('touched');
+                if (navigator.vibrate) navigator.vibrate(10);
+            }, { passive: true });
+        });
         
-        // Efecto de inclinación 3D (opcional)
-        const rotateX = ((y - 50) / 50) * -3;
-        const rotateY = ((x - 50) / 50) * 3;
-        
-        card.style.transform = `translateY(-20px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-    });
-});
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.collection-noir-card')) {
+                cardsForReflection.forEach(c => c.classList.remove('touched'));
+            }
+        }, { passive: true });
+    }
 
     console.log('✅ NOIR BLVNK — Listo');
 });
 
 // ============================================================
-// ========== TOQUES EN MÓVIL =================================
+// ========== MENÚ MÓVIL ======================================
 // ============================================================
 
-const collectionCards = document.querySelectorAll('.collection-noir-card');
-const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
 
-if (isTouchDevice) {
-    console.log('📱 Dispositivo táctil detectado — activando modo touch');
-    
-    collectionCards.forEach(card => {
-        card.addEventListener('touchstart', function(e) {
-            // Quitar "touched" de todas las tarjetas
-            collectionCards.forEach(c => c.classList.remove('touched'));
-            
-            // Agregar "touched" a la tarjeta tocada
-            this.classList.add('touched');
-            
-            // Vibración sutil (si el dispositivo lo soporta)
-            if (navigator.vibrate) {
-                navigator.vibrate(10);
-            }
-        }, { passive: true });
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
     });
-    
-    // Quitar "touched" al tocar fuera
-    document.addEventListener('touchstart', function(e) {
-        if (!e.target.closest('.collection-noir-card')) {
-            collectionCards.forEach(c => c.classList.remove('touched'));
-        }
-    }, { passive: true });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
 }
 
-// ======================================================
-// CARRUSEL DE CASOS DE ÉXITO
-// ======================================================
-document.addEventListener('DOMContentLoaded', function() {
-    const carrusel = document.getElementById('casosCarrusel');
-    const prevBtn = document.getElementById('carruselPrev');
-    const nextBtn = document.getElementById('carruselNext');
-    
-    if (!carrusel || !prevBtn || !nextBtn) return;
-    
-    const cards = carrusel.querySelectorAll('.caso-card');
-    let currentIndex = 0;
-    let cardsPerView = 3;
-    
-    // ===== DETECTAR CUÁNTAS TARJETAS SE VEN =====
-    function updateCardsPerView() {
-        const width = window.innerWidth;
-        if (width <= 480) cardsPerView = 1;
-        else if (width <= 768) cardsPerView = 1;
-        else if (width <= 1024) cardsPerView = 2;
-        else cardsPerView = 3;
+// ============================================================
+// ========== COUNTDOWN =======================================
+// ============================================================
+
+const countdownDays = document.getElementById('days');
+const countdownHours = document.getElementById('hours');
+const countdownMinutes = document.getElementById('minutes');
+const countdownSeconds = document.getElementById('seconds');
+
+if (countdownDays) {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 15);
+    targetDate.setHours(20, 0, 0, 0);
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate.getTime() - now;
+
+        if (distance < 0) {
+            countdownDays.textContent = '00';
+            countdownHours.textContent = '00';
+            countdownMinutes.textContent = '00';
+            countdownSeconds.textContent = '00';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownDays.textContent = String(days).padStart(2, '0');
+        countdownHours.textContent = String(hours).padStart(2, '0');
+        countdownMinutes.textContent = String(minutes).padStart(2, '0');
+        countdownSeconds.textContent = String(seconds).padStart(2, '0');
     }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+// ============================================================
+// ========== NEWSLETTER ======================================
+// ============================================================
+
+const newsletterForm = document.getElementById('newsletterForm');
+
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const input = this.querySelector('input');
+        const button = this.querySelector('button');
+        const originalText = button.textContent;
+
+        button.textContent = 'ENVIANDO...';
+        button.disabled = true;
+
+        try {
+            const response = await fetch('https://formspree.io/f/moeqeqbv', {
+                method: 'POST',
+                body: new FormData(this),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                button.textContent = '✓ SUSCRITO';
+                input.value = '';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 3000);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            button.textContent = '✕ ERROR';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 3000);
+        }
+    });
+}
+
+// ============================================================
+// ========== GUÍA DE TALLAS (MODAL) ==========================
+// ============================================================
+
+const sizeGuideModal = document.getElementById('sizeGuideModal');
+const openSizeGuide = document.getElementById('openSizeGuide');
+const closeSizeGuide = document.getElementById('closeSizeGuide');
+
+if (sizeGuideModal && openSizeGuide && closeSizeGuide) {
+    openSizeGuide.addEventListener('click', function(e) {
+        e.preventDefault();
+        sizeGuideModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeSizeGuide.addEventListener('click', function() {
+        sizeGuideModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    sizeGuideModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sizeGuideModal.classList.contains('active')) {
+            sizeGuideModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// ============================================================
+// ========== NOTIFICACIONES DE VENTA =========================
+// ============================================================
+
+const saleNotification = document.getElementById('saleNotification');
+const saleProductName = document.getElementById('saleProductName');
+
+if (saleNotification && saleProductName) {
+    const products = [
+        'Fear Of Death Tee',
+        'Solo Run Tee',
+        'Corners Tee',
+        'Noir Club Tee',
+        'Keep Fighting Tee'
+    ];
     
-    // ===== MOVER EL CARRUSEL =====
-    function updateCarrusel() {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = 32;
-        const moveAmount = (cardWidth + gap) * currentIndex;
-        
-        carrusel.style.transform = `translateX(-${moveAmount}px)`;
-        
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex >= cards.length - cardsPerView;
+    const names = ['Juan', 'María', 'Pedro', 'Ana', 'Carlos', 'Sofía', 'Diego', 'Laura'];
+    const cities = ['CDMX', 'Guadalajara', 'Monterrey', 'Puebla', 'Tijuana', 'Mérida'];
+
+    function showSaleNotification() {
+        const randomProduct = products[Math.floor(Math.random() * products.length)];
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+        const randomMinutes = Math.floor(Math.random() * 55) + 1;
+
+        saleProductName.textContent = randomProduct;
+        saleNotification.querySelector('.sale-notification-title').textContent = 
+            randomName + ' de ' + randomCity + ' compró';
+        saleNotification.querySelector('.sale-notification-time').textContent = 
+            'hace ' + randomMinutes + ' minutos';
+
+        saleNotification.classList.add('show');
+
+        setTimeout(() => {
+            saleNotification.classList.remove('show');
+        }, 5000);
     }
-    
-    // ===== BOTÓN SIGUIENTE =====
-    nextBtn.addEventListener('click', () => {
-        const maxIndex = cards.length - cardsPerView;
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarrusel();
-        }
-    });
-    
-    // ===== BOTÓN ANTERIOR =====
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarrusel();
-        }
-    });
-    
-    // ===== RESPONSIVE =====
-    window.addEventListener('resize', () => {
-        updateCardsPerView();
-        if (currentIndex > cards.length - cardsPerView) {
-            currentIndex = Math.max(0, cards.length - cardsPerView);
-        }
-        updateCarrusel();
-    });
-    
-    // ===== INICIALIZAR =====
-    updateCardsPerView();
-    updateCarrusel();
-});
+
+    setTimeout(showSaleNotification, 8000);
+
+    setInterval(() => {
+        showSaleNotification();
+    }, Math.random() * 20000 + 25000);
+}
