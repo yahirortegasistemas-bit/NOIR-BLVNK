@@ -185,6 +185,24 @@
     text-decoration: line-through;
 }
 
+/* ===== LINK GUÍA DE TALLAS ===== */
+.size-guide-link {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.size-guide-link:hover {
+    color: var(--bone);
+    letter-spacing: 0.15em;
+}
+
 /* ===== BOTONES ===== */
 .product-detail-actions {
     display: flex;
@@ -300,54 +318,258 @@
 }
 
 /* ========================================== */
-/* ========== LIGHT MODE ==================== */
+/* ========== LIGHT MODE (CORREGIDO) ========= */
 /* ========================================== */
 
 body.light-mode .product-detail {
-    background: var(--black);
+    background: #f5f3f0 !important;
 }
 
 body.light-mode .product-detail-image {
-    background: var(--black-2);
-    border-color: rgba(0, 0, 0, 0.04);
+    background: #e8e5e0 !important;
+    border-color: rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08) !important;
 }
 
+/* ===== NÚMERO DE EDICIÓN ===== */
+body.light-mode .product-detail-number {
+    color: #c4271c !important;
+}
+
+/* ===== TÍTULOS ===== */
 body.light-mode .product-detail-title {
-    color: var(--black);
+    color: #1a1816 !important;
 }
 
+body.light-mode .product-detail-title-red {
+    color: #c4271c !important;
+}
+
+/* ===== PRECIO ===== */
 body.light-mode .product-detail-price {
-    color: var(--black);
+    color: #1a1816 !important;
 }
 
+/* ===== DESCRIPCIÓN ===== */
+body.light-mode .product-detail-desc {
+    color: #3d3a36 !important;
+}
+
+/* ===== TEXTURA (Material / Corte / Impresión) ===== */
 body.light-mode .product-detail-texture {
-    border-color: var(--hair);
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light-mode .product-detail-texture-item span:first-child {
+    color: #6b6660 !important;
 }
 
 body.light-mode .product-detail-texture-item span:last-child {
-    color: var(--black);
+    color: #1a1816 !important;
 }
 
+/* ===== LABEL TALLAS ===== */
+body.light-mode .product-detail-sizes-label {
+    color: #6b6660 !important;
+}
+
+/* ===== BOTONES DE TALLAS ===== */
 body.light-mode .product-detail-size {
-    border-color: rgba(0, 0, 0, 0.06);
-    color: var(--bone-dim);
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    color: #3d3a36 !important;
+    background: #ffffff !important;
 }
 
 body.light-mode .product-detail-size:hover {
-    border-color: var(--black);
-    color: var(--black);
+    border-color: #1a1816 !important;
+    color: #1a1816 !important;
 }
 
 body.light-mode .product-detail-size.active {
-    border-color: var(--red-bright);
-    color: var(--red-bright);
+    border-color: #c4271c !important;
+    color: #c4271c !important;
+    background: rgba(196, 39, 28, 0.08) !important;
+    box-shadow: 0 0 20px rgba(196, 39, 28, 0.12) !important;
 }
 
+body.light-mode .product-detail-size.out-of-stock {
+    color: #aaaaaa !important;
+    opacity: 0.4 !important;
+}
+
+/* ===== LINK GUÍA DE TALLAS ===== */
+body.light-mode .size-guide-link {
+    color: #c4271c !important;
+}
+
+body.light-mode .size-guide-link:hover {
+    color: #1a1816 !important;
+}
+
+/* ===== BOTÓN SECUNDARIO (VOLVER) ===== */
 body.light-mode .product-detail-btn-secondary {
-    color: var(--black);
-    border-color: rgba(0, 0, 0, 0.08);
+    color: #1a1816 !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    background: #ffffff !important;
 }
 
 body.light-mode .product-detail-btn-secondary:hover {
-    border-color: var(--black);
+    border-color: #1a1816 !important;
+    background: #ebe8e3 !important;
+    color: #1a1816 !important;
+}
+
+/* ===== BOTÓN WHATSAPP ===== */
+body.light-mode .product-detail-whatsapp {
+    background: #25D366 !important;
+    color: #ffffff !important;
+}
+
+body.light-mode .product-detail-whatsapp:hover {
+    background: #1da851 !important;
+}
+
+/* ===== BADGE (EDICIÓN LIMITADA) ===== */
+body.light-mode .product-detail-badge {
+    color: #ede8df !important;
+    background: rgba(10, 9, 8, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ========================================== */
+/* ========== MEDIDAS DINÁMICAS ============= */
+/* ========================================== */
+
+.size-measurement-info {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: rgba(196, 39, 28, 0.03);
+    border: 1px solid rgba(196, 39, 28, 0.08);
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    animation: measurementFadeIn 0.5s ease;
+}
+
+@keyframes measurementFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.size-measurement-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(196, 39, 28, 0.1);
+}
+
+.size-measurement-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--grey);
+    text-transform: uppercase;
+}
+
+.size-measurement-current {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    color: var(--red-bright);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(196, 39, 28, 0.3);
+}
+
+.size-measurement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.size-measurement-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.size-measurement-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--grey);
+    text-transform: uppercase;
+}
+
+.size-measurement-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--bone);
+    font-weight: 600;
+}
+
+/* ===== MODO CLARO ===== */
+body.light-mode .size-measurement-info {
+    background: rgba(196, 39, 28, 0.04) !important;
+    border-color: rgba(196, 39, 28, 0.12) !important;
+}
+
+body.light-mode .size-measurement-label {
+    color: #6b6660 !important;
+}
+
+body.light-mode .size-measurement-current {
+    color: #c4271c !important;
+}
+
+body.light-mode .size-measurement-name {
+    color: #6b6660 !important;
+}
+
+body.light-mode .size-measurement-value {
+    color: #1a1816 !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .size-measurement-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    
+    .size-measurement-value {
+        font-size: 11px;
+    }
+}
+
+/* ===== FILA RESALTADA EN LA GUÍA DE TALLAS ===== */
+.size-table tr.highlighted {
+    background: rgba(196, 39, 28, 0.08);
+}
+
+.size-table tr.highlighted td {
+    color: var(--red-bright) !important;
+    font-weight: 600;
+}
+
+.size-table tr.highlighted td:first-child {
+    position: relative;
+}
+
+.size-table tr.highlighted td:first-child::before {
+    content: '▶ ';
+    color: var(--red-bright);
+}
+
+body.light-mode .size-table tr.highlighted {
+    background: rgba(196, 39, 28, 0.08) !important;
+}
+
+body.light-mode .size-table tr.highlighted td {
+    color: #c4271c !important;
 }

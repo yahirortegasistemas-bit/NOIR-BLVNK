@@ -1,9 +1,21 @@
 // ============================================================
-// ========== DETALLE DE PRODUCTO ==============================
+// ========== NOIR BLVNK — DETALLE PRODUCTO ===================
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🖤 NOIR BLVNK — Detalle de producto');
+
+    // ============================================================
+    // ========== MEDIDAS POR TALLA ===============================
+    // ============================================================
+
+    const sizeMeasurements = {
+        'S':   { width: '50 cm', length: '68 cm', equivalent: 'CH' },
+        'M':   { width: '52 cm', length: '70 cm', equivalent: 'M' },
+        'L':   { width: '54 cm', length: '72 cm', equivalent: 'G' },
+        'XL':  { width: '56 cm', length: '74 cm', equivalent: 'XG' },
+        'XXL': { width: '58 cm', length: '76 cm', equivalent: '2XG' }
+    };
 
     // ============================================================
     // ========== OBTENER ID DEL PRODUCTO =========================
@@ -110,12 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const product = products[productId];
 
     if (!product) {
-        // Si no existe el producto, redirigir a la colección
         window.location.href = 'index.html#coleccion';
         return;
     }
 
-    // Actualizar la página con los datos
     document.getElementById('productImage').src = product.image;
     document.getElementById('productImage').alt = product.title + ' ' + product.subtitle;
     document.getElementById('productBadge').textContent = product.badge;
@@ -127,10 +137,49 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('productMaterial').textContent = product.material;
     document.getElementById('productFit').textContent = product.fit;
     document.getElementById('productPrint').textContent = product.print;
-    document.getElementById('whatsappBtn').href = product.whatsapp;
 
     // ============================================================
-    // ========== TALLAS ==========================================
+    // ========== FUNCIONES DE MEDIDAS DINÁMICAS ==================
+    // ============================================================
+
+    function updateSizeMeasurements(size) {
+        const measurements = sizeMeasurements[size];
+        if (!measurements) return;
+
+        const current = document.getElementById('sizeMeasurementCurrent');
+        const width = document.getElementById('sizeWidth');
+        const length = document.getElementById('sizeLength');
+        const equivalent = document.getElementById('sizeEquivalent');
+        const infoBlock = document.getElementById('sizeMeasurementInfo');
+
+        if (current) current.textContent = size;
+        if (width) width.textContent = measurements.width;
+        if (length) length.textContent = measurements.length;
+        if (equivalent) equivalent.textContent = measurements.equivalent;
+
+        if (infoBlock) {
+            infoBlock.style.animation = 'none';
+            setTimeout(() => {
+                infoBlock.style.animation = 'measurementFadeIn 0.5s ease';
+            }, 10);
+        }
+
+        highlightSizeRow(size);
+        console.log('📏 Medidas actualizadas para talla:', size);
+    }
+
+    function highlightSizeRow(size) {
+        document.querySelectorAll('.size-table tbody tr').forEach(row => {
+            row.classList.remove('highlighted');
+            const firstCell = row.querySelector('td');
+            if (firstCell && firstCell.textContent.trim() === size) {
+                row.classList.add('highlighted');
+            }
+        });
+    }
+
+    // ============================================================
+    // ========== GENERAR BOTONES DE TALLAS =======================
     // ============================================================
 
     const sizesContainer = document.getElementById('productSizes');
@@ -142,39 +191,194 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!product.stock[size]) {
             button.classList.add('out-of-stock');
         }
-        if (size === 'M') {
+        if (size === 'M' && product.stock[size]) {
             button.classList.add('active');
         }
         button.textContent = size;
         button.dataset.size = size;
+
+        // ===== EVENTO CLIC =====
         button.addEventListener('click', function() {
             if (this.classList.contains('out-of-stock')) return;
+
             document.querySelectorAll('.product-detail-size').forEach(function(btn) {
                 btn.classList.remove('active');
             });
             this.classList.add('active');
+
+            const selectedSize = this.dataset.size;
+
+            // 1. Actualizar medidas
+            updateSizeMeasurements(selectedSize);
+
+            // 2. Actualizar WhatsApp
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            if (whatsappBtn && product.whatsapp) {
+                whatsappBtn.href = product.whatsapp + '%0A%F0%9F%93%8F%20Talla%3A%20' + selectedSize;
+            }
         });
+
         sizesContainer.appendChild(button);
     });
 
     // ============================================================
-    // ========== ACTUALIZAR WHATSAPP CON TALLA SELECCIONADA ======
+    // ========== INICIALIZAR CON TALLA ACTIVA ====================
     // ============================================================
 
-    document.querySelectorAll('.product-detail-size:not(.out-of-stock)').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            const size = this.dataset.size;
-            const currentUrl = product.whatsapp;
-            // Si el mensaje ya tiene talla, la reemplazamos
-            if (currentUrl.includes('Talla:')) {
-                const newUrl = currentUrl.replace(/Talla%3A%20[A-Z]+/g, 'Talla%3A%20' + size);
-                document.getElementById('whatsappBtn').href = newUrl;
-            } else {
-                // Si no tiene talla, la agregamos
-                document.getElementById('whatsappBtn').href = currentUrl + '%0A%F0%9F%93%8F%20Talla%3A%20' + size;
+    const initialActive = document.querySelector('.product-detail-size.active');
+    if (initialActive) {
+        updateSizeMeasurements(initialActive.dataset.size);
+    }
+
+    // ============================================================
+    // ========== GUÍA DE TALLAS (MODAL) ==========================
+    // ============================================================
+
+    const sizeGuideModal = document.getElementById('sizeGuideModal');
+    const openSizeGuide = document.getElementById('openSizeGuide');
+    const openSizeGuideFooter = document.getElementById('openSizeGuideFooter');
+    const closeSizeGuide = document.getElementById('closeSizeGuide');
+
+    if (sizeGuideModal) {
+        function openModal(e) {
+            if (e) e.preventDefault();
+            sizeGuideModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            const activeSize = document.querySelector('.product-detail-size.active');
+            if (activeSize) highlightSizeRow(activeSize.dataset.size);
+        }
+
+        if (openSizeGuide) openSizeGuide.addEventListener('click', openModal);
+        if (openSizeGuideFooter) openSizeGuideFooter.addEventListener('click', openModal);
+
+        if (closeSizeGuide) {
+            closeSizeGuide.addEventListener('click', function() {
+                sizeGuideModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        sizeGuideModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
-    });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && sizeGuideModal.classList.contains('active')) {
+                sizeGuideModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // ============================================================
+    // ========== MODAL TÉRMINOS ==================================
+    // ============================================================
+
+    const termsModal = document.getElementById('termsModal');
+    const openTerms = document.getElementById('openTerms');
+    const closeTerms = document.getElementById('closeTerms');
+
+    if (termsModal) {
+        if (openTerms) {
+            openTerms.addEventListener('click', function(e) {
+                e.preventDefault();
+                termsModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        if (closeTerms) {
+            closeTerms.addEventListener('click', function() {
+                termsModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+        termsModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    const openPrivacy = document.getElementById('openPrivacy');
+    if (openPrivacy) {
+        openPrivacy.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Política de Privacidad - Próximamente disponible.');
+        });
+    }
+
+    // ============================================================
+    // ========== SPOTLIGHT =======================================
+    // ============================================================
+
+    const spot = document.getElementById('spotlight');
+    if (spot) {
+        window.addEventListener('pointermove', function(e) {
+            spot.style.setProperty('--mx', e.clientX + 'px');
+            spot.style.setProperty('--my', e.clientY + 'px');
+        });
+    }
+
+    // ============================================================
+    // ========== MENÚ MÓVIL ======================================
+    // ============================================================
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // ============================================================
+    // ========== THEME TOGGLE ====================================
+    // ============================================================
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+
+    function toggleTheme() {
+        const isLight = document.body.classList.toggle('light-mode');
+        const icon = isLight ? '☀️' : '🌙';
+        if (themeIcon) themeIcon.textContent = icon;
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    function applyTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            if (themeIcon) themeIcon.textContent = '☀️';
+        } else if (savedTheme === 'dark') {
+            document.body.classList.remove('light-mode');
+            if (themeIcon) themeIcon.textContent = '🌙';
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (!prefersDark) {
+                document.body.classList.add('light-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            }
+        }
+    }
+
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    applyTheme();
 
     console.log('✅ Producto cargado:', product.title, product.subtitle);
 });

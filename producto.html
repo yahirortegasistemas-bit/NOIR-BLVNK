@@ -100,18 +100,41 @@
                     </div>
                 </div>
 
-                <!-- TALLAS -->
-                <div class="product-detail-sizes">
-                    <span class="product-detail-sizes-label">Tallas disponibles</span>
-                    <div class="product-detail-sizes-grid" id="productSizes">
-                        <button class="product-detail-size" data-size="S">S</button>
-                        <button class="product-detail-size" data-size="M">M</button>
-                        <button class="product-detail-size" data-size="L">L</button>
-                        <button class="product-detail-size" data-size="XL">XL</button>
-                        <button class="product-detail-size out-of-stock" data-size="XXL">XXL</button>
-                    </div>
-                </div>
+              <!-- TALLAS -->
+<div class="product-detail-sizes">
+    <span class="product-detail-sizes-label">Tallas disponibles</span>
+    <div class="product-detail-sizes-grid" id="productSizes">
+        <button class="product-detail-size" data-size="S">S</button>
+        <button class="product-detail-size" data-size="M">M</button>
+        <button class="product-detail-size" data-size="L">L</button>
+        <button class="product-detail-size" data-size="XL">XL</button>
+        <button class="product-detail-size out-of-stock" data-size="XXL">XXL</button>
+    </div>
 
+    <!-- AVISO DE MEDIDAS DINÁMICAS -->
+    <div class="size-measurement-info" id="sizeMeasurementInfo">
+        <div class="size-measurement-header">
+            <span class="size-measurement-label">📏 MEDIDAS DE LA TALLA:</span>
+            <span class="size-measurement-current" id="sizeMeasurementCurrent">M</span>
+        </div>
+        <div class="size-measurement-grid">
+            <div class="size-measurement-item">
+                <span class="size-measurement-name">Ancho</span>
+                <span class="size-measurement-value" id="sizeWidth">52 cm</span>
+            </div>
+            <div class="size-measurement-item">
+                <span class="size-measurement-name">Largo</span>
+                <span class="size-measurement-value" id="sizeLength">70 cm</span>
+            </div>
+            <div class="size-measurement-item">
+                <span class="size-measurement-name">Equivalencia</span>
+                <span class="size-measurement-value" id="sizeEquivalent">M</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="openSizeGuide" class="size-guide-link">📏 Ver guía de tallas completa</a>
+</div>
                 <!-- BOTONES -->
                 <div class="product-detail-actions">
                     <a href="#" id="whatsappBtn" class="product-detail-whatsapp" target="_blank">

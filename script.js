@@ -534,3 +534,43 @@ if (isTouchDevice) {
         }
     }, { passive: true });
 }
+
+// ============================================================
+// ========== ANIMACIONES SCROLL COLECCIÓN ====================
+// ============================================================
+
+(function() {
+    const collectionCards = document.querySelectorAll('.collection-noir-card');
+    
+    if (collectionCards.length === 0) return;
+    
+    // ===== ELIGE LA ANIMACIÓN =====
+    // Opciones: 'anim-blur', 'anim-rotate', 'anim-slide', 'anim-clip',
+    //           'anim-glow', 'anim-float', 'anim-flip', 'anim-zoom'
+    const ANIMATION = 'anim-glow'; // ← Cambia esto por la que quieras
+    
+    // Aplicar la clase de animación a todas las tarjetas
+    collectionCards.forEach(card => {
+        card.classList.add(ANIMATION);
+    });
+    
+    // ===== INTERSECTION OBSERVER =====
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('card-visible');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -80px 0px'
+    });
+    
+    collectionCards.forEach(card => {
+        cardObserver.observe(card);
+    });
+    
+    console.log('🎨 Animación aplicada:', ANIMATION);
+})();
+
