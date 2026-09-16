@@ -35,7 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== THEME TOGGLE ==========
+    // ============================================================
+    // ========== THEME TOGGLE ====================================
+    // ============================================================
+
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
 
@@ -66,7 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
     applyTheme();
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
@@ -81,8 +87,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ========== LOOKBOOK CARRUSEL ==========
-    const carousel = document.getElementById('carousel3d');
+    // ============================================================
+    // ========== MENÚ MÓVIL ======================================
+    // ============================================================
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        menuToggle.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            const isOpen = mobileMenu.classList.contains('active');
+            if (isOpen) closeMobileMenu();
+            else openMobileMenu();
+        });
+
+        mobileMenu.querySelectorAll('.mobile-menu-link').forEach(function(link) {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Cierra el menú si la pantalla vuelve a tamaño desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // ============================================================
+    // ========== LOOKBOOK CARRUSEL ==============================
+    // ============================================================
+
+    const carousel = document.getElementById('lookbookCarousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
@@ -117,7 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== CARRUSEL 3D (HERO) ==========
+    // ============================================================
+    // ========== CARRUSEL 3D (HERO) ==============================
+    // ============================================================
+
     const products = [
         {
             id: 'feardeath',
@@ -185,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const prev3d = document.getElementById('carousel3dPrev');
     const next3d = document.getElementById('carousel3dNext');
     const counter = document.getElementById('carousel3dCounter');
+    const progressFill = document.getElementById('carousel3dProgress');
 
     const productNumber = document.getElementById('productNumber');
     const productTitle = document.getElementById('productTitle');
@@ -224,11 +283,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (diff > totalSlides / 2) diff -= totalSlides;
                 if (diff < -totalSlides / 2) diff += totalSlides;
 
-                if (diff === 0) slide.classList.add('active');
-                else if (diff === -1) slide.classList.add('prev');
-                else if (diff === 1) slide.classList.add('next');
-                else if (diff === -2) slide.classList.add('prev-2');
-                else if (diff === 2) slide.classList.add('next-2');
+                if (diff === 0) {
+                    slide.classList.add('active');
+                } else if (diff === -1) {
+                    slide.classList.add('prev');
+                } else if (diff === 1) {
+                    slide.classList.add('next');
+                } else if (diff === -2) {
+                    slide.classList.add('prev-2');
+                } else if (diff === 2) {
+                    slide.classList.add('next-2');
+                }
             });
 
             const product = products[index];
@@ -267,23 +332,49 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel(prevIndex);
         }
 
-        prev3d.addEventListener('click', prevSlide);
-        next3d.addEventListener('click', nextSlide);
+        function restartProgress() {
+            if (!progressFill) return;
+            progressFill.classList.remove('running');
+            progressFill.classList.add('paused');
+            // Forzamos reflow para poder reiniciar la animación de 0%
+            void progressFill.offsetWidth;
+            progressFill.classList.remove('paused');
+            progressFill.classList.add('running');
+        }
 
-        let autoPlay = setInterval(nextSlide, 4500);
+        function stopProgress() {
+            if (!progressFill) return;
+            const computedWidth = getComputedStyle(progressFill).width;
+            progressFill.style.width = computedWidth;
+            progressFill.classList.remove('running');
+            progressFill.classList.add('paused');
+        }
+
+        prev3d.addEventListener('click', function() { prevSlide(); restartProgress(); });
+        next3d.addEventListener('click', function() { nextSlide(); restartProgress(); });
+
+        let autoPlay = setInterval(function() { nextSlide(); restartProgress(); }, 4500);
         const container = document.querySelector('.hero-premium-carousel-3d');
         if (container) {
-            container.addEventListener('mouseenter', () => clearInterval(autoPlay));
+            container.addEventListener('mouseenter', () => {
+                clearInterval(autoPlay);
+                stopProgress();
+            });
             container.addEventListener('mouseleave', () => {
-                autoPlay = setInterval(nextSlide, 4500);
+                restartProgress();
+                autoPlay = setInterval(function() { nextSlide(); restartProgress(); }, 4500);
             });
         }
 
         updateCarousel(0);
+        restartProgress();
         console.log('✅ Carrusel 3D inicializado con ' + total + ' productos');
     }
 
-    // ========== MODAL TÉRMINOS ==========
+    // ============================================================
+    // ========== MODAL TÉRMINOS ==================================
+    // ============================================================
+
     const termsModal = document.getElementById('termsModal');
     const openTermsBtn = document.getElementById('openTerms');
     const closeTermsBtn = document.getElementById('closeTerms');
@@ -305,10 +396,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (closeTermsBtn) closeTermsBtn.addEventListener('click', closeModal);
+    if (closeTermsBtn) {
+        closeTermsBtn.addEventListener('click', closeModal);
+    }
 
     termsModal.addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
+        if (e.target === this) {
+            closeModal();
+        }
     });
 
     document.addEventListener('keydown', function(e) {
@@ -333,7 +428,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== CONTACTO - FORMULARIO ==========
+    // ============================================================
+    // ========== CONTACTO - FORMULARIO ===========================
+    // ============================================================
+
     const $form = document.getElementById('form-noir');
     const $status = document.getElementById('form-status');
     const $btnText = document.getElementById('btn-submit-text');
@@ -374,234 +472,65 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== REFLEJO DE LUZ EN TARJETAS ==========
-    const cardsForReflection = document.querySelectorAll('.collection-noir-card');
+    // ============================================================
+// ========== REFLEJO DE LUZ EN TARJETAS ======================
+// ============================================================
 
-    cardsForReflection.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            
-            card.style.setProperty('--mouse-x', `${x}%`);
-            card.style.setProperty('--mouse-y', `${y}%`);
-            
-            const rotateX = ((y - 50) / 50) * -3;
-            const rotateY = ((x - 50) / 50) * 3;
-            
-            card.style.transform = `translateY(-20px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
+const collectionCards = document.querySelectorAll('.collection-noir-card');
+
+collectionCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
         
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+        
+        // Efecto de inclinación 3D (opcional)
+        const rotateX = ((y - 50) / 50) * -3;
+        const rotateY = ((x - 50) / 50) * 3;
+        
+        card.style.transform = `translateY(-20px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-
-    // ========== TOQUES EN MÓVIL ==========
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-    if (isTouchDevice) {
-        console.log('📱 Dispositivo táctil detectado — activando modo touch');
-        
-        cardsForReflection.forEach(card => {
-            card.addEventListener('touchstart', function(e) {
-                cardsForReflection.forEach(c => c.classList.remove('touched'));
-                this.classList.add('touched');
-                if (navigator.vibrate) navigator.vibrate(10);
-            }, { passive: true });
-        });
-        
-        document.addEventListener('touchstart', function(e) {
-            if (!e.target.closest('.collection-noir-card')) {
-                cardsForReflection.forEach(c => c.classList.remove('touched'));
-            }
-        }, { passive: true });
-    }
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+    });
+});
 
     console.log('✅ NOIR BLVNK — Listo');
 });
 
 // ============================================================
-// ========== MENÚ MÓVIL ======================================
+// ========== TOQUES EN MÓVIL =================================
 // ============================================================
 
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
+const collectionCards = document.querySelectorAll('.collection-noir-card');
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        });
-    });
-}
-
-// ============================================================
-// ========== COUNTDOWN =======================================
-// ============================================================
-
-const countdownDays = document.getElementById('days');
-const countdownHours = document.getElementById('hours');
-const countdownMinutes = document.getElementById('minutes');
-const countdownSeconds = document.getElementById('seconds');
-
-if (countdownDays) {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 15);
-    targetDate.setHours(20, 0, 0, 0);
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate.getTime() - now;
-
-        if (distance < 0) {
-            countdownDays.textContent = '00';
-            countdownHours.textContent = '00';
-            countdownMinutes.textContent = '00';
-            countdownSeconds.textContent = '00';
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownDays.textContent = String(days).padStart(2, '0');
-        countdownHours.textContent = String(hours).padStart(2, '0');
-        countdownMinutes.textContent = String(minutes).padStart(2, '0');
-        countdownSeconds.textContent = String(seconds).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-}
-
-// ============================================================
-// ========== NEWSLETTER ======================================
-// ============================================================
-
-const newsletterForm = document.getElementById('newsletterForm');
-
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const input = this.querySelector('input');
-        const button = this.querySelector('button');
-        const originalText = button.textContent;
-
-        button.textContent = 'ENVIANDO...';
-        button.disabled = true;
-
-        try {
-            const response = await fetch('https://formspree.io/f/moeqeqbv', {
-                method: 'POST',
-                body: new FormData(this),
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                button.textContent = '✓ SUSCRITO';
-                input.value = '';
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                }, 3000);
-            } else {
-                throw new Error();
-            }
-        } catch (error) {
-            button.textContent = '✕ ERROR';
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 3000);
-        }
-    });
-}
-
-// ============================================================
-// ========== GUÍA DE TALLAS (MODAL) ==========================
-// ============================================================
-
-const sizeGuideModal = document.getElementById('sizeGuideModal');
-const openSizeGuide = document.getElementById('openSizeGuide');
-const closeSizeGuide = document.getElementById('closeSizeGuide');
-
-if (sizeGuideModal && openSizeGuide && closeSizeGuide) {
-    openSizeGuide.addEventListener('click', function(e) {
-        e.preventDefault();
-        sizeGuideModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-
-    closeSizeGuide.addEventListener('click', function() {
-        sizeGuideModal.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-
-    sizeGuideModal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && sizeGuideModal.classList.contains('active')) {
-            sizeGuideModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-}
-
-// ============================================================
-// ========== NOTIFICACIONES DE VENTA =========================
-// ============================================================
-
-const saleNotification = document.getElementById('saleNotification');
-const saleProductName = document.getElementById('saleProductName');
-
-if (saleNotification && saleProductName) {
-    const products = [
-        'Fear Of Death Tee',
-        'Solo Run Tee',
-        'Corners Tee',
-        'Noir Club Tee',
-        'Keep Fighting Tee'
-    ];
+if (isTouchDevice) {
+    console.log('📱 Dispositivo táctil detectado — activando modo touch');
     
-    const names = ['Juan', 'María', 'Pedro', 'Ana', 'Carlos', 'Sofía', 'Diego', 'Laura'];
-    const cities = ['CDMX', 'Guadalajara', 'Monterrey', 'Puebla', 'Tijuana', 'Mérida'];
-
-    function showSaleNotification() {
-        const randomProduct = products[Math.floor(Math.random() * products.length)];
-        const randomName = names[Math.floor(Math.random() * names.length)];
-        const randomCity = cities[Math.floor(Math.random() * cities.length)];
-        const randomMinutes = Math.floor(Math.random() * 55) + 1;
-
-        saleProductName.textContent = randomProduct;
-        saleNotification.querySelector('.sale-notification-title').textContent = 
-            randomName + ' de ' + randomCity + ' compró';
-        saleNotification.querySelector('.sale-notification-time').textContent = 
-            'hace ' + randomMinutes + ' minutos';
-
-        saleNotification.classList.add('show');
-
-        setTimeout(() => {
-            saleNotification.classList.remove('show');
-        }, 5000);
-    }
-
-    setTimeout(showSaleNotification, 8000);
-
-    setInterval(() => {
-        showSaleNotification();
-    }, Math.random() * 20000 + 25000);
+    collectionCards.forEach(card => {
+        card.addEventListener('touchstart', function(e) {
+            // Quitar "touched" de todas las tarjetas
+            collectionCards.forEach(c => c.classList.remove('touched'));
+            
+            // Agregar "touched" a la tarjeta tocada
+            this.classList.add('touched');
+            
+            // Vibración sutil (si el dispositivo lo soporta)
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        }, { passive: true });
+    });
+    
+    // Quitar "touched" al tocar fuera
+    document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.collection-noir-card')) {
+            collectionCards.forEach(c => c.classList.remove('touched'));
+        }
+    }, { passive: true });
 }

@@ -11,6 +11,9 @@
 </head>
 <body>
 
+    <!-- ========================================== -->
+    <!-- ========== OVERLAYS GLOBALES ============= -->
+    <!-- ========================================== -->
     <div class="grain"></div>
     <div class="spotlight" id="spotlight"></div>
 
@@ -40,41 +43,48 @@
             <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
                 <span class="theme-icon">🌙</span>
             </button>
-            <button id="menuToggle" class="menu-toggle" aria-label="Menú">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button id="menuToggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
             </button>
         </div>
     </nav>
 
-    <!-- MENÚ MÓVIL -->
+    <!-- ========================================== -->
+    <!-- ========== MENÚ MÓVIL ==================== -->
+    <!-- ========================================== -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#coleccion">Colección</a>
-        <a href="#manifiesto">Manifiesto</a>
-        <a href="#lookbook">Lookbook</a>
-        <a href="#vip">VIP</a>
-        <a href="#contacto">Contacto</a>
+        <nav class="mobile-menu-links">
+            <a href="#coleccion" class="mobile-menu-link"><span>01</span>Colección</a>
+            <a href="#manifiesto" class="mobile-menu-link"><span>02</span>Manifiesto</a>
+            <a href="#lookbook" class="mobile-menu-link"><span>03</span>Lookbook</a>
+            <a href="#contacto" class="mobile-menu-link"><span>04</span>Contacto</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="https://wa.me/526647587072" target="_blank" rel="noopener noreferrer" class="mobile-menu-whatsapp">💬 Escríbenos por WhatsApp</a>
+            <span class="mobile-menu-tag mono">NOIR BLVNK · 2026</span>
+        </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- ========== HERO PREMIUM ================== -->
+    <!-- ========== HERO MINIMALISTA ============== -->
     <!-- ========================================== -->
     <section class="hero-premium">
+        <!-- FONDO -->
         <div class="hero-premium-bg">
             <div class="hero-premium-gradient"></div>
             <div class="hero-premium-pattern"></div>
             <div class="hero-premium-lines"></div>
+            <div class="hero-premium-watermark">NOIR BLVNK</div>
         </div>
 
         <div class="hero-premium-container">
             <div class="hero-premium-grid">
                 
+                <!-- ===== COLUMNA IZQUIERDA ===== -->
                 <div class="hero-premium-left">
-                    <h1 class="hero-premium-title">
-                      
-                    </h1>
-
+                    <!-- INFO DEL PRODUCTO ACTIVO -->
                     <div class="hero-premium-product-info" id="productInfo">
                         <span class="hero-premium-product-number" id="productNumber">✦ N°05</span>
                         <h2 class="hero-premium-product-title" id="productTitle">
@@ -92,12 +102,20 @@
                     </div>
                 </div>
 
+                <!-- ===== COLUMNA DERECHA: CARRUSEL 3D ===== -->
                 <div class="hero-premium-right">
                     <div class="hero-premium-carousel-3d" id="carousel3d">
-                        <div class="hero-premium-carousel-3d-track" id="carousel3dTrack"></div>
+                        <div class="hero-premium-carousel-3d-track" id="carousel3dTrack">
+                            <!-- Los slides se generan con JavaScript -->
+                        </div>
                         <div class="hero-premium-carousel-3d-controls">
                             <button class="hero-premium-carousel-3d-prev" id="carousel3dPrev">‹</button>
-                            <div class="hero-premium-carousel-3d-counter" id="carousel3dCounter">01 / 05</div>
+                            <div class="hero-premium-carousel-3d-counter-wrap">
+                                <div class="hero-premium-carousel-3d-counter" id="carousel3dCounter">01 / 05</div>
+                                <div class="hero-premium-carousel-3d-progress">
+                                    <div class="hero-premium-carousel-3d-progress-fill" id="carousel3dProgress"></div>
+                                </div>
+                            </div>
                             <button class="hero-premium-carousel-3d-next" id="carousel3dNext">›</button>
                         </div>
                     </div>
@@ -123,44 +141,6 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- ========== PRÓXIMO DROP ================== -->
-    <!-- ========================================== -->
-    <section class="drop-section">
-        <div class="wrap">
-            <div class="drop-header">
-                <span class="drop-tag">✦ PRÓXIMO DROP</span>
-                <h2 class="drop-title">EDICIÓN LIMITADA</h2>
-                <p class="drop-desc">Solo 50 unidades. Cuando se acaben, no vuelven.</p>
-            </div>
-            <div class="drop-countdown" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Días</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Minutos</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Segundos</span>
-                </div>
-            </div>
-            <div class="drop-progress">
-                <div class="drop-progress-bar">
-                    <div class="drop-progress-fill" style="width: 74%;"></div>
-                </div>
-                <span class="drop-progress-text">37 / 50 vendidas</span>
-            </div>
-            <a href="#contacto" class="drop-btn">AVÍSAME CUANDO SALGA →</a>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
     <!-- ========== MANIFIESTO INMERSIVO ========== -->
     <!-- ========================================== -->
     <section class="manifesto-immersive" id="manifiesto">
@@ -177,6 +157,8 @@
                 <p class="manifesto-immersive-line">La hacemos para lo que pasa</p>
                 <p class="manifesto-immersive-line"><span class="highlight">después de las 11pm</span> y <span class="highlight">antes de las 6am.</span></p>
             </div>
+
+           
 
             <div class="manifesto-immersive-divider"></div>
 
@@ -303,8 +285,6 @@
 
             <div class="collection-noir-decorative">
                 <span class="collection-noir-decorative-word">NOIR</span>
-                <span class="collection-noir-decorative-word">ASFALTO</span>
-                <span class="collection-noir-decorative-word">NOCHE</span>
             </div>
         </div>
     </section>
@@ -326,8 +306,8 @@
                     <div><b>Oversized</b>Corte caído</div>
                     <div><b>Serigrafía</b>Tinta plastisol</div>
                 </div>
-                <div class="hero-cta" style="margin-top:36px; animation:none; opacity:1;">
-                    <a href="producto.html?id=feardeath" class="btn" style="background:#25D366; border-color:#25D366; color:#fff;">🔍 Ver detalles</a>
+                <div class="hero-cta">
+                    <a href="producto.html?id=feardeath" class="btn-outline-detail">VER DETALLES →</a>
                 </div>
             </div>
         </div>
@@ -342,7 +322,7 @@
             <h3 class="display">Vistas desde la calle</h3>
         </div>
         <div class="carousel-3d-container">
-            <div class="carousel-3d" id="carousel3d">
+            <div class="carousel-3d" id="lookbookCarousel">
                 <div class="carousel-item">
                     <img src="race.jpg" alt="Look 01">
                     <div class="carousel-info">
@@ -397,184 +377,43 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ========== OUTFITS ======================= -->
-    <!-- ========================================== -->
-    <section class="outfits-section">
-        <div class="wrap">
-            <div class="outfits-header">
-                <span class="outfits-tag">✦ ESTILO</span>
-                <h2 class="outfits-title">CÓMO COMBINARLO</h2>
-                <p class="outfits-desc">Inspírate con nuestros looks favoritos de la comunidad.</p>
-            </div>
-            <div class="outfits-grid">
-                <div class="outfit-card">
-                    <img src="run.jpg" alt="Outfit 01">
-                    <div class="outfit-info">
-                        <span class="outfit-tag">CASUAL</span>
-                        <h4>Look de noche</h4>
-                        <a href="producto.html?id=run" class="outfit-link">Ver playera →</a>
-                    </div>
-                </div>
-                <div class="outfit-card">
-                    <img src="race.jpg" alt="Outfit 02">
-                    <div class="outfit-info">
-                        <span class="outfit-tag">SPORT</span>
-                        <h4>Para el gym</h4>
-                        <a href="producto.html?id=race" class="outfit-link">Ver playera →</a>
-                    </div>
-                </div>
-                <div class="outfit-card">
-                    <img src="noirclub.jpg" alt="Outfit 03">
-                    <div class="outfit-info">
-                        <span class="outfit-tag">STREET</span>
-                        <h4>Fin de semana</h4>
-                        <a href="producto.html?id=noirclub" class="outfit-link">Ver playera →</a>
-                    </div>
-                </div>
-                <div class="outfit-card">
-                    <img src="boxing.jpg" alt="Outfit 04">
-                    <div class="outfit-info">
-                        <span class="outfit-tag">CASUAL</span>
-                        <h4>Look de día</h4>
-                        <a href="producto.html?id=boxing" class="outfit-link">Ver playera →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- ========== VIDEO REEL ===================== -->
-    <!-- ========================================== -->
-    <section class="video-section">
-        <div class="wrap">
-            <div class="video-header">
-                <span class="video-tag">✦ EN MOVIMIENTO</span>
-                <h3 class="video-title">NOIR BLVNK EN ACCIÓN</h3>
-                <p class="video-desc">La playera que no necesita presentación. Oversized. Boxy. NOIR BLVNK.</p>
-            </div>
-
-            <div class="video-container">
-                <video class="video-player" autoplay muted loop playsinline controls poster="feardeath.jpg">
-                    <source src="noir-blvnk-reel.mp4" type="video/mp4">
-                    Tu navegador no soporta videos HTML5.
-                </video>
-                
-                <div class="video-overlay">
-                    <a href="https://www.instagram.com/reel/DdAfvHLiIsv/" target="_blank" rel="noopener noreferrer" class="video-instagram-btn">
-                        <svg class="video-instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
-                        </svg>
-                        VER EN INSTAGRAM
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- ========== RESEÑAS ======================= -->
-    <!-- ========================================== -->
-    <section class="reviews-section">
-        <div class="wrap">
-            <div class="reviews-header">
-                <span class="reviews-tag">✦ LO QUE DICEN</span>
-                <h2 class="reviews-title">RESEÑAS REALES</h2>
-                <div class="reviews-stars">
-                    ★★★★★ <span>4.9 / 5 · 127 reseñas</span>
-                </div>
-            </div>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"La calidad es increíble. El algodón se siente pesado y premium. Ya pedí 3 más."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">JD</div>
-                        <div>
-                            <span class="review-name">Juan D.</span>
-                            <span class="review-verified">✓ Compra verificada</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"El diseño está con madre. Se ve mucho mejor en persona que en fotos."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">MC</div>
-                        <div>
-                            <span class="review-name">María C.</span>
-                            <span class="review-verified">✓ Compra verificada</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"Llegó rapidísimo y la atención por WhatsApp fue de 10. Muy recomendados."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">RL</div>
-                        <div>
-                            <span class="review-name">Roberto L.</span>
-                            <span class="review-verified">✓ Compra verificada</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-stars">★★★★☆</div>
-                    <p class="review-text">"Muy buena playera. Le doy 4 estrellas solo porque quería otro color."</p>
-                    <div class="review-author">
-                        <div class="review-avatar">AP</div>
-                        <div>
-                            <span class="review-name">Andrea P.</span>
-                            <span class="review-verified">✓ Compra verificada</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- ========== INSTAGRAM FEED ================ -->
-    <!-- ========================================== -->
-    <section class="instagram-section">
-        <div class="wrap">
-            <div class="instagram-header">
-                <span class="instagram-tag">✦ SÍGUENOS</span>
-                <h2 class="instagram-title">@NOIRBLVNK</h2>
-                <p class="instagram-desc">Comparte tu look con <strong>#NOIRBLVNK</strong></p>
-            </div>
-            <div class="instagram-grid">
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="feardeath.jpg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="run.jpg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="race.jpg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="noirclub.jpg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="boxing.jpg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-                <a href="https://www.instagram.com/noirblvnk" target="_blank" class="instagram-item">
-                    <img src="race1.jpeg" alt="Instagram">
-                    <div class="instagram-overlay"><span>📸 Ver post</span></div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
     <!-- ========== VIP SECTION =================== -->
     <!-- ========================================== -->
+     <!-- ========================================== -->
+<!-- ========== VIDEO REEL ===================== -->
+<!-- ========================================== -->
+<section class="video-section">
+    <div class="wrap">
+        <div class="video-header">
+            <span class="video-tag">✦ EN MOVIMIENTO</span>
+            <h3 class="video-title">NOIR BLVNK EN ACCIÓN</h3>
+            <p class="video-desc">La playera que no necesita presentación. Oversized. Boxy. NOIR BLVNK.</p>
+        </div>
+
+        <div class="video-container">
+            <video 
+                class="video-player" 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                controls
+                poster="feardeath.jpg">
+                <source src="noir-blvnk-reel.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+            
+            <div class="video-overlay">
+                <a href="https://www.instagram.com/reel/DdAfvHLiIsv/" target="_blank" rel="noopener noreferrer" class="video-instagram-btn">
+                    <svg class="video-instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
+                    </svg>
+                    VER EN INSTAGRAM
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
     <section class="vip-section" id="vip">
         <div class="vip-backdrop"></div>
         <div class="vip-glow-1"></div>
@@ -634,54 +473,6 @@
                         <a href="https://wa.me/526647587072?text=Hola%20quiero%20ser%20parte%20del%20VIP%20de%20NOIR%20BLVNK" target="_blank" class="btn btn-secondary-vip">💬 WhatsApp</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ========================================== -->
-    <!-- ========== BLOG / HISTORIAS =============== -->
-    <!-- ========================================== -->
-    <section class="blog-section">
-        <div class="wrap">
-            <div class="blog-header">
-                <span class="blog-tag">✦ DIARIO DE CALLE</span>
-                <h2 class="blog-title">HISTORIAS</h2>
-            </div>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="feardeath.jpg" alt="Historia">
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-date">12 FEB 2026</span>
-                        <h3>La historia detrás de "Fear of Death"</h3>
-                        <p>Cómo una noche en el asfalto se convirtió en nuestra gráfica más vendida.</p>
-                        <a href="#" class="blog-link">LEER MÁS →</a>
-                    </div>
-                </article>
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="noirclub.jpg" alt="Historia">
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-date">05 FEB 2026</span>
-                        <h3>Por qué diseñamos en negro</h3>
-                        <p>El negro no miente. Y otras razones por las que NOIR BLVNK es oscuro.</p>
-                        <a href="#" class="blog-link">LEER MÁS →</a>
-                    </div>
-                </article>
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="run.jpg" alt="Historia">
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-date">28 ENE 2026</span>
-                        <h3>Los 5 mantras que nos definen</h3>
-                        <p>Cada playera lleva un mensaje. Aquí te explicamos de dónde salen.</p>
-                        <a href="#" class="blog-link">LEER MÁS →</a>
-                    </div>
-                </article>
             </div>
         </div>
     </section>
@@ -747,25 +538,25 @@
                     <h5>Tienda</h5>
                     <a href="#coleccion">Colección completa</a>
                     <a href="#">Nuevos drops</a>
-                    <a href="#" id="openSizeGuide">Guía de tallas</a>
+                    <a href="#">Guía de tallas</a>
                 </div>
-                <div class="foot-col">
+                <div class="foot-col">5
                     <h5>Marca</h5>
                     <a href="#manifiesto">Manifiesto</a>
                     <a href="#lookbook">Lookbook</a>
                     <a href="#contacto">Contacto</a>
                 </div>
-                <div class="foot-col">
-                    <h5>Síguenos</h5>
-                    <a href="https://www.instagram.com/noirblvnk" target="_blank" rel="noopener noreferrer">
-                        <svg class="foot-social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
-                        </svg>
-                        Instagram
-                    </a>
-                    <a href="#">TikTok</a>
-                    <a href="https://wa.me/526647587072" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                </div>
+               <div class="foot-col">
+              <h5>Síguenos</h5>
+              <a href="https://www.instagram.com/noirblvnk" target="_blank" rel="noopener noreferrer">
+    <svg class="foot-social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
+        <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"/>
+    </svg>
+    Instagram
+</a>
+              <a href="#">TikTok</a>
+              <a href="https://wa.me/526647587072" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
                 <div class="foot-col">
                     <h5>Legal</h5>
                     <a href="#" id="openTerms">Términos y Condiciones</a>
@@ -849,60 +640,8 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- ========== MODAL GUÍA DE TALLAS ========== -->
+    <!-- ========== SCRIPTS ======================= -->
     <!-- ========================================== -->
-    <div class="modal-overlay" id="sizeGuideModal">
-        <div class="modal-container">
-            <button class="modal-close" id="closeSizeGuide">✕</button>
-            <div class="modal-content">
-                <h2>GUÍA DE TALLAS</h2>
-                <p class="modal-subtitle">Encuentra tu talla perfecta</p>
-
-                <div class="size-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Talla</th>
-                                <th>Ancho (cm)</th>
-                                <th>Largo (cm)</th>
-                                <th>Equivalencia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>S</td><td>50</td><td>68</td><td>CH</td></tr>
-                            <tr><td>M</td><td>52</td><td>70</td><td>M</td></tr>
-                            <tr><td>L</td><td>54</td><td>72</td><td>G</td></tr>
-                            <tr><td>XL</td><td>56</td><td>74</td><td>XG</td></tr>
-                            <tr><td>XXL</td><td>58</td><td>76</td><td>2XG</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="size-tips">
-                    <h3>CÓMO MEDIR</h3>
-                    <p>1. Toma una playera que ya te quede bien.</p>
-                    <p>2. Mídela de axila a axila (ancho).</p>
-                    <p>3. Mídela del cuello al ruedo (largo).</p>
-                    <p>4. Compara las medidas con la tabla.</p>
-                </div>
-
-                <p class="size-note">💡 Nuestras playeras son oversized. Si quieres un look más ajustado, pide una talla menos.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- ========== NOTIFICACIÓN DE VENTA ========= -->
-    <!-- ========================================== -->
-    <div class="sale-notification" id="saleNotification">
-        <div class="sale-notification-icon">🛒</div>
-        <div class="sale-notification-content">
-            <span class="sale-notification-title">Alguien compró</span>
-            <span class="sale-notification-product" id="saleProductName">Fear Of Death Tee</span>
-            <span class="sale-notification-time">hace 2 minutos</span>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -38,13 +38,32 @@
             <a href="index.html#contacto">Contacto</a>
         </div>
         <div class="nav-actions">
-            <a href="#" class="nav-icon">🔍</a>
-            <a href="#" class="nav-icon">🛒</a>
             <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
                 <span class="theme-icon">🌙</span>
             </button>
+            <button id="menuToggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- ========================================== -->
+    <!-- ========== MENÚ MÓVIL ==================== -->
+    <!-- ========================================== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-links">
+            <a href="index.html#coleccion" class="mobile-menu-link"><span>01</span>Colección</a>
+            <a href="index.html#manifiesto" class="mobile-menu-link"><span>02</span>Manifiesto</a>
+            <a href="index.html#lookbook" class="mobile-menu-link"><span>03</span>Lookbook</a>
+            <a href="index.html#contacto" class="mobile-menu-link"><span>04</span>Contacto</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="https://wa.me/526647587072" target="_blank" rel="noopener noreferrer" class="mobile-menu-whatsapp">💬 Escríbenos por WhatsApp</a>
+            <span class="mobile-menu-tag mono">NOIR BLVNK · 2026</span>
+        </div>
+    </div>
 
     <!-- ========================================== -->
     <!-- ========== DETALLE PRODUCTO ============== -->
@@ -85,7 +104,7 @@
                 <div class="product-detail-sizes">
                     <span class="product-detail-sizes-label">Tallas disponibles</span>
                     <div class="product-detail-sizes-grid" id="productSizes">
-                        <button class="product-detail-size active" data-size="S">S</button>
+                        <button class="product-detail-size" data-size="S">S</button>
                         <button class="product-detail-size" data-size="M">M</button>
                         <button class="product-detail-size" data-size="L">L</button>
                         <button class="product-detail-size" data-size="XL">XL</button>
