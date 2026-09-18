@@ -574,3 +574,72 @@ if (isTouchDevice) {
     console.log('🎨 Animación aplicada:', ANIMATION);
 })();
 
+// ============================================================
+// ========== CONTADOR DE ESTADÍSTICAS ========================
+// ============================================================
+
+(function() {
+    const stats = document.querySelectorAll('.behind-stat-number');
+    if (stats.length === 0) return;
+
+    console.log('📊 Contador de estadísticas inicializado');
+
+    let counted = false;
+
+    function animateCounter(el) {
+        const target = parseFloat(el.dataset.count);
+        const isDecimal = el.dataset.decimal === 'true';
+        const duration = 2000;
+        const startTime = performance.now();
+
+        el.classList.add('counting');
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing out
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentValue = target * easeOut;
+
+            if (isDecimal) {
+                el.textContent = currentValue.toFixed(1);
+            } else {
+                el.textContent = Math.floor(currentValue);
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                if (isDecimal) {
+                    el.textContent = target.toFixed(1);
+                } else {
+                    el.textContent = target;
+                }
+                el.classList.remove('counting');
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+                counted = true;
+                stats.forEach((stat, index) => {
+                    setTimeout(() => animateCounter(stat), index * 150);
+                });
+                statsObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.behind-stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+})();
+
+
+
