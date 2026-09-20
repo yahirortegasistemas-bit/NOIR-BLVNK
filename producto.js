@@ -6,25 +6,74 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('🎽 Página de producto inicializada');
 
     // ============================================================
+    // ========== ESTADO ==========================================
+    // ============================================================
+
+    const state = {
+        color: 'Faded Black',
+        size: 'M',
+        qty: 1,
+        productName: '',
+        productPrice: 0
+    };
+
+    const $  = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+    // ============================================================
+    // ========== TOAST (por si no está en tienda.js) =============
+    // ============================================================
+
+    function toast(msg, type = 'success') {
+        let el = document.getElementById('nb-toast');
+        if (!el) {
+            el = document.createElement('div');
+            el.id = 'nb-toast';
+            el.className = 'nb-toast';
+            document.body.appendChild(el);
+        }
+        el.textContent = msg;
+        el.className = 'nb-toast nb-toast--' + type + ' is-visible';
+
+        clearTimeout(el._t);
+        el._t = setTimeout(() => {
+            el.classList.remove('is-visible');
+        }, 2200);
+    }
+
+    // ============================================================
+    // ========== LEER DATOS DEL PRODUCTO =========================
+    // ============================================================
+
+    const titleEl = $('.product-title');
+    const priceEl = $('.product-price--current, .product-price');
+
+    if (titleEl) state.productName = titleEl.textContent.trim();
+    if (priceEl) {
+        const cleaned = priceEl.textContent.replace(/[^0-9.]/g, '');
+        state.productPrice = parseFloat(cleaned) || 0;
+    }
+
+    console.log('📦 Producto:', state.productName, '— $' + state.productPrice);
+
+    // ============================================================
     // ========== GALERÍA =========================================
     // ============================================================
 
     const mainImage = document.getElementById('mainImage');
-    const thumbs = document.querySelectorAll('.product-thumb');
+    const thumbs = $$('.product-thumb');
 
     thumbs.forEach(thumb => {
         thumb.addEventListener('click', function () {
             const img = this.querySelector('img');
             if (!img || !mainImage) return;
 
-            // Cambiar imagen principal
             mainImage.style.opacity = '0';
             setTimeout(() => {
                 mainImage.src = img.src.replace('w=200', 'w=1200');
                 mainImage.style.opacity = '1';
             }, 200);
 
-            // Cambiar active
             thumbs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
         });
@@ -38,11 +87,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== FAVORITO ========================================
     // ============================================================
 
-    const productFav = document.querySelector('.product-fav');
+    const productFav = $('.product-fav');
     if (productFav) {
+        // Cargar estado desde localStorage
+        const favs = JSON.parse(localStorage.getItem('nb_favs') || '[]');
+        if (favs.includes(state.productName)) {
+            productFav.classList.add('active');
+            productFav.textContent = '♥';
+        }
+
         productFav.addEventListener('click', function () {
             this.classList.toggle('active');
-            this.textContent = this.classList.contains('active') ? '♥' : '♡';
+            const isFav = this.classList.contains('active');
+            this.textContent = isFav ? '♥' : '♡';
+
+            const favs = JSON.parse(localStorage.getItem('nb_favs') || '[]');
+            const idx = favs.indexOf(state.productName);
+
+            if (isFav && idx === -1) {
+                favs.push(state.productName);
+                toast('Añadido a favoritos', 'success');
+            } else if (!isFav && idx !== -1) {
+                favs.splice(idx, 1);
+                toast('Quitado de favoritos', 'info');
+            }
+
+            localStorage.setItem('nb_favs', JSON.stringify(favs));
         });
     }
 
@@ -50,16 +120,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== COLORES =========================================
     // ============================================================
 
-    const colorButtons = document.querySelectorAll('.product-color');
+    const colorButtons = $$('.product-color');
     const colorValue = document.getElementById('colorValue');
 
     colorButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             colorButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            if (colorValue) {
-                colorValue.textContent = this.dataset.color || '';
-            }
+            state.color = this.dataset.color || '';
+            if (colorValue) colorValue.textContent = state.color;
+
+            // Actualizar link de WhatsApp
+            updateWhatsAppLink();
         });
     });
 
@@ -67,12 +139,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== TALLAS ==========================================
     // ============================================================
 
-    const sizeButtons = document.querySelectorAll('.product-size');
+    const sizeButtons = $$('.product-size');
+
     sizeButtons.forEach(btn => {
         btn.addEventListener('click', function () {
-            if (this.disabled) return;
+            if (this.disabled) {
+                toast('Talla agotada', 'info');
+                return;
+            }
             sizeButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            state.size = this.textContent.trim();
+
+            // Actualizar link de WhatsApp
+            updateWhatsAppLink();
         });
     });
 
@@ -81,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
 
     const qtyInput = document.getElementById('qtyInput');
-    const qtyButtons = document.querySelectorAll('.product-qty-btn');
+    const qtyButtons = $$('.product-qty-btn');
 
     qtyButtons.forEach(btn => {
         btn.addEventListener('click', function () {
@@ -93,6 +173,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (action === 'plus' && val < 10) val++;
 
             qtyInput.value = val;
+            state.qty = val;
+
+            // Actualizar link de WhatsApp
+            updateWhatsAppLink();
         });
     });
 
@@ -102,81 +186,115 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const cartBadge = document.querySelector('.shop-cart-badge');
     const addBtn = document.getElementById('addToCart');
-    let cartCount = 0;
 
     if (addBtn) {
         addBtn.addEventListener('click', function () {
-            const qty = parseInt(qtyInput?.value) || 1;
-            cartCount += qty;
+            // Leer carrito actual
+            let cart = JSON.parse(localStorage.getItem('nb_cart') || '[]');
 
-            if (cartBadge) cartBadge.textContent = cartCount;
+            const id = state.productName + ' - ' + state.color + ' - ' + state.size;
+            const img = mainImage?.src || '';
 
-            const span = this.querySelector('span');
-            if (!span) return;
-
-            const original = span.textContent;
-            span.textContent = '✓ Añadido al carrito';
-            this.disabled = true;
-
-            setTimeout(() => {
-                span.textContent = original;
-                this.disabled = false;
-            }, 1800);
-        });
-    }
-
-    // ============================================================
-    // ========== COMPRAR AHORA ===================================
-    // ============================================================
-
-    const buyBtn = document.getElementById('buyNow');
-    if (buyBtn) {
-        buyBtn.addEventListener('click', function () {
-            alert('Redirigiendo al checkout... (integra aquí tu pasarela)');
-        });
-    }
-
-    // ============================================================
-    // ========== NEWSLETTER ======================================
-    // ============================================================
-
-    const newsletterForm = document.getElementById('newsletterForm');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const input = this.querySelector('input');
-            const button = this.querySelector('button');
-            const originalText = button.textContent;
-
-            button.textContent = 'ENVIANDO...';
-            button.disabled = true;
-
-            try {
-                const response = await fetch('https://formspree.io/f/moeqeqbv', {
-                    method: 'POST',
-                    body: new FormData(this),
-                    headers: { 'Accept': 'application/json' }
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.qty += state.qty;
+            } else {
+                cart.push({
+                    id: id,
+                    name: state.productName + ' (' + state.color + ' / ' + state.size + ')',
+                    price: state.productPrice,
+                    img: img,
+                    qty: state.qty
                 });
+            }
 
-                if (response.ok) {
-                    button.textContent = '✓ SUSCRITO';
-                    input.value = '';
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false;
-                    }, 3000);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                button.textContent = '✕ ERROR';
+            localStorage.setItem('nb_cart', JSON.stringify(cart));
+
+            // Actualizar badge
+            if (cartBadge) {
+                const total = cart.reduce((s, i) => s + i.qty, 0);
+                cartBadge.textContent = total;
+                cartBadge.style.transform = 'scale(1.4)';
                 setTimeout(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                }, 3000);
+                    cartBadge.style.transform = 'scale(1)';
+                }, 220);
+            }
+
+            // Feedback visual del botón
+            const span = this.querySelector('span');
+            if (span) {
+                const original = span.textContent;
+                span.textContent = '✓ Añadido — $' + (state.productPrice * state.qty) + ' MXN';
+                this.disabled = true;
+                setTimeout(() => {
+                    span.textContent = original;
+                    this.disabled = false;
+                }, 1800);
+            }
+
+            toast('✓ Añadido al carrito', 'success');
+        });
+    }
+
+    // ============================================================
+    // ========== WHATSAPP DINÁMICO ===============================
+    // ============================================================
+
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+
+    function updateWhatsAppLink() {
+        if (!whatsappBtn) return;
+
+        const phone = '5215512345678'; // ← CAMBIA por tu número real
+        const total = state.productPrice * state.qty;
+
+        const message =
+            'Hola! Quiero comprar:\n\n' +
+            '📦 ' + state.productName + '\n' +
+            '🎨 Color: ' + state.color + '\n' +
+            '📏 Talla: ' + state.size + '\n' +
+            '🔢 Cantidad: ' + state.qty + '\n' +
+            '💰 Total: $' + total + ' MXN\n\n' +
+            '¿Me confirmas disponibilidad y envío?';
+
+        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+        whatsappBtn.href = url;
+    }
+
+    // Actualizar al cargar
+    updateWhatsAppLink();
+
+    // Actualizar cuando cambie cantidad con el input directo
+    if (qtyInput) {
+        qtyInput.addEventListener('change', function () {
+            let val = parseInt(this.value) || 1;
+            if (val < 1) val = 1;
+            if (val > 10) val = 10;
+            this.value = val;
+            state.qty = val;
+            updateWhatsAppLink();
+        });
+    }
+
+    // ============================================================
+    // ========== GUÍA DE TALLAS ==================================
+    // ============================================================
+
+    const sizeGuideBtn = $('.product-size-guide');
+    if (sizeGuideBtn) {
+        sizeGuideBtn.addEventListener('click', function () {
+            // Abrir el acordeón de tallas
+            const accordion = document.querySelector('.product-accordion-item:last-child');
+            if (accordion) {
+                accordion.setAttribute('open', '');
+                accordion.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     }
 
-    console.log('✅ Producto listo');
+    // ============================================================
+    // ========== LOG FINAL =======================================
+    // ============================================================
+
+    console.log('✅ Producto listo:', state.productName);
 });
