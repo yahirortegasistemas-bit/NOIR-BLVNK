@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIR BLVNK — Producto</title>
+    <meta name="description" content="Detalle de producto NOIR BLVNK.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="tienda.css">
+    <link rel="stylesheet" href="producto.css">
+</head>
+<body>
+
+    <div class="grain"></div>
+
+    <!-- ============================================
+         NAV (igual que tienda.html)
+    ============================================= -->
+    <nav class="shop-nav">
+        <div class="shop-nav-top">
+            <button class="shop-icon-btn" aria-label="Buscar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+
+            <a href="tienda.html" class="shop-logo">NOIR BLVNK</a>
+
+            <div class="shop-nav-actions">
+                <button class="shop-country-btn">ES
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+                <button class="shop-icon-btn" aria-label="Cuenta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+
+                <button class="shop-icon-btn" aria-label="Carrito">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                        <path d="M3 6h18"></path>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="shop-cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="shop-nav-bottom">
+            <a href="tienda.html">Todo</a>
+            <a href="#">Hombre</a>
+            <a href="#">Mujer</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Ofertas</a>
+            <a href="#" class="active">Nueva Colección</a>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         MIGAS
+    ============================================= -->
+    <div class="product-breadcrumb">
+        <a href="tienda.html">Inicio</a>
+        <span>/</span>
+        <a href="tienda.html">Camisas</a>
+        <span>/</span>
+        <span class="current">Camisa Lino Noir</span>
+    </div>
+
+    <!-- ============================================
+         PRODUCTO
+    ============================================= -->
+    <main class="product-main">
+        <div class="product-container">
+
+            <!-- GALERÍA -->
+            <div class="product-gallery">
+                <div class="product-thumbs">
+                    <button class="product-thumb active">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200" alt="">
+                    </button>
+                    <button class="product-thumb">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=200" alt="">
+                    </button>
+                    <button class="product-thumb">
+                        <img src="https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=200" alt="">
+                    </button>
+                    <button class="product-thumb">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200" alt="">
+                    </button>
+                </div>
+
+                <div class="product-main-image">
+                    <span class="product-badge">-30%</span>
+                    <button class="product-fav" aria-label="Favorito">♡</button>
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1200" alt="Camisa Lino Noir">
+                </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="product-info">
+
+                <span class="product-category">Camisas — Nueva Colección</span>
+                <h1 class="product-title">Camisa Lino Noir</h1>
+
+                <div class="product-rating">
+                    <span class="product-stars">★★★★★</span>
+                    <span class="product-reviews">128 reseñas</span>
+                </div>
+
+                <div class="product-prices">
+                    <span class="product-price product-price--current">$650 MXN</span>
+                    <span class="product-price--old">$800 MXN</span>
+                    <span class="product-discount">-30%</span>
+                </div>
+
+                <p class="product-description">
+                    Camisa de lino premium con caída fluida y acabado mate.
+                    Corte relajado, cuello italiano y botones de corozo.
+                    Fabricada en Portugal.
+                </p>
+
+                <!-- COLORES -->
+                <div class="product-option">
+                    <div class="product-option-header">
+                        <span class="product-option-label">Color:</span>
+                        <span class="product-option-value" id="colorValue">Negro</span>
+                    </div>
+                    <div class="product-colors">
+                        <button class="product-color active" data-color="Negro" style="background:#1a1a1a"></button>
+                        <button class="product-color" data-color="Beige" style="background:#c9a96e"></button>
+                        <button class="product-color" data-color="Blanco" style="background:#ede8df"></button>
+                    </div>
+                </div>
+
+                <!-- TALLAS -->
+                <div class="product-option">
+                    <div class="product-option-header">
+                        <span class="product-option-label">Talla:</span>
+                        <button class="product-size-guide">Guía de tallas</button>
+                    </div>
+                    <div class="product-sizes">
+                        <button class="product-size">XS</button>
+                        <button class="product-size">S</button>
+                        <button class="product-size active">M</button>
+                        <button class="product-size">L</button>
+                        <button class="product-size">XL</button>
+                        <button class="product-size" disabled>XXL</button>
+                    </div>
+                </div>
+
+                <!-- CANTIDAD + CARRITO -->
+                <div class="product-actions">
+                    <div class="product-qty">
+                        <button class="product-qty-btn" data-action="minus">−</button>
+                        <input type="number" id="qtyInput" value="1" min="1" max="10">
+                        <button class="product-qty-btn" data-action="plus">+</button>
+                    </div>
+                    <button class="product-add-btn" id="addToCart">
+                        <span>Añadir al carrito — $650 MXN</span>
+                    </button>
+                </div>
+
+                <button class="product-buy-btn" id="buyNow">Comprar ahora</button>
+
+                <!-- META -->
+                <div class="product-meta">
+                    <div class="product-meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        </svg>
+                        Envío gratis desde $1,500 MXN
+                    </div>
+                    <div class="product-meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                        Devolución 30 días
+                    </div>
+                    <div class="product-meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Pago 100% seguro
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================
+             ACORDEÓN
+        ============================================= -->
+        <div class="product-accordion">
+
+            <details class="product-accordion-item" open>
+                <summary>
+                    <span>Detalles del producto</span>
+                    <span class="product-accordion-icon">+</span>
+                </summary>
+                <div class="product-accordion-content">
+                    <ul>
+                        <li>100% lino europeo</li>
+                        <li>Corte relajado</li>
+                        <li>Cuello italiano</li>
+                        <li>Botones de corozo</li>
+                        <li>Fabricado en Portugal</li>
+                        <li>Lavado a mano o en frío</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="product-accordion-item">
+                <summary>
+                    <span>Envíos y devoluciones</span>
+                    <span class="product-accordion-icon">+</span>
+                </summary>
+                <div class="product-accordion-content">
+                    <p>Envío estándar 3-5 días hábiles. Envío gratis desde $1,500 MXN. Devoluciones aceptadas dentro de 30 días con etiqueta original.</p>
+                </div>
+            </details>
+
+            <details class="product-accordion-item">
+                <summary>
+                    <span>Guía de tallas</span>
+                    <span class="product-accordion-icon">+</span>
+                </summary>
+                <div class="product-accordion-content">
+                    <table class="product-size-table">
+                        <thead>
+                            <tr><th>Talla</th><th>Pecho</th><th>Largo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>XS</td><td>92 cm</td><td>68 cm</td></tr>
+                            <tr><td>S</td><td>98 cm</td><td>70 cm</td></tr>
+                            <tr><td>M</td><td>104 cm</td><td>72 cm</td></tr>
+                            <tr><td>L</td><td>110 cm</td><td>74 cm</td></tr>
+                            <tr><td>XL</td><td>116 cm</td><td>76 cm</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ============================================
+             RELACIONADOS
+        ============================================= -->
+        <section class="product-related">
+            <div class="product-related-header">
+                <h2 class="product-related-title">También te puede gustar</h2>
+                <a href="tienda.html" class="product-related-link">Ver todo →</a>
+            </div>
+
+            <div class="shop-grid">
+                <!-- Reutiliza tus .shop-card tal cual -->
+                <article class="shop-card" data-name="Chaqueta Denim" data-price="89900">
+                    <a href="#" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <span class="shop-card-badge shop-card-badge--new">Nuevo</span>
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600" alt="Chaqueta Denim">
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Chaqueta Denim</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$899 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Chaquetas · 2 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Sudadera Oversize" data-price="45900">
+                    <a href="#" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Sudadera Oversize">
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Sudadera Oversize</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$459 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Sudaderas · 5 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Pantalón Cargo" data-price="59900">
+                    <a href="#" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600" alt="Pantalón Cargo">
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Pantalón Cargo</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$599 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Pantalones · 4 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Camiseta Básica" data-price="19900">
+                    <a href="#" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="Camiseta Básica">
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Camiseta Básica</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$199 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Camisetas · 8 colores</p>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER (mismo de tienda.html)
+    ============================================= -->
+    <footer class="shop-footer">
+        <div class="shop-footer-container">
+            <div class="shop-footer-newsletter">
+                <h2 class="shop-footer-title">Únete al club</h2>
+                <p class="shop-footer-sub">Entérate primero de nuevos drops y ofertas exclusivas.</p>
+                <form class="shop-footer-form" id="newsletterForm">
+                    <input type="email" name="email" placeholder="tu@correo.com" required>
+                    <button type="submit">Suscribirme →</button>
+                </form>
+            </div>
+
+            <div class="shop-footer-brand">
+                <h3 class="shop-footer-logo">NOIR BLVNK</h3>
+                <p class="shop-footer-tagline">
+                    Ropa nacida en el asfalto. París, 1989 — el mundo, ahora.
+                    Cada prenda es un recordatorio de que el único límite eres tú.
+                </p>
+            </div>
+
+            <div class="shop-footer-links">
+                <div class="shop-footer-col">
+                    <h4>Tienda</h4>
+                    <a href="#">Catálogo completo</a>
+                    <a href="#">Nuevos drops</a>
+                    <a href="#">Guía de tallas</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Marca</h4>
+                    <a href="#">Manifiesto</a>
+                    <a href="#">Lookbook</a>
+                    <a href="#">Contacto</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Ayuda</h4>
+                    <a href="#">Envíos y devoluciones</a>
+                    <a href="#">Seguimiento</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Términos</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+
+            <div class="shop-footer-bottom">
+                <p>© 2026 NOIR BLVNK. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="tienda.js"></script>
+    <script src="producto.js"></script>
+</body>
+</html>
