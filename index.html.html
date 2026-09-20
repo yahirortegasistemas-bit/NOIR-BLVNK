@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIR BLVNK — Tienda</title>
+    <meta name="description" content="Streetwear editorial. Nueva colección, best sellers y drops exclusivos.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="tienda.css">
+</head>
+<body>
+
+    <div class="grain"></div>
+
+    <!-- ============================================
+         NAV
+    ============================================= -->
+    <nav class="shop-nav">
+        <div class="shop-nav-top">
+            <button class="shop-icon-btn" aria-label="Buscar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+
+            <a href="tienda.html" class="shop-logo">NOIR BLVNK</a>
+
+            <div class="shop-nav-actions">
+                <button class="shop-country-btn">
+                    ES
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+                <button class="shop-icon-btn" aria-label="Cuenta">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+
+                <button class="shop-icon-btn" aria-label="Carrito">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                        <path d="M3 6h18"></path>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="shop-cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="shop-nav-bottom">
+            <a href="#" class="active">Todo</a>
+            <a href="#">Hombre</a>
+            <a href="#">Mujer</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Ofertas</a>
+            <a href="#">Nueva Colección</a>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         BANNER ROJO MARQUEE
+    ============================================= -->
+    <div class="shop-banner">
+        <div class="shop-banner-track">
+            <span>Envío gratis desde $1,500 MXN</span>
+            <span class="shop-banner-dot">●</span>
+            <span>New drop disponible ahora</span>
+            <span class="shop-banner-dot">●</span>
+            <span>Devoluciones 30 días</span>
+            <span class="shop-banner-dot">●</span>
+            <span>Envío gratis desde $1,500 MXN</span>
+            <span class="shop-banner-dot">●</span>
+            <span>New drop disponible ahora</span>
+            <span class="shop-banner-dot">●</span>
+            <span>Devoluciones 30 días</span>
+            <span class="shop-banner-dot">●</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO
+    ============================================= -->
+    <section class="shop-hero">
+        <div class="shop-hero-inner">
+            <span class="shop-hero-tag">Drop 04 — Otoño Invierno 2026</span>
+            <h1 class="shop-hero-title">
+                Born on<br>
+                the asphalt.
+            </h1>
+            <p class="shop-hero-sub">
+                Streetwear editorial. Edición limitada.
+                Cada prenda es un recordatorio de que el único límite eres tú.
+            </p>
+            <div class="shop-hero-actions">
+                <a href="#catalogo" class="btn-primary">
+                    <span>Ver catálogo</span>
+                </a>
+                <a href="#newdrop" class="btn-ghost">
+                    <span>New Drop →</span>
+                </a>
+            </div>
+        </div>
+        <div class="shop-hero-side">
+            <span>Paris · 1989</span>
+            <span>Tokyo · 2026</span>
+            <span>Tijuana · SD</span>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CATÁLOGO
+    ============================================= -->
+    <main class="shop-main" id="catalogo">
+        <div class="shop-container">
+
+            <div class="shop-section-head">
+                <div>
+                    <span class="shop-section-eyebrow">01 — Catálogo</span>
+                    <h2 class="shop-section-title">Best Sellers</h2>
+                </div>
+                <a href="#" class="shop-section-link">Ver todo →</a>
+            </div>
+
+            <!-- Filtros -->
+            <div class="shop-filters">
+                <div class="shop-filters-chips">
+                    <button class="chip active">Todo</button>
+                    <button class="chip">Tees</button>
+                    <button class="chip">Hoodies</button>
+                    <button class="chip">Tanktops</button>
+                    <button class="chip">Chaquetas</button>
+                    <button class="chip">Accesorios</button>
+                </div>
+
+                <div class="shop-filters-right">
+                    <div class="shop-sort">
+                        <span>Ordenar:</span>
+                        <select id="sortSelect">
+                            <option value="default">Destacados</option>
+                            <option value="alpha">A - Z</option>
+                            <option value="alpha-desc">Z - A</option>
+                            <option value="price-asc">Precio ↑</option>
+                            <option value="price-desc">Precio ↓</option>
+                        </select>
+                    </div>
+                    <span class="shop-count" id="productCount">8 productos</span>
+                </div>
+            </div>
+
+            <!-- GRID -->
+            <div class="shop-grid" id="productGrid">
+
+                <article class="shop-card" data-name="Tijuana San Diego" data-price="700">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <span class="shop-card-badge shop-card-badge--new">New</span>
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="race.jpg" alt="Tijuana San Diego">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Tijuana - San Diego</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$700 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · 3 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Angel Numbers" data-price="650">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=800" alt="Angel Numbers">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Angel Numbers</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$650 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · 2 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Lucky222 Black" data-price="650">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <span class="shop-card-badge shop-card-badge--sale">-19%</span>
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800" alt="Lucky222">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Lucky222 - Black</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price shop-card-price--sale">$650 MXN</span>
+                                <span class="shop-card-price-old">$800 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · Oferta</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Consistency Japon" data-price="650">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800" alt="Consistency">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Consistency (Japón)</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$650 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · 2 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Tony Faded Black" data-price="700">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <span class="shop-card-badge shop-card-badge--exclusive">Exclusivo</span>
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800" alt="Tony">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">"Tony" - Faded Black</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$700 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · 1 color</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="American Girls Hoodie" data-price="1400">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800" alt="American Girls">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">American Girls - Hoodie</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$1,400 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Hoodie · Navy Blue</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="Love Letter Beige" data-price="1100">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800" alt="Love Letter">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">Love Letter (Beige)</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$1,100 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · Edición limitada</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="shop-card" data-name="World Black" data-price="700">
+                    <a href="producto.html" class="shop-card-link">
+                        <div class="shop-card-image">
+                            <button class="shop-card-fav" aria-label="Favorito">♡</button>
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800" alt="World">
+                            <div class="shop-card-hover">
+                                <span>Añadir rápido</span>
+                            </div>
+                        </div>
+                        <div class="shop-card-info">
+                            <h3 class="shop-card-title">"World" - Black</h3>
+                            <div class="shop-card-prices">
+                                <span class="shop-card-price">$700 MXN</span>
+                            </div>
+                            <p class="shop-card-meta">Tee · 2 colores</p>
+                        </div>
+                    </a>
+                </article>
+
+            </div>
+
+            <div class="shop-pagination">
+                <button class="shop-page-btn" disabled>‹</button>
+                <button class="shop-page-btn active">1</button>
+                <button class="shop-page-btn">2</button>
+                <button class="shop-page-btn">3</button>
+                <span class="shop-page-dots">…</span>
+                <button class="shop-page-btn">8</button>
+                <button class="shop-page-btn">›</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================
+         CARRUSEL PREMIUM — NEW DROP
+    ============================================= -->
+    <section class="shop-carousel-section" id="newdrop">
+        <div class="shop-carousel-head">
+            <div>
+                <span class="shop-section-eyebrow">02 — New Drop</span>
+                <h2 class="shop-section-title">Pasión de Verano</h2>
+                <p class="shop-carousel-sub">NOIR × BADGALLERY™ — Edición limitada</p>
+            </div>
+
+            <div class="shop-carousel-controls">
+                <button class="carousel-btn" id="carouselPrev" aria-label="Anterior">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="carousel-btn" id="carouselNext" aria-label="Siguiente">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="shop-carousel" id="carousel">
+            <div class="shop-carousel-track" id="carouselTrack">
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <span class="carousel-card-badge">New</span>
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900" alt="Pasión de Verano">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Faded Tee</span>
+                        <h3 class="carousel-card-title">Pasión de Verano</h3>
+                        <span class="carousel-card-price">$795 MXN</span>
+                    </div>
+                </article>
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=900" alt="Bad Influence">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Tanktop</span>
+                        <h3 class="carousel-card-title">Bad Influence</h3>
+                        <span class="carousel-card-price">$680 MXN</span>
+                    </div>
+                </article>
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <span class="carousel-card-badge">Drop</span>
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900" alt="Pasión Hoodie">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Hoodie</span>
+                        <h3 class="carousel-card-title">Pasión de Verano Hoodie</h3>
+                        <span class="carousel-card-price">$1,555 MXN</span>
+                    </div>
+                </article>
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=900" alt="Caliente222">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Womens Tee</span>
+                        <h3 class="carousel-card-title">Caliente222</h3>
+                        <span class="carousel-card-price">$630 MXN</span>
+                    </div>
+                </article>
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <span class="carousel-card-badge">Collab</span>
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=900" alt="BadGallery x 222">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Collab</span>
+                        <h3 class="carousel-card-title">BadGallery × 222</h3>
+                        <span class="carousel-card-price">$795 MXN</span>
+                    </div>
+                </article>
+
+                <article class="carousel-card">
+                    <div class="carousel-card-image">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900" alt="Otro producto">
+                    </div>
+                    <div class="carousel-card-info">
+                        <span class="carousel-card-cat">Tee</span>
+                        <h3 class="carousel-card-title">Right Place - Right Time</h3>
+                        <span class="carousel-card-price">$650 MXN</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="shop-carousel-progress">
+                <div class="shop-carousel-progress-bar" id="carouselProgress"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================= -->
+    <footer class="shop-footer">
+        <div class="shop-footer-container">
+
+            <div class="shop-footer-newsletter">
+                <h2 class="shop-footer-title">Únete al club</h2>
+                <p class="shop-footer-sub">Entérate primero de nuevos drops y ofertas exclusivas.</p>
+                <form class="shop-footer-form" id="newsletterForm">
+                    <input type="email" name="email" placeholder="tu@correo.com" required>
+                    <button type="submit">Suscribirme →</button>
+                </form>
+            </div>
+
+            <div class="shop-footer-brand">
+                <h3 class="shop-footer-logo">NOIR BLVNK</h3>
+                <p class="shop-footer-tagline">
+                    Ropa nacida en el asfalto. París, 1989 — el mundo, ahora.
+                    Cada prenda es un recordatorio de que el único límite eres tú.
+                </p>
+                <div class="shop-footer-social">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="shop-footer-links">
+                <div class="shop-footer-col">
+                    <h4>Tienda</h4>
+                    <a href="#">Catálogo completo</a>
+                    <a href="#">Nuevos drops</a>
+                    <a href="#">Guía de tallas</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Marca</h4>
+                    <a href="#">Manifiesto</a>
+                    <a href="#">Lookbook</a>
+                    <a href="#">Contacto</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Ayuda</h4>
+                    <a href="#">Envíos y devoluciones</a>
+                    <a href="#">Seguimiento</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="shop-footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Términos</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+
+            <div class="shop-footer-bottom">
+                <p>© 2026 NOIR BLVNK. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="tienda.js"></script>
+</body>
+</html>
