@@ -298,3 +298,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('✅ Producto listo:', state.productName);
 });
+
+// ============================================================
+// ========== NAV LINKS (en página de producto) ===============
+// ============================================================
+
+document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        const text = this.textContent.trim().toLowerCase();
+
+        // "Todo" → va a index
+        if (text.includes('todo')) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        // "Nueva Colección" → va a index + scroll al carrusel
+        if (text.includes('nueva') || text.includes('coleccion')) {
+            e.preventDefault();
+            window.location.href = 'index.html#newdrop';
+            return;
+        }
+
+        // "Hombre" → va a index (por ahora)
+        if (text.includes('hombre')) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+            return;
+        }
+    });
+});

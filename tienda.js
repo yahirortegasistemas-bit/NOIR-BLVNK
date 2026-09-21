@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return '$' + Number(n).toLocaleString('es-MX') + ' MXN';
     }
 
+    function normalize(str) {
+        return (str || '')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
     // ============================================================
     // ========== TOAST ===========================================
     // ============================================================
@@ -110,15 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== FILTROS POR CHIP ================================
     // ============================================================
 
-    function normalize(str) {
-        return (str || '')
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-    }
-
     function applyFilter(filter) {
         state.activeFilter = filter;
+        if (!grid) return;
+
         const cards = $$('.shop-card', grid);
 
         cards.forEach(card => {
@@ -141,40 +143,36 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCount();
     }
 
-    $$('.chip').forEach(chip => {
-        chip.addEventListener('click', function () {
-            $$('.chip').forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
 
-            const filter = normalize(this.textContent.trim());
-            applyFilter(filter === 'todo' ? 'todo' : filter);
-        });
-    });
 
-    // ============================================================
-    // ========== FILTROS POR CATEGORÍA (NAV) =====================
-    // ============================================================
+   // ============================================================
+// ========== FILTROS POR NAV =================================
+// ============================================================
 
-    $$('.shop-nav-bottom a').forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            $$('.shop-nav-bottom a').forEach(a => a.classList.remove('active'));
-            this.classList.add('active');
+document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        const filter = this.dataset.filter;
 
-            const filter = normalize(this.textContent.trim());
-            applyFilter(filter === 'todo' ? 'todo' : filter);
+        // Si NO tiene data-filter, es un link normal (#newdrop)
+        if (!filter) return;
 
-            // Sync chip
-            $$('.chip').forEach(chip => {
-                const chipText = normalize(chip.textContent.trim());
-                chip.classList.toggle('active', chipText === filter || (filter === 'todo' && chipText === 'todo'));
-            });
+        e.preventDefault();
 
-            // Scroll al catálogo
+        document.querySelectorAll('.shop-nav-bottom a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+
+        // "Todo" → mostrar todo
+        if (filter === 'todo') {
+            applyFilter('todo');
             document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
+            return;
+        }
 
+        // Otros filtros → por meta
+        applyFilter(filter);
+        document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
     // ============================================================
     // ========== CONTADOR ========================================
     // ============================================================
@@ -202,13 +200,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    $$('.shop-card-fav, .price-card__fav, .product-fav').forEach(btn => {
+    $$('.shop-card-fav').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
             const card = this.closest('.shop-card');
-            const id = card?.dataset.name || this.dataset.id || 'generic-' + Math.random();
+            const id = card?.dataset.name || 'generic-' + Math.random();
 
             const idx = state.favorites.indexOf(id);
             if (idx === -1) {
@@ -279,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function () {
             toast('Redirigiendo al checkout...', 'info');
         });
 
-        // Delegación para quitar items
         document.getElementById('nbCartBody').addEventListener('click', (e) => {
             const btn = e.target.closest('[data-remove]');
             if (!btn) return;
@@ -324,7 +321,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             `).join('');
 
-            // Delegación + para sumar
             body.querySelectorAll('[data-add]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const id = btn.dataset.add;
@@ -391,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function () {
         toast('Carrito vaciado', 'info');
     }
 
-    // Añadir rápido desde card
+    // Añadir rápido
     $$('.shop-card-hover span').forEach(span => {
         span.addEventListener('click', function (e) {
             e.preventDefault();
@@ -413,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Click en botón carrito abre drawer
+    // Click en botón carrito
     $$('.shop-icon-btn').forEach(btn => {
         if (btn.getAttribute('aria-label') === 'Carrito') {
             btn.addEventListener('click', function (e) {
@@ -461,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 results.innerHTML = '<p class="nb-search-hint">Empieza a escribir para ver resultados…</p>';
                 return;
             }
+            if (!grid) return;
             const matches = $$('.shop-card', grid).filter(card => {
                 const name = normalize(card.dataset.name || '');
                 return name.includes(q);
@@ -719,42 +716,7 @@ document.addEventListener('DOMContentLoaded', function () {
         images.forEach(img => imageObserver.observe(img));
     }
 
-    // ============================================================
-    // ========== PAGINACIÓN ======================================
-    // ============================================================
-
-    $$('.shop-page-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            if (this.disabled) return;
-
-            const txt = this.textContent.trim();
-
-            if (txt === '‹' || txt === '›') {
-                const current = $('.shop-page-btn.active');
-                if (!current) return;
-                const siblings = $$('.shop-page-btn').filter(b => !isNaN(parseInt(b.textContent)) && b.textContent.length <= 2);
-                const idx = siblings.indexOf(current);
-                const target = txt === '›' ? siblings[idx + 1] : siblings[idx - 1];
-                if (target) {
-                    siblings.forEach(b => b.classList.remove('active'));
-                    target.classList.add('active');
-                    scrollToGrid();
-                }
-                return;
-            }
-
-            if (isNaN(parseInt(txt))) return;
-            $$('.shop-page-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            scrollToGrid();
-        });
-    });
-
-    function scrollToGrid() {
-        document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        toast('Página cargada', 'info');
-    }
-
+   
     // ============================================================
     // ========== KEYBOARD SHORTCUTS ==============================
     // ============================================================

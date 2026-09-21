@@ -142,7 +142,7 @@ button { font-family: inherit; }
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 44px;
+    gap: 60px;              /* ← antes 36px, ahora 60px */
     padding: 16px 5vw 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.04);
     flex-wrap: wrap;
@@ -190,7 +190,7 @@ button { font-family: inherit; }
     display: flex;
     gap: 40px;
     white-space: nowrap;
-    animation: marquee 30s linear infinite;
+    animation: marquee 40s linear infinite;   /* ← antes era 30s */
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 700;
@@ -377,36 +377,14 @@ button { font-family: inherit; }
 
 .shop-filters {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;    /* ← antes era space-between */
     align-items: center;
     gap: 24px;
     margin-bottom: 40px;
     flex-wrap: wrap;
 }
 
-.shop-filters-chips { display: flex; gap: 8px; flex-wrap: wrap; }
 
-.chip {
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 50px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--black);
-    cursor: pointer;
-    transition: all 0.3s var(--ease);
-}
-
-.chip:hover { border-color: var(--black); }
-
-.chip.active {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--bone);
-}
 
 .shop-filters-right {
     display: flex;
@@ -622,58 +600,7 @@ button { font-family: inherit; }
     margin: 0;
 }
 
-/* PAGINACIÓN */
-.shop-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding-top: 40px;
-    border-top: 1px solid var(--hair-light);
-}
 
-.shop-page-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: var(--black);
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s var(--ease);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.shop-page-btn:hover {
-    border-color: var(--black);
-    background: var(--black);
-    color: var(--bone);
-    transform: translateY(-2px);
-}
-
-.shop-page-btn.active {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--bone);
-}
-
-.shop-page-btn:disabled {
-    opacity: 0.25;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-.shop-page-dots {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--grey);
-    padding: 0 6px;
-}
 
 /* CARRUSEL */
 .shop-carousel-section {
@@ -1533,7 +1460,6 @@ button { font-family: inherit; }
     outline-offset: 3px;
 }
 
-/* Logo en círculo, ocultando el fondo negro */
 .shop-logo {
     display: flex;
     align-items: center;
@@ -1547,13 +1473,15 @@ button { font-family: inherit; }
     display: block;
     height: clamp(50px, 7vw, 96px);
     width: auto;
-    aspect-ratio: 1 / 1;      /* fuerza cuadrado */
-    object-fit: cover;         /* recorta el negro automáticamente */
-    border-radius: 50%;        /* redondea por si acaso */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    aspect-ratio: 1 / 1;         /* fuerza cuadrado */
+    object-fit: cover;            /* recorta al centro */
+    border-radius: 50%;           /* hace círculo perfecto */
+    background: #fff;             /* fondo blanco para rellenar */
+    overflow: hidden;
+    transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
 }
 
 .shop-logo:hover img {
-    transform: scale(1.06);
-    opacity: 1.22;
+    transform: scale(1.05);
+    opacity: 0.95;
 }

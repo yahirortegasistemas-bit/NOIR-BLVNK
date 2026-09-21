@@ -804,3 +804,43 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ========================================== */
+/* ========== BREADCRUMB FIX ================= */
+/* ========================================== */
+
+/* ========================================== */
+/* ========== BREADCRUMB ===================== */
+/* ========================================== */
+
+.product-breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 5vw 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey);
+    background: transparent;      /* ← IMPORTANTE: quita fondo negro */
+}
+
+.product-breadcrumb a {
+    color: var(--grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.product-breadcrumb a:hover {
+    color: var(--black);
+}
+
+.product-breadcrumb .current,
+.product-breadcrumb-sep {
+    color: var(--grey);
+    opacity: 0.5;
+}
