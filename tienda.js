@@ -497,50 +497,7 @@ document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
         }
     });
 
-    // ============================================================
-    // ========== CUENTA ==========================================
-    // ============================================================
-
-    function buildAccount() {
-        if (document.getElementById('nb-account')) return;
-        const html = `
-            <div class="nb-modal" id="nb-account">
-                <div class="nb-modal-inner">
-                    <button class="nb-modal-close" id="nbAccountClose" aria-label="Cerrar">✕</button>
-                    <span class="nb-modal-eyebrow">Cuenta</span>
-                    <h3 class="nb-modal-title">Iniciar sesión</h3>
-                    <form class="nb-modal-form" id="nbAccountForm">
-                        <input type="email" placeholder="tu@correo.com" required>
-                        <input type="password" placeholder="Contraseña" required>
-                        <button type="submit" class="nb-modal-btn">Entrar</button>
-                    </form>
-                    <p class="nb-modal-foot">¿No tienes cuenta? <a href="#">Crear una</a></p>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', html);
-
-        const modal = document.getElementById('nb-account');
-        document.getElementById('nbAccountClose').addEventListener('click', () => modal.classList.remove('is-open'));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('is-open');
-        });
-        document.getElementById('nbAccountForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            toast('Sesión iniciada (demo)', 'success');
-            modal.classList.remove('is-open');
-        });
-    }
-
-    $$('.shop-icon-btn').forEach(btn => {
-        if (btn.getAttribute('aria-label') === 'Cuenta') {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                buildAccount();
-                document.getElementById('nb-account').classList.add('is-open');
-            });
-        }
-    });
+    
 
     // ============================================================
     // ========== SELECTOR DE PAÍS ================================
@@ -724,6 +681,7 @@ document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeCart();
+            closeMenu();
             $$('.nb-modal').forEach(m => m.classList.remove('is-open'));
             $$('.nb-country-menu').forEach(m => m.classList.remove('is-open'));
         }
@@ -734,6 +692,44 @@ document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
             });
         }
     });
+
+    // ============================================================
+// ========== MENÚ LATERAL ====================================
+// ============================================================
+
+const menuToggle = document.querySelector('.shop-menu-toggle');
+const menuEl = document.getElementById('nbMenu');
+const menuOverlay = document.getElementById('nbMenuOverlay');
+const menuClose = document.getElementById('nbMenuClose');
+
+function openMenu() {
+    menuEl?.classList.add('is-open');
+    menuOverlay?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+    menuEl?.classList.remove('is-open');
+    menuOverlay?.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+
+if (menuToggle && menuEl) {
+    menuToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        openMenu();
+    });
+
+    menuOverlay?.addEventListener('click', closeMenu);
+    menuClose?.addEventListener('click', closeMenu);
+
+    // Cerrar al hacer click en un link
+    menuEl.querySelectorAll('.nb-menu-link').forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(closeMenu, 150);
+        });
+    });
+}
 
     console.log('✅ Listo con ' + (grid ? grid.querySelectorAll('.shop-card').length : 0) + ' productos');
 });
