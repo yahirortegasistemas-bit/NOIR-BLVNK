@@ -1532,3 +1532,28 @@ button { font-family: inherit; }
     outline: 2px solid var(--red-bright);
     outline-offset: 3px;
 }
+
+/* Logo en círculo, ocultando el fondo negro */
+.shop-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0;
+    line-height: 0;
+}
+
+.shop-logo img {
+    display: block;
+    height: clamp(50px, 7vw, 96px);
+    width: auto;
+    aspect-ratio: 1 / 1;      /* fuerza cuadrado */
+    object-fit: cover;         /* recorta el negro automáticamente */
+    border-radius: 50%;        /* redondea por si acaso */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.shop-logo:hover img {
+    transform: scale(1.06);
+    opacity: 1.22;
+}
