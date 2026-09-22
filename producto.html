@@ -18,7 +18,7 @@
     <div class="grain"></div>
 
     <!-- ============================================
-         NAV (igual que tienda.html)
+         NAV
     ============================================= -->
     <nav class="shop-nav">
         <div class="shop-nav-top">
@@ -29,22 +29,11 @@
                 </svg>
             </button>
 
-            <a href="tienda.html" class="shop-logo">NOIR BLVNK</a>
+            <a href="index.html" class="shop-logo" aria-label="NOIR BLVNK">
+                <img src="logo.png" alt="NOIR BLVNK">
+            </a>
 
             <div class="shop-nav-actions">
-                <button class="shop-country-btn">ES
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </button>
-
-                <button class="shop-icon-btn" aria-label="Cuenta">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </button>
-
                 <button class="shop-icon-btn" aria-label="Carrito">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
@@ -56,19 +45,20 @@
             </div>
         </div>
 
-      <div class="shop-nav-bottom">
-    <a href="index.html">Todo</a>
-    <a href="#newdrop">Nueva Colección</a>
-</div>
+        <div class="shop-nav-bottom">
+            <a href="index.html">Todo</a>
+            <a href="index.html#newdrop">Nueva Colección</a>
+        </div>
+    </nav>
 
     <!-- ============================================
          MIGAS
     ============================================= -->
-   <nav class="product-breadcrumb" aria-label="breadcrumb">
-    <a href="index.html">Inicio</a>
-    <span class="product-breadcrumb-sep">/</span>
-    <a href="index.html">Camisas</a>
-</nav>
+    <nav class="product-breadcrumb" aria-label="breadcrumb">
+        <a href="index.html">Inicio</a>
+        <span class="product-breadcrumb-sep">/</span>
+        <a href="index.html">Camisas</a>
+    </nav>
 
     <!-- ============================================
          PRODUCTO
@@ -77,33 +67,18 @@
         <div class="product-container">
 
             <!-- GALERÍA -->
-            <div class="product-gallery">
-                <div class="product-thumbs">
-                    <button class="product-thumb active">
-                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200" alt="">
-                    </button>
-                    <button class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=200" alt="">
-                    </button>
-                    <button class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=200" alt="">
-                    </button>
-                    <button class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200" alt="">
-                    </button>
-                </div>
-
+            <div class="product-gallery product-gallery--single">
                 <div class="product-main-image">
-                    <span class="product-badge">-30%</span>
+                    <span class="product-badge">Exclusivo</span>
                     <button class="product-fav" aria-label="Favorito">♡</button>
-                    <img id="mainImage" src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1200" alt="Camisa Lino Noir">
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200" alt="Producto">
                 </div>
             </div>
 
             <!-- INFO -->
             <div class="product-info">
 
-                <span class="product-category">Camisas — Nueva Colección</span>
+                <span class="product-category">Playera — Nueva Colección</span>
                 <h1 class="product-title">Camisa Lino Noir</h1>
 
                 <div class="product-rating">
@@ -113,14 +88,13 @@
 
                 <div class="product-prices">
                     <span class="product-price product-price--current">$650 MXN</span>
-                    <span class="product-price--old">$800 MXN</span>
+                    <span class="product-price-old">$800 MXN</span>
                     <span class="product-discount">-30%</span>
                 </div>
 
                 <p class="product-description">
-                    Camisa de lino premium con caída fluida y acabado mate.
-                    Corte relajado, cuello italiano y botones de corozo.
-                    Fabricada en Portugal.
+                    Playera de algodón peinado 240g. Corte oversize, acabado premium.
+                    Diseño exclusivo NOIR BLVNK.
                 </p>
 
                 <!-- COLORES -->
@@ -160,7 +134,7 @@
                         <button class="product-qty-btn" data-action="plus">+</button>
                     </div>
                     <button class="product-add-btn" id="addToCart">
-                        <span>Añadir al carrito — $650 MXN</span>
+                        <span>Añadir al carrito</span>
                     </button>
                 </div>
 
@@ -206,12 +180,11 @@
                 </summary>
                 <div class="product-accordion-content">
                     <ul>
-                        <li>100% lino europeo</li>
-                        <li>Corte relajado</li>
-                        <li>Cuello italiano</li>
-                        <li>Botones de corozo</li>
-                        <li>Fabricado en Portugal</li>
-                        <li>Lavado a mano o en frío</li>
+                        <li>100% algodón peinado 240g</li>
+                        <li>Corte oversize</li>
+                        <li>Serigrafía de alta densidad</li>
+                        <li>Hecho en México</li>
+                        <li>Lavado a mano o en frío, del revés</li>
                     </ul>
                 </div>
             </details>
@@ -255,68 +228,66 @@
         <section class="product-related">
             <div class="product-related-header">
                 <h2 class="product-related-title">También te puede gustar</h2>
-                <a href="tienda.html" class="product-related-link">Ver todo →</a>
+                <a href="index.html" class="product-related-link">Ver todo →</a>
             </div>
 
             <div class="shop-grid">
-                <!-- Reutiliza tus .shop-card tal cual -->
-                <article class="shop-card" data-name="Chaqueta Denim" data-price="89900">
-                    <a href="#" class="shop-card-link">
+                <article class="shop-card" data-name="Angel Numbers" data-price="650">
+                    <a href="producto.html?id=angel-numbers" class="shop-card-link">
                         <div class="shop-card-image">
-                            <span class="shop-card-badge shop-card-badge--new">Nuevo</span>
-                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600" alt="Chaqueta Denim">
+                            <img src="race.jpg" alt="Angel Numbers">
                         </div>
                         <div class="shop-card-info">
-                            <h3 class="shop-card-title">Chaqueta Denim</h3>
+                            <h3 class="shop-card-title">Angel Numbers</h3>
                             <div class="shop-card-prices">
-                                <span class="shop-card-price">$899 MXN</span>
+                                <span class="shop-card-price">$650 MXN</span>
                             </div>
-                            <p class="shop-card-meta">Chaquetas · 2 colores</p>
+                            <p class="shop-card-meta">Playera · Graphic · Negro</p>
                         </div>
                     </a>
                 </article>
 
-                <article class="shop-card" data-name="Sudadera Oversize" data-price="45900">
-                    <a href="#" class="shop-card-link">
+                <article class="shop-card" data-name="Tony Faded Black" data-price="700">
+                    <a href="producto.html?id=tony" class="shop-card-link">
                         <div class="shop-card-image">
-                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Sudadera Oversize">
+                            <img src="run.jpg" alt="Tony">
                         </div>
                         <div class="shop-card-info">
-                            <h3 class="shop-card-title">Sudadera Oversize</h3>
+                            <h3 class="shop-card-title">"Tony" - Faded Black</h3>
                             <div class="shop-card-prices">
-                                <span class="shop-card-price">$459 MXN</span>
+                                <span class="shop-card-price">$700 MXN</span>
                             </div>
-                            <p class="shop-card-meta">Sudaderas · 5 colores</p>
+                            <p class="shop-card-meta">Playera · Faded · Negro</p>
                         </div>
                     </a>
                 </article>
 
-                <article class="shop-card" data-name="Pantalón Cargo" data-price="59900">
-                    <a href="#" class="shop-card-link">
+                <article class="shop-card" data-name="World Black" data-price="700">
+                    <a href="producto.html?id=world" class="shop-card-link">
                         <div class="shop-card-image">
-                            <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600" alt="Pantalón Cargo">
+                            <img src="race2.jpeg" alt="World">
                         </div>
                         <div class="shop-card-info">
-                            <h3 class="shop-card-title">Pantalón Cargo</h3>
+                            <h3 class="shop-card-title">"World" - Black</h3>
                             <div class="shop-card-prices">
-                                <span class="shop-card-price">$599 MXN</span>
+                                <span class="shop-card-price">$700 MXN</span>
                             </div>
-                            <p class="shop-card-meta">Pantalones · 4 colores</p>
+                            <p class="shop-card-meta">Playera · Graphic · Negro</p>
                         </div>
                     </a>
                 </article>
 
-                <article class="shop-card" data-name="Camiseta Básica" data-price="19900">
-                    <a href="#" class="shop-card-link">
+                <article class="shop-card" data-name="Right Place Right Time" data-price="650">
+                    <a href="producto.html?id=right-place" class="shop-card-link">
                         <div class="shop-card-image">
-                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="Camiseta Básica">
+                            <img src="race1.jpeg" alt="Right Place">
                         </div>
                         <div class="shop-card-info">
-                            <h3 class="shop-card-title">Camiseta Básica</h3>
+                            <h3 class="shop-card-title">Right Place - Right Time</h3>
                             <div class="shop-card-prices">
-                                <span class="shop-card-price">$199 MXN</span>
+                                <span class="shop-card-price">$650 MXN</span>
                             </div>
-                            <p class="shop-card-meta">Camisetas · 8 colores</p>
+                            <p class="shop-card-meta">Playera · Basics · Beige</p>
                         </div>
                     </a>
                 </article>
@@ -325,7 +296,7 @@
     </main>
 
     <!-- ============================================
-         FOOTER (mismo de tienda.html)
+         FOOTER
     ============================================= -->
     <footer class="shop-footer">
         <div class="shop-footer-container">
@@ -341,8 +312,8 @@
             <div class="shop-footer-brand">
                 <h3 class="shop-footer-logo">NOIR BLVNK</h3>
                 <p class="shop-footer-tagline">
-                    Ropa nacida en el asfalto. París, 1989 — el mundo, ahora.
-                    Cada prenda es un recordatorio de que el único límite eres tú.
+                    Playeras nacidas en el asfalto. París, 1989 — el mundo, ahora.
+                    Cada diseño es un recordatorio de que el único límite eres tú.
                 </p>
             </div>
 

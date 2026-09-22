@@ -2,12 +2,176 @@
 // ========== PRODUCTO NOIR BLVNK =============================
 // ============================================================
 
+// ============================================================
+// ========== DATOS DE PRODUCTOS ==============================
+// ============================================================
+
+const PRODUCTS = {
+    'tijuana': {
+        name: 'Tijuana - San Diego',
+        price: 700,
+        category: 'Playera — Graphic',
+        badge: 'New',
+        badgeType: 'new',
+        image: 'noirclub.jpg',
+        description: 'Playera graphic de algodón peinado 240g. Diseño Tijuana - San Diego serigrafiado a mano. Corte oversize.',
+        color: 'Amarillo'
+    },
+    'angel-numbers': {
+        name: 'Angel Numbers',
+        price: 650,
+        category: 'Playera — Graphic',
+        image: 'race.jpg',
+        description: 'Playera graphic con numerología angelical. Algodón peinado 240g. Corte oversize.',
+        color: 'Negro'
+    },
+    'lucky222': {
+        name: 'Lucky222 - Black',
+        price: 650,
+        oldPrice: 800,
+        category: 'Playera — Oferta',
+        badge: 'Oferta',
+        badgeType: 'sale',
+        image: 'boxing.jpg',
+        description: 'Playera Lucky222 en edición limitada. Algodón peinado 240g. Acabado faded.',
+        color: 'Negro'
+    },
+    'consistency': {
+        name: 'Consistency (Japón)',
+        price: 650,
+        category: 'Playera — Basics',
+        image: 'feardeath.jpg',
+        description: 'Playera basics con kanji japonés. Algodón peinado 240g. Corte relajado.',
+        color: 'Blanco'
+    },
+    'tony': {
+        name: '"Tony" - Faded Black',
+        price: 700,
+        category: 'Playera — Faded',
+        badge: 'Exclusivo',
+        badgeType: 'exclusive',
+        image: 'run.jpg',
+        description: 'Playera faded con acabado desgastado a mano. Algodón peinado 240g. Corte oversize.',
+        color: 'Faded Black'
+    },
+    'world': {
+        name: '"World" - Black',
+        price: 700,
+        category: 'Playera — Graphic',
+        image: 'race2.jpeg',
+        description: 'Playera graphic con diseño World. Algodón peinado 240g. Corte oversize.',
+        color: 'Negro'
+    },
+    'right-place': {
+        name: 'Right Place - Right Time',
+        price: 650,
+        category: 'Playera — Basics',
+        badge: 'New',
+        badgeType: 'new',
+        image: 'race1.jpeg',
+        description: 'Playera basics con tipografía minimal. Algodón peinado 240g. Corte relajado.',
+        color: 'Beige'
+    },
+    'tutto-passa': {
+        name: '"Tutto Passa"',
+        price: 650,
+        category: 'Playera — Faded',
+        image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800',
+        description: 'Playera faded con tipografía italiana. Algodón peinado 240g. Corte oversize.',
+        color: 'Negro'
+    }
+};
+
+// ============================================================
+// ========== CARGAR PRODUCTO DESDE URL =======================
+// ============================================================
+
+function loadProductFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    console.log('🔗 URL id:', id);
+
+    if (!id || !PRODUCTS[id]) {
+        console.log('⚠️ Producto no especificado, usando el HTML por defecto');
+        return;
+    }
+
+    const product = PRODUCTS[id];
+
+    // Título
+    const titleEl = document.querySelector('.product-title');
+    if (titleEl) titleEl.textContent = product.name;
+
+    // Categoría
+    const catEl = document.querySelector('.product-category');
+    if (catEl) catEl.textContent = product.category;
+
+    // Precio
+    const priceEl = document.querySelector('.product-price--current, .product-price');
+    if (priceEl) priceEl.textContent = '$' + product.price + ' MXN';
+
+    // Precio antiguo
+    const oldPriceEl = document.querySelector('.product-price-old');
+    if (oldPriceEl) {
+        if (product.oldPrice) {
+            oldPriceEl.textContent = '$' + product.oldPrice + ' MXN';
+            oldPriceEl.style.display = '';
+        } else {
+            oldPriceEl.style.display = 'none';
+        }
+    }
+
+    // Descripción
+    const descEl = document.querySelector('.product-description');
+    if (descEl) descEl.textContent = product.description;
+
+    // Imagen principal
+    const imgEl = document.getElementById('mainImage');
+    if (imgEl) imgEl.src = product.image;
+
+    // Badge
+    const badgeEl = document.querySelector('.product-badge');
+    if (badgeEl) {
+        if (product.badge) {
+            badgeEl.textContent = product.badge;
+            badgeEl.style.display = '';
+            badgeEl.className = 'product-badge product-badge--' + (product.badgeType || 'new');
+        } else {
+            badgeEl.style.display = 'none';
+        }
+    }
+
+    // Color por defecto
+    const colorValue = document.getElementById('colorValue');
+    if (colorValue) colorValue.textContent = product.color;
+
+    // Migas
+    const breadcrumbCurrent = document.querySelector('.product-breadcrumb .current');
+    if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
+
+    // Título de la pestaña
+    document.title = product.name + ' — NOIR BLVNK';
+
+    console.log('📦 Producto cargado:', product.name);
+}
+
+// ============================================================
+// ========== INICIALIZACIÓN ==================================
+// ============================================================
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log('🎽 Página de producto inicializada');
+
+    // 1. Cargar producto según ?id= de la URL
+    loadProductFromURL();
 
     // ============================================================
     // ========== ESTADO ==========================================
     // ============================================================
+
+    const $  = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
     const state = {
         color: 'Faded Black',
@@ -17,11 +181,21 @@ document.addEventListener('DOMContentLoaded', function () {
         productPrice: 0
     };
 
-    const $  = (sel, ctx = document) => ctx.querySelector(sel);
-    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    // 2. Leer datos actualizados del DOM
+    const titleEl = $('.product-title');
+    const priceEl = $('.product-price--current, .product-price');
+    const mainImage = document.getElementById('mainImage');
+
+    if (titleEl) state.productName = titleEl.textContent.trim();
+    if (priceEl) {
+        const cleaned = priceEl.textContent.replace(/[^0-9.]/g, '');
+        state.productPrice = parseFloat(cleaned) || 0;
+    }
+
+    console.log('📦 Producto:', state.productName, '— $' + state.productPrice);
 
     // ============================================================
-    // ========== TOAST (por si no está en tienda.js) =============
+    // ========== TOAST ===========================================
     // ============================================================
 
     function toast(msg, type = 'success') {
@@ -42,54 +216,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ============================================================
-    // ========== LEER DATOS DEL PRODUCTO =========================
-    // ============================================================
-
-    const titleEl = $('.product-title');
-    const priceEl = $('.product-price--current, .product-price');
-
-    if (titleEl) state.productName = titleEl.textContent.trim();
-    if (priceEl) {
-        const cleaned = priceEl.textContent.replace(/[^0-9.]/g, '');
-        state.productPrice = parseFloat(cleaned) || 0;
-    }
-
-    console.log('📦 Producto:', state.productName, '— $' + state.productPrice);
-
-    // ============================================================
-    // ========== GALERÍA =========================================
-    // ============================================================
-
-    const mainImage = document.getElementById('mainImage');
-    const thumbs = $$('.product-thumb');
-
-    thumbs.forEach(thumb => {
-        thumb.addEventListener('click', function () {
-            const img = this.querySelector('img');
-            if (!img || !mainImage) return;
-
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = img.src.replace('w=200', 'w=1200');
-                mainImage.style.opacity = '1';
-            }, 200);
-
-            thumbs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    if (mainImage) {
-        mainImage.style.transition = 'opacity 0.3s ease';
-    }
-
-    // ============================================================
     // ========== FAVORITO ========================================
     // ============================================================
 
     const productFav = $('.product-fav');
     if (productFav) {
-        // Cargar estado desde localStorage
         const favs = JSON.parse(localStorage.getItem('nb_favs') || '[]');
         if (favs.includes(state.productName)) {
             productFav.classList.add('active');
@@ -121,16 +252,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
 
     const colorButtons = $$('.product-color');
-    const colorValue = document.getElementById('colorValue');
+    const colorValueEl = document.getElementById('colorValue');
 
     colorButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             colorButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             state.color = this.dataset.color || '';
-            if (colorValue) colorValue.textContent = state.color;
-
-            // Actualizar link de WhatsApp
+            if (colorValueEl) colorValueEl.textContent = state.color;
             updateWhatsAppLink();
         });
     });
@@ -150,8 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
             sizeButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             state.size = this.textContent.trim();
-
-            // Actualizar link de WhatsApp
             updateWhatsAppLink();
         });
     });
@@ -174,8 +301,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             qtyInput.value = val;
             state.qty = val;
-
-            // Actualizar link de WhatsApp
             updateWhatsAppLink();
         });
     });
@@ -189,7 +314,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (addBtn) {
         addBtn.addEventListener('click', function () {
-            // Leer carrito actual
             let cart = JSON.parse(localStorage.getItem('nb_cart') || '[]');
 
             const id = state.productName + ' - ' + state.color + ' - ' + state.size;
@@ -210,7 +334,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             localStorage.setItem('nb_cart', JSON.stringify(cart));
 
-            // Actualizar badge
             if (cartBadge) {
                 const total = cart.reduce((s, i) => s + i.qty, 0);
                 cartBadge.textContent = total;
@@ -220,7 +343,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 220);
             }
 
-            // Feedback visual del botón
             const span = this.querySelector('span');
             if (span) {
                 const original = span.textContent;
@@ -257,14 +379,11 @@ document.addEventListener('DOMContentLoaded', function () {
             '💰 Total: $' + total + ' MXN\n\n' +
             '¿Me confirmas disponibilidad y envío?';
 
-        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
-        whatsappBtn.href = url;
+        whatsappBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
     }
 
-    // Actualizar al cargar
     updateWhatsAppLink();
 
-    // Actualizar cuando cambie cantidad con el input directo
     if (qtyInput) {
         qtyInput.addEventListener('change', function () {
             let val = parseInt(this.value) || 1;
@@ -283,7 +402,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const sizeGuideBtn = $('.product-size-guide');
     if (sizeGuideBtn) {
         sizeGuideBtn.addEventListener('click', function () {
-            // Abrir el acordeón de tallas
             const accordion = document.querySelector('.product-accordion-item:last-child');
             if (accordion) {
                 accordion.setAttribute('open', '');
@@ -307,20 +425,15 @@ document.querySelectorAll('.shop-nav-bottom a').forEach(link => {
     link.addEventListener('click', function (e) {
         const text = this.textContent.trim().toLowerCase();
 
-        // "Todo" → va a index
         if (text.includes('todo')) {
             window.location.href = 'index.html';
             return;
         }
-
-        // "Nueva Colección" → va a index + scroll al carrusel
         if (text.includes('nueva') || text.includes('coleccion')) {
             e.preventDefault();
             window.location.href = 'index.html#newdrop';
             return;
         }
-
-        // "Hombre" → va a index (por ahora)
         if (text.includes('hombre')) {
             e.preventDefault();
             window.location.href = 'index.html';

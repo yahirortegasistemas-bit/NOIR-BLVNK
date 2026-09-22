@@ -147,6 +147,16 @@
     color: var(--red-bright);
 }
 
+/* Galería con una sola imagen */
+.product-gallery--single {
+    grid-template-columns: 1fr;   /* ocupa todo el ancho, sin columna de thumbs */
+}
+
+.product-gallery--single .product-main-image {
+    aspect-ratio: 4 / 5;          /* un poco más alto para aprovechar el espacio */
+    border-radius: 6px;
+}
+
 /* ========================================== */
 /* ========== INFO =========================== */
 /* ========================================== */
