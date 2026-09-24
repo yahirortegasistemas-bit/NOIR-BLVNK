@@ -731,5 +731,21 @@ if (menuToggle && menuEl) {
     });
 }
 
+const cursor = document.createElement('div');
+cursor.className = 'cursor-dot';
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('.shop-card, .carousel-card, a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
+});
+
+
+
     console.log('✅ Listo con ' + (grid ? grid.querySelectorAll('.shop-card').length : 0) + ' productos');
 });
