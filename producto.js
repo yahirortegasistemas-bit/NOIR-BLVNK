@@ -14,7 +14,7 @@ const PRODUCTS = {
         badge: 'New',
         badgeType: 'new',
         image: 'noirclub.jpg',
-        description: 'Playera graphic de algodón peinado 240g. Diseño Tijuana - San Diego serigrafiado a mano. Corte oversize.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Tijuana - San Diego. Hecha en México.',
         color: 'Amarillo'
     },
     'angel-numbers': {
@@ -22,18 +22,15 @@ const PRODUCTS = {
         price: 650,
         category: 'Playera — Graphic',
         image: 'race.jpg',
-        description: 'Playera graphic con numerología angelical. Algodón peinado 240g. Corte oversize.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Angel Numbers. Hecha en México.',
         color: 'Negro'
     },
     'lucky222': {
         name: 'Lucky222 - Black',
         price: 650,
-        oldPrice: 800,
-        category: 'Playera — Oferta',
-        badge: 'Oferta',
-        badgeType: 'sale',
+        category: 'Playera — Graphic',
         image: 'boxing.jpg',
-        description: 'Playera Lucky222 en edición limitada. Algodón peinado 240g. Acabado faded.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Lucky222. Hecha en México.',
         color: 'Negro'
     },
     'consistency': {
@@ -41,7 +38,7 @@ const PRODUCTS = {
         price: 650,
         category: 'Playera — Basics',
         image: 'feardeath.jpg',
-        description: 'Playera basics con kanji japonés. Algodón peinado 240g. Corte relajado.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Consistency con kanji japonés. Hecha en México.',
         color: 'Blanco'
     },
     'tony': {
@@ -51,7 +48,7 @@ const PRODUCTS = {
         badge: 'Exclusivo',
         badgeType: 'exclusive',
         image: 'run.jpg',
-        description: 'Playera faded con acabado desgastado a mano. Algodón peinado 240g. Corte oversize.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño "Tony" en Faded Black. Hecha en México.',
         color: 'Faded Black'
     },
     'world': {
@@ -59,7 +56,7 @@ const PRODUCTS = {
         price: 700,
         category: 'Playera — Graphic',
         image: 'race2.jpeg',
-        description: 'Playera graphic con diseño World. Algodón peinado 240g. Corte oversize.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño World. Hecha en México.',
         color: 'Negro'
     },
     'right-place': {
@@ -69,7 +66,7 @@ const PRODUCTS = {
         badge: 'New',
         badgeType: 'new',
         image: 'race1.jpeg',
-        description: 'Playera basics con tipografía minimal. Algodón peinado 240g. Corte relajado.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Right Place - Right Time. Hecha en México.',
         color: 'Beige'
     },
     'tutto-passa': {
@@ -77,11 +74,10 @@ const PRODUCTS = {
         price: 650,
         category: 'Playera — Faded',
         image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800',
-        description: 'Playera faded con tipografía italiana. Algodón peinado 240g. Corte oversize.',
+        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño "Tutto Passa". Hecha en México.',
         color: 'Negro'
     }
 };
-
 // ============================================================
 // ========== CARGAR PRODUCTO DESDE URL =======================
 // ============================================================

@@ -854,3 +854,42 @@
     color: var(--grey);
     opacity: 0.5;
 }
+
+/* ========================================== */
+/* ========== NOTA DE TALLAS ================= */
+/* ========================================== */
+
+.size-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.03);
+    border-left: 2px solid var(--red-bright);
+    border-radius: 4px;
+}
+
+.size-note strong {
+    color: var(--black);
+    font-weight: 700;
+}
+
+.product-size-table + .size-note {
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+/* Tabla de tallas en móvil */
+@media (max-width: 640px) {
+    .product-size-table {
+        font-size: 12px;
+    }
+
+    .product-size-table th,
+    .product-size-table td {
+        padding: 10px 6px;
+    }
+}
