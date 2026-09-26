@@ -1660,3 +1660,27 @@ button { font-family: inherit; }
     height: 40px;
     background: var(--red-bright);
 }
+
+/* ========================================== */
+/* ========== MÓVIL: SIN HOVER =============== */
+/* ========================================== */
+
+@media (max-width: 768px) {
+
+    /* El overlay "Añadir rápido" siempre visible o eliminado */
+    .shop-card-hover {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Aseguramos que el link funcione con UN tap */
+    .shop-card-link {
+        pointer-events: auto;
+    }
+
+    /* El botón de favorito siempre visible en móvil */
+    .shop-card-fav {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
