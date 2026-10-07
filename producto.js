@@ -7,77 +7,72 @@
 // ============================================================
 
 const PRODUCTS = {
-    'tijuana': {
-        name: 'Tijuana - San Diego',
+    'synonime': {
+        name: 'SYNONIME',
         price: 700,
         category: 'Playera — Graphic',
         badge: 'New',
         badgeType: 'new',
-        image: 'noirclub.jpg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Tijuana - San Diego. Hecha en México.',
-        color: 'Amarillo'
-    },
-    'angel-numbers': {
-        name: 'Angel Numbers',
-        price: 650,
-        category: 'Playera — Graphic',
-        image: 'race.jpg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Angel Numbers. Hecha en México.',
+        image: 'synonime.jpg',
+        description: 'Different perspective. Same essence. A new chapter, same vision. Playera oversize de algodón peinado 214 g/m². Diseño editorial con gráficos técnicos, tipografía industrial y acentos en rojo. Serigrafía de alta densidad que no se craquela con el lavado. Hecha en México.',
         color: 'Negro'
     },
-    'lucky222': {
-        name: 'Lucky222 - Black',
-        price: 650,
-        category: 'Playera — Graphic',
-        image: 'boxing.jpg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Lucky222. Hecha en México.',
-        color: 'Negro'
-    },
-    'consistency': {
-        name: 'Consistency (Japón)',
-        price: 650,
-        category: 'Playera — Basics',
-        image: 'feardeath.jpg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Consistency con kanji japonés. Hecha en México.',
-        color: 'Blanco'
-    },
-    'tony': {
-        name: '"Tony" - Faded Black',
-        price: 700,
-        category: 'Playera — Faded',
-        badge: 'Exclusivo',
-        badgeType: 'exclusive',
-        image: 'run.jpg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño "Tony" en Faded Black. Hecha en México.',
-        color: 'Faded Black'
-    },
-    'world': {
-        name: '"World" - Black',
+    'cherry-negro': {
+        name: 'Cherry - Black',
         price: 700,
         category: 'Playera — Graphic',
-        image: 'race2.jpeg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño World. Hecha en México.',
-        color: 'Negro'
-    },
-    'right-place': {
-        name: 'Right Place - Right Time',
-        price: 650,
-        category: 'Playera — Basics',
         badge: 'New',
         badgeType: 'new',
-        image: 'race1.jpeg',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño Right Place - Right Time. Hecha en México.',
+        image: 'cherry-negro.jpg',
+        description: 'We were never meant to last forever, only to be unforgettable for a moment. Playera oversize de algodón peinado 214 g/m². Diseño con tipografía serif clásica y cerezas en rojo. Serigrafía de alta densidad. Hecha en México.',
+        color: 'Negro'
+    },
+    'cherry-beige': {
+        name: 'Cherry - Beige',
+        price: 700,
+        category: 'Playera — Graphic',
+        badge: 'New',
+        badgeType: 'new',
+        image: 'cherry-beige.jpg',
+        description: 'We were never meant to last forever, only to be unforgettable for a moment. Playera oversize de algodón peinado 214 g/m². Diseño con tipografía serif clásica y cerezas en rojo sobre fondo beige. Serigrafía de alta densidad. Hecha en México.',
         color: 'Beige'
     },
-    'tutto-passa': {
-        name: '"Tutto Passa"',
-        price: 650,
-        category: 'Playera — Faded',
-        image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800',
-        description: 'Camiseta Heavyweight Pigment de 214 g/m², 100% algodón peinado. Teñida con pigmentos para un estilo vintage intenso. Corte oversize con hombros caídos. Diseño "Tutto Passa". Hecha en México.',
+    'noir-club': {
+        name: 'Noir Club',
+        price: 700,
+        category: 'Playera — Graphic',
+        badge: 'Exclusivo',
+        badgeType: 'exclusive',
+        image: 'noir-club.jpg',
+        description: 'Noir Club — 1999 · Paris · France. Playera oversize de algodón peinado 214 g/m². Diseño gráfico con figura central en rojo y negro, trazos urbanos y tipografía industrial. Serigrafía de alta densidad. Hecha en México.',
         color: 'Negro'
+    },
+    'the-only-limit': {
+        name: 'The Only Limit Is Your Mind',
+        price: 700,
+        category: 'Playera — Graphic',
+        image: 'the-only-limit.jpg',
+        description: 'The only limit is your mind. Playera oversize de algodón peinado 214 g/m². Diseño con imagen de corredor en blanco y negro con efecto granulado. Serigrafía de alta densidad. Hecha en México.',
+        color: 'Negro'
+    },
+    'unseen-story': {
+        name: 'The Unseen Tells The Story',
+        price: 700,
+        category: 'Playera — Graphic',
+        image: 'unseen-story.jpg',
+        description: 'The unseen tells the story. Keep grinding. Playera oversize de algodón peinado 214 g/m². Diseño con silueta de basquetbolista en blanco y negro y tipografía industrial en blanco. Serigrafía de alta densidad. Hecha en México.',
+        color: 'Negro'
+    },
+    'noir-blvnk-white': {
+        name: 'NOIR BLVNK - White',
+        price: 700,
+        category: 'Playera — Graphic',
+        image: 'noir-blvnk-white.jpg',
+        description: 'NOIR BLVNK en graffiti. Run further, think clearer. Discipline creates freedom. A slower mind, a faster you. Playera oversize de algodón peinado 214 g/m². Diseño con lettering en negro y detalles en rojo sobre fondo blanco. Serigrafía de alta densidad. Hecha en México.',
+        color: 'Blanco'
     }
 };
+
 // ============================================================
 // ========== CARGAR PRODUCTO DESDE URL =======================
 // ============================================================
