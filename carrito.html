@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu carrito — NOIR BLVNK</title>
+    <meta name="description" content="Revisa tu pedido de playeras NOIR BLVNK, confirma el total y finaliza tu compra.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="tienda.css">
+</head>
+<body>
+
+    <div class="grain"></div>
+
+    <!-- NAV -->
+    <nav class="shop-nav">
+        <div class="shop-nav-top">
+            <button class="shop-icon-btn" aria-label="Buscar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+
+            <a href="index.html" class="shop-logo" aria-label="NOIR BLVNK">
+                <img src="logonoir.jpg" alt="NOIR BLVNK">
+            </a>
+
+           <div class="shop-nav-actions">
+    <button class="shop-icon-btn shop-menu-toggle" aria-label="Menú">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <button class="shop-icon-btn" aria-label="Carrito">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="shop-cart-badge">0</span>
+    </button>
+</div>
+        </div>
+
+        <div class="shop-nav-bottom">
+            <a href="index.html">Todo</a>
+            <a href="index.html#newdrop">Nueva Colección</a>
+        </div>
+    </nav>
+
+    <!-- CARRITO -->
+    <main class="cart-main">
+        <div class="cart-container">
+
+            <div class="cart-head">
+                <div>
+                    <span class="shop-section-eyebrow">Carrito</span>
+                    <h1 class="cart-title">Tu carrito</h1>
+                </div>
+                <a href="index.html#catalogo" class="cart-keep">← Seguir comprando</a>
+            </div>
+
+            <!-- Estado vacío -->
+            <div class="cart-empty" id="cartEmpty" hidden>
+                <span class="cart-empty-icon">◇</span>
+                <h2>Tu carrito está vacío</h2>
+                <p>Descubre el Drop 01 antes de que se agote.</p>
+                <a href="index.html#catalogo" class="cart-empty-cta">Seguir comprando</a>
+            </div>
+
+            <!-- Carrito con productos -->
+            <div class="cart-grid" id="cartGrid" hidden>
+                <div class="cart-items" id="cartItems"></div>
+
+                <aside class="cart-summary">
+                    <h2 class="cart-summary-title">Resumen</h2>
+                    <div class="cart-summary-row">
+                        <span>Subtotal</span>
+                        <strong id="cartSubtotal">$0 MXN</strong>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Envío</span>
+                        <span>Se confirma por mensaje</span>
+                    </div>
+                    <div class="cart-summary-row cart-summary-row--total">
+                        <span>Total</span>
+                        <strong id="cartTotal">$0 MXN</strong>
+                    </div>
+                    <p class="cart-summary-note">Al pagar cerramos tu pedido por mensaje: confirmamos disponibilidad, coordinamos el envío y te enviamos tu guía de rastreo.</p>
+                    <button class="cart-pay-btn" id="cartPayBtn">Pagar pedido</button>
+                    <button class="cart-clear-btn" id="cartClearBtn">Vaciar carrito</button>
+                </aside>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="shop-footer">
+        <div class="shop-footer-container">
+            <div class="shop-footer-newsletter">
+                <h2 class="shop-footer-title">Únete al club</h2>
+                <p class="shop-footer-sub">Entérate primero de nuevos drops y ofertas exclusivas.</p>
+                <form class="shop-footer-form" id="newsletterForm">
+                    <input type="email" name="email" placeholder="tu@correo.com" required>
+                    <button type="submit">Suscribirme →</button>
+                </form>
+            </div>
+
+            <div class="shop-footer-brand">
+                <h3 class="shop-footer-logo">NOIR BLVNK</h3>
+                <p class="shop-footer-tagline">
+                    Playeras nacidas en el asfalto. París, 1989 — el mundo, ahora. Cada diseño es un recordatorio de que el único límite eres tú.
+                </p>
+                <div class="shop-footer-social">
+               <a href="https://www.instagram.com/noirblvnk/" target="_blank" rel="noopener" aria-label="Instagram">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+       <a href="https://www.tiktok.com/@noirblvnk" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+        </svg>
+    </a>
+</div>
+
+            </div><!-- /shop-footer-brand -->
+
+           <div class="shop-footer-links">
+
+    <div class="shop-footer-col">
+        <h4>Tienda</h4>
+        <a href="index.html#catalogo">Catálogo completo</a>
+        <a href="index.html#newdrop">Nuevos drops</a>
+        <a href="producto.html#tallas">Guía de tallas</a>
+    </div>
+
+    <div class="shop-footer-col">
+        <h4>Ayuda</h4>
+        <a href="https://wa.me/5215512345678" target="_blank" rel="noopener">Contacto</a>
+        <a href="https://wa.me/5215512345678?text=Hola,%20tengo%20una%20duda" target="_blank" rel="noopener">FAQ</a>
+    </div>
+
+    <div class="shop-footer-col">
+        <h4>Marca</h4>
+        <a href="https://www.instagram.com/noirblvnk/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@noirblvnk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://wa.me/5215512345678" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="shop-footer-col">
+        <h4>Legal</h4>
+        <a href="terminos.html">Términos</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+    </div>
+
+</div>
+
+        </div><!-- /shop-footer-container -->
+    </footer>
+
+    <!-- ============================================
+     MENÚ LATERAL
+============================================= -->
+<div class="nb-menu-overlay" id="nbMenuOverlay"></div>
+
+<aside class="nb-menu" id="nbMenu" aria-label="Menú">
+    <header class="nb-menu-header">
+        <span class="nb-menu-eyebrow">Menú</span>
+        <button class="nb-menu-close" id="nbMenuClose" aria-label="Cerrar">✕</button>
+    </header>
+
+    <nav class="nb-menu-nav">
+        <a href="index.html" class="nb-menu-link">Todo</a>
+        <a href="index.html#newdrop" class="nb-menu-link">Nueva Colección</a>
+        <a href="index.html#catalogo" class="nb-menu-link">Catálogo</a>
+    </nav>
+
+    <div class="nb-menu-footer">
+    <a href="https://www.instagram.com/noirblvnk/" target="_blank" rel="noopener" class="nb-menu-social">Instagram</a>
+    <a href="https://www.tiktok.com/@noirblvnk" target="_blank" rel="noopener" class="nb-menu-social">TikTok</a>
+    <a href="https://wa.me/5215512345678" target="_blank" rel="noopener" class="nb-menu-social">WhatsApp</a>
+</div>
+</aside>
+
+    <script src="compartido.js"></script>
+    <script src="tienda.js"></script>
+    <script src="carrito.js"></script>
+</body>
+</html>

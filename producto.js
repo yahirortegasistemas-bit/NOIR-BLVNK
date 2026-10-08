@@ -6,6 +6,9 @@
 // ========== DATOS DE PRODUCTOS ==============================
 // ============================================================
 
+// id del producto activo en esta página (para el carrito unificado)
+let CURRENT_PRODUCT_ID = 'synonime';
+
 const PRODUCTS = {
     'synonime': {
         name: 'SYNONIME',
@@ -89,6 +92,7 @@ function loadProductFromURL() {
     }
 
     const product = PRODUCTS[id];
+    CURRENT_PRODUCT_ID = id;
 
     // Título
     const titleEl = document.querySelector('.product-title');
@@ -137,6 +141,11 @@ function loadProductFromURL() {
     const colorValue = document.getElementById('colorValue');
     if (colorValue) colorValue.textContent = product.color;
 
+    // Marcar el botón de color que corresponde al producto
+    document.querySelectorAll('.product-color').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.color === product.color);
+    });
+
     // Migas
     const breadcrumbCurrent = document.querySelector('.product-breadcrumb .current');
     if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
@@ -157,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // 1. Cargar producto según ?id= de la URL
     loadProductFromURL();
 
+    // Guardia: compartido.js debe cargarse antes que producto.js
+    if (!window.NB) {
+        console.error('⚠️ Falta compartido.js (cargarlo antes que producto.js)');
+        return;
+    }
+
     // ============================================================
     // ========== ESTADO ==========================================
     // ============================================================
@@ -165,12 +180,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
     const state = {
-        color: 'Faded Black',
+        color: 'Negro',
         size: 'M',
         qty: 1,
         productName: '',
         productPrice: 0
     };
+
+    // Sincronizar el color con el que quedó marcado tras cargar ?id=
+    const activeColorBtn = document.querySelector('.product-color.active');
+    const initialColorEl = document.getElementById('colorValue');
+    if (activeColorBtn?.dataset.color) {
+        state.color = activeColorBtn.dataset.color;
+    } else if (initialColorEl && initialColorEl.textContent.trim()) {
+        state.color = initialColorEl.textContent.trim();
+    }
 
     // 2. Leer datos actualizados del DOM
     const titleEl = $('.product-title');
@@ -190,20 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ============================================================
 
     function toast(msg, type = 'success') {
-        let el = document.getElementById('nb-toast');
-        if (!el) {
-            el = document.createElement('div');
-            el.id = 'nb-toast';
-            el.className = 'nb-toast';
-            document.body.appendChild(el);
-        }
-        el.textContent = msg;
-        el.className = 'nb-toast nb-toast--' + type + ' is-visible';
-
-        clearTimeout(el._t);
-        el._t = setTimeout(() => {
-            el.classList.remove('is-visible');
-        }, 2200);
+        NB.toast(msg, type);
     }
 
     // ============================================================
@@ -212,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const productFav = $('.product-fav');
     if (productFav) {
-        const favs = JSON.parse(localStorage.getItem('nb_favs') || '[]');
+        const favs = NB.loadArray('nb_favs');
         if (favs.includes(state.productName)) {
             productFav.classList.add('active');
             productFav.textContent = '♥';
@@ -223,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isFav = this.classList.contains('active');
             this.textContent = isFav ? '♥' : '♡';
 
-            const favs = JSON.parse(localStorage.getItem('nb_favs') || '[]');
+            const favs = NB.loadArray('nb_favs');
             const idx = favs.indexOf(state.productName);
 
             if (isFav && idx === -1) {
@@ -234,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 toast('Quitado de favoritos', 'info');
             }
 
-            localStorage.setItem('nb_favs', JSON.stringify(favs));
+            NB.saveArray('nb_favs', favs);
         });
     }
 
@@ -300,39 +311,21 @@ document.addEventListener('DOMContentLoaded', function () {
     // ========== AÑADIR AL CARRITO ===============================
     // ============================================================
 
-    const cartBadge = document.querySelector('.shop-cart-badge');
     const addBtn = document.getElementById('addToCart');
 
     if (addBtn) {
         addBtn.addEventListener('click', function () {
-            let cart = JSON.parse(localStorage.getItem('nb_cart') || '[]');
-
-            const id = state.productName + ' - ' + state.color + ' - ' + state.size;
-            const img = mainImage?.src || '';
-
-            const existing = cart.find(i => i.id === id);
-            if (existing) {
-                existing.qty += state.qty;
-            } else {
-                cart.push({
-                    id: id,
-                    name: state.productName + ' (' + state.color + ' / ' + state.size + ')',
-                    price: state.productPrice,
-                    img: img,
-                    qty: state.qty
-                });
-            }
-
-            localStorage.setItem('nb_cart', JSON.stringify(cart));
-
-            if (cartBadge) {
-                const total = cart.reduce((s, i) => s + i.qty, 0);
-                cartBadge.textContent = total;
-                cartBadge.style.transform = 'scale(1.4)';
-                setTimeout(() => {
-                    cartBadge.style.transform = 'scale(1)';
-                }, 220);
-            }
+            // id unificado con el catálogo: producto|Color|Talla
+            const ok = NB.addToCart({
+                productId: CURRENT_PRODUCT_ID,
+                color: state.color,
+                size: state.size,
+                name: state.productName + ' (' + state.color + ' / ' + state.size + ')',
+                price: state.productPrice,
+                img: mainImage?.src || '',
+                qty: state.qty
+            });
+            if (!ok) return;
 
             const span = this.querySelector('span');
             if (span) {
@@ -344,36 +337,51 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.disabled = false;
                 }, 1800);
             }
-
-            toast('✓ Añadido al carrito', 'success');
         });
     }
 
     // ============================================================
-    // ========== WHATSAPP DINÁMICO ===============================
+    // ========== CONSULTA DIRECTA (WhatsApp / Instagram) =========
     // ============================================================
 
     const whatsappBtn = document.querySelector('.whatsapp-btn');
 
-    function updateWhatsAppLink() {
-        if (!whatsappBtn) return;
-
-        const phone = '5215512345678'; // ← CAMBIA por tu número real
+    function buildOrderMessage() {
         const total = state.productPrice * state.qty;
-
-        const message =
-            'Hola! Quiero comprar:\n\n' +
+        return 'Hola! Quiero comprar:\n\n' +
             '📦 ' + state.productName + '\n' +
             '🎨 Color: ' + state.color + '\n' +
             '📏 Talla: ' + state.size + '\n' +
             '🔢 Cantidad: ' + state.qty + '\n' +
             '💰 Total: $' + total + ' MXN\n\n' +
             '¿Me confirmas disponibilidad y envío?';
+    }
 
-        whatsappBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+    function updateWhatsAppLink() {
+        if (!whatsappBtn) return;
+
+        const label = whatsappBtn.querySelector('span');
+
+        if (NB.CONTACTO.whatsapp) {
+            // Número configurado → mensaje directo en wa.me
+            const num = NB.CONTACTO.whatsapp.replace(/\D/g, '');
+            whatsappBtn.href = 'https://wa.me/' + num + '?text=' + encodeURIComponent(buildOrderMessage());
+            if (label) label.textContent = 'Comprar por WhatsApp';
+        } else {
+            // Sin número → consulta por Instagram DM
+            whatsappBtn.href = NB.CONTACTO.instagramDM;
+            if (label) label.textContent = 'Consultar por Instagram';
+        }
     }
 
     updateWhatsAppLink();
+
+    // Sin WhatsApp: al pulsar, copia el mensaje para pegarlo en el DM
+    whatsappBtn?.addEventListener('click', async function () {
+        if (NB.CONTACTO.whatsapp) return;
+        const ok = await NB.copyText(buildOrderMessage());
+        if (ok) NB.toast('Mensaje copiado — pégalo en Instagram', 'success');
+    });
 
     if (qtyInput) {
         qtyInput.addEventListener('change', function () {
@@ -400,6 +408,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // ============================================================
+    // ========== CARRITO EN EL NAV ===============================
+    // ============================================================
+
+    $$('.shop-icon-btn').forEach(btn => {
+        if (btn.getAttribute('aria-label') === 'Carrito') {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                NB.openDrawer();
+            });
+        }
+    });
+
+    NB.renderBadge();
 
     // ============================================================
     // ========== LOG FINAL =======================================

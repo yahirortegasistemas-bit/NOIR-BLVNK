@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="tienda.css">
     <link rel="stylesheet" href="producto.css">
+
+    <!-- PayPal SDK (cambia "sb" por tu Client ID real cuando estés listo) -->
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN&components=buttons"></script>
 </head>
 <body>
 
@@ -33,16 +36,16 @@
                 <img src="logonoir.jpg" alt="NOIR BLVNK">
             </a>
 
-            <div class="shop-nav-actions">
-                <button class="shop-icon-btn" aria-label="Carrito">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                        <path d="M3 6h18"></path>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                    <span class="shop-cart-badge">0</span>
-                </button>
-            </div>
+           <div class="shop-nav-actions">
+    <button class="shop-icon-btn" aria-label="Carrito">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="shop-cart-badge">0</span>
+    </button>
+</div>
         </div>
 
         <div class="shop-nav-bottom">
@@ -58,6 +61,8 @@
         <a href="index.html">Inicio</a>
         <span class="product-breadcrumb-sep">/</span>
         <a href="index.html">Playeras</a>
+        <span class="product-breadcrumb-sep">/</span>
+        <span class="current">SYNONIME</span>
     </nav>
 
     <!-- ============================================
@@ -69,7 +74,6 @@
             <!-- GALERÍA -->
             <div class="product-gallery product-gallery--single">
                 <div class="product-main-image">
-                    <span class="product-badge">New</span>
                     <button class="product-fav" aria-label="Favorito">♡</button>
                     <img id="mainImage" src="synonime.jpg" alt="Producto">
                 </div>
@@ -138,7 +142,50 @@
                     </button>
                 </div>
 
-                <button class="product-buy-btn" id="buyNow">Comprar ahora</button>
+                <!-- CONSULTA DIRECTA (WhatsApp / Instagram) -->
+                <div class="whatsapp-alternative">
+                    <a href="#" class="whatsapp-btn" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                        <span>Consultar por Instagram</span>
+                    </a>
+                </div>
+
+                <!-- ============================================
+                     MÉTODOS DE PAGO
+                     Botones de pago ocultos hasta tener credenciales
+                     reales. Quitar el "hidden" al activarlos.
+                ============================================= -->
+<div class="product-payments">
+
+    <p class="payment-label" hidden>Paga seguro con</p>
+
+    <!-- PayPal -->
+    <div class="paypal-container" hidden>
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <!-- Mercado Pago -->
+    <div class="mercadopago-container" hidden>
+        <a href="#" class="mercadopago-btn" id="mercadoPagoBtn" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            Pagar con Mercado Pago
+        </a>
+        <p class="mercadopago-note">Tarjeta, SPEI o efectivo en OXXO</p>
+    </div>
+
+    <!-- Sellos de confianza -->
+    <div class="trust-badges">
+        <span>🔒 Pago 100% seguro</span>
+        <span>📦 Envío con guía de rastreo</span>
+        <span>↩️ Devoluciones 30 días</span>
+        <span>🇲🇽 Hecho en México</span>
+    </div>
+
+</div>
 
                 <!-- META -->
                 <div class="product-meta">
@@ -147,7 +194,6 @@
                             <rect x="1" y="3" width="15" height="13"></rect>
                             <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
                         </svg>
-                        Envío gratis desde $1,500 MXN
                     </div>
                     <div class="product-meta-item">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -192,7 +238,7 @@
                 </div>
             </details>
 
-            <details class="product-accordion-item">
+            <details class="product-accordion-item" id="tallas">
                 <summary>
                     <span>Guía de tallas</span>
                     <span class="product-accordion-icon">+</span>
@@ -337,7 +383,7 @@
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                         </svg>
                     </a>
-                    <a href="#" target="_blank" rel="noopener" aria-label="TikTok">
+                    <a href="https://www.tiktok.com/@noirblvnk" target="_blank" rel="noopener" aria-label="TikTok">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
                         </svg>
@@ -357,8 +403,7 @@
                 <div class="shop-footer-col">
                     <h4>Ayuda</h4>
                     <a href="https://wa.me/5215512345678" target="_blank" rel="noopener">Contacto</a>
-                    <a href="https://wa.me/5215512345678?text=Hola,%20quiero%20seguimiento%20de%20mi%20pedido" target="_blank" rel="noopener">Seguimiento</a>
-                    <a href="https://wa.me/5215512345678?text=Hola,%20tengo%20una%20duda" target="_blank" rel="noopener">FAQ</a>
+                                <a href="https://wa.me/5215512345678?text=Hola,%20tengo%20una%20duda" target="_blank" rel="noopener">FAQ</a>
                 </div>
 
                 <div class="shop-footer-col">
@@ -383,7 +428,79 @@
         </div>
     </footer>
 
+    <script src="compartido.js"></script>
     <script src="tienda.js"></script>
     <script src="producto.js"></script>
+
+    <!-- ============================================
+         PAYPAL + MERCADO PAGO
+    ============================================= -->
+    <script>
+        // Renderizar botón de PayPal
+        if (document.getElementById('paypal-button-container') && window.paypal) {
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'black',
+                    layout: 'vertical',
+                    label: 'paypal',
+                    height: 48
+                },
+                createOrder: function (data, actions) {
+                    const priceEl = document.querySelector('.product-price--current, .product-price');
+                    const titleEl = document.querySelector('.product-title');
+
+                    let priceValue = '700.00';
+                    let priceDescription = 'Producto NOIR BLVNK';
+
+                    if (priceEl) {
+                        const cleaned = priceEl.textContent.replace(/[^0-9.]/g, '');
+                        if (cleaned) priceValue = parseFloat(cleaned).toFixed(2);
+                    }
+                    if (titleEl) {
+                        priceDescription = titleEl.textContent.trim();
+                    }
+
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: priceValue,
+                                currency_code: 'MXN'
+                            },
+                            description: priceDescription
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        alert('¡Gracias ' + details.payer.name.given_name + '! Tu pago fue procesado.');
+                        // window.location.href = 'gracias.html';
+                    });
+                },
+                onError: function (err) {
+                    console.error('Error PayPal:', err);
+                    alert('Hubo un problema con el pago. Escríbenos por WhatsApp.');
+                }
+            }).render('#paypal-button-container');
+        }
+
+        // Actualizar link de Mercado Pago con el precio
+        document.addEventListener('DOMContentLoaded', function () {
+            const mpBtn = document.getElementById('mercadoPagoBtn');
+            if (mpBtn) {
+                const priceEl = document.querySelector('.product-price--current, .product-price');
+
+                let priceValue = 700;
+                if (priceEl) {
+                    const cleaned = priceEl.textContent.replace(/[^0-9.]/g, '');
+                    if (cleaned) priceValue = parseFloat(cleaned) || 700;
+                }
+
+                // ⚠️ CAMBIA ESTE LINK por tu link real de Mercado Pago
+                const mpLink = 'https://mpago.la/XXXXXXXX';
+                mpBtn.href = mpLink;
+            }
+        });
+    </script>
 </body>
 </html>
