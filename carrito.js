@@ -1,5 +1,5 @@
 // ============================================================
-// ========== CARRITO — PÁGINA (carrito.html) =================
+// ========== CARRITO - PÁGINA (carrito.html) =================
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <span class="cart-item-price">${NB.formatPrice(item.price)}</span>
                         <div class="cart-item-controls">
                             <div class="cart-item-qty">
-                                <button data-act="minus" data-id="${item.id}" aria-label="Quitar">−</button>
+                                <button data-act="minus" data-id="${item.id}" aria-label="Quitar">-</button>
                                 <span>${item.qty}</span>
                                 <button data-act="plus" data-id="${item.id}" aria-label="Añadir">+</button>
                             </div>
@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
         renderPage();
     });
 
-    // Pagar pedido (abre el modal con Instagram DM / copiar pedido)
+    // Pagar por Paypal (redirecciona a la página de producto o proceso)
     payBtn?.addEventListener('click', function () {
-        NB.openCheckout();
+        window.location.href="checkout.html";
     });
 
     clearBtn?.addEventListener('click', function () {

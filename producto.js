@@ -13,7 +13,7 @@ const PRODUCTS = {
     'synonime': {
         name: 'SYNONIME',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         badge: 'New',
         badgeType: 'new',
         image: 'synonime.jpg',
@@ -23,7 +23,7 @@ const PRODUCTS = {
     'cherry-negro': {
         name: 'Cherry - Black',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         badge: 'New',
         badgeType: 'new',
         image: 'cherry-negro.jpg',
@@ -33,7 +33,7 @@ const PRODUCTS = {
     'cherry-beige': {
         name: 'Cherry - Beige',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         badge: 'New',
         badgeType: 'new',
         image: 'cherry-beige.jpg',
@@ -43,17 +43,17 @@ const PRODUCTS = {
     'noir-club': {
         name: 'Noir Club',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         badge: 'Exclusivo',
         badgeType: 'exclusive',
         image: 'noir-club.jpg',
-        description: 'Noir Club — 1999 · Paris · France. Playera oversize de algodón peinado 214 g/m². Diseño gráfico con figura central en rojo y negro, trazos urbanos y tipografía industrial. Serigrafía de alta densidad. Hecha en México.',
+        description: 'Noir Club - 1999 · Paris · France. Playera oversize de algodón peinado 214 g/m². Diseño gráfico con figura central en rojo y negro, trazos urbanos y tipografía industrial. Serigrafía de alta densidad. Hecha en México.',
         color: 'Negro'
     },
     'the-only-limit': {
         name: 'The Only Limit Is Your Mind',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         image: 'the-only-limit.jpg',
         description: 'The only limit is your mind. Playera oversize de algodón peinado 214 g/m². Diseño con imagen de corredor en blanco y negro con efecto granulado. Serigrafía de alta densidad. Hecha en México.',
         color: 'Negro'
@@ -61,7 +61,7 @@ const PRODUCTS = {
     'unseen-story': {
         name: 'The Unseen Tells The Story',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         image: 'unseen-story.jpg',
         description: 'The unseen tells the story. Keep grinding. Playera oversize de algodón peinado 214 g/m². Diseño con silueta de basquetbolista en blanco y negro y tipografía industrial en blanco. Serigrafía de alta densidad. Hecha en México.',
         color: 'Negro'
@@ -69,7 +69,7 @@ const PRODUCTS = {
     'noir-blvnk-white': {
         name: 'NOIR BLVNK - White',
         price: 700,
-        category: 'Playera — Graphic',
+        category: 'Playera - Graphic',
         image: 'noir-blvnk-white.jpg',
         description: 'NOIR BLVNK en graffiti. Run further, think clearer. Discipline creates freedom. A slower mind, a faster you. Playera oversize de algodón peinado 214 g/m². Diseño con lettering en negro y detalles en rojo sobre fondo blanco. Serigrafía de alta densidad. Hecha en México.',
         color: 'Blanco'
@@ -151,7 +151,7 @@ function loadProductFromURL() {
     if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
 
     // Título de la pestaña
-    document.title = product.name + ' — NOIR BLVNK';
+    document.title = product.name + ' - NOIR BLVNK';
 
     console.log('📦 Producto cargado:', product.name);
 }
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
         state.productPrice = parseFloat(cleaned) || 0;
     }
 
-    console.log('📦 Producto:', state.productName, '— $' + state.productPrice);
+    console.log('📦 Producto:', state.productName, '- $' + state.productPrice);
 
     // ============================================================
     // ========== TOAST ===========================================
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const span = this.querySelector('span');
             if (span) {
                 const original = span.textContent;
-                span.textContent = '✓ Añadido — $' + (state.productPrice * state.qty) + ' MXN';
+                span.textContent = '✓ Añadido - $' + (state.productPrice * state.qty) + ' MXN';
                 this.disabled = true;
                 setTimeout(() => {
                     span.textContent = original;
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
     whatsappBtn?.addEventListener('click', async function () {
         if (NB.CONTACTO.whatsapp) return;
         const ok = await NB.copyText(buildOrderMessage());
-        if (ok) NB.toast('Mensaje copiado — pégalo en Instagram', 'success');
+        if (ok) NB.toast('Mensaje copiado - pégalo en Instagram', 'success');
     });
 
     if (qtyInput) {

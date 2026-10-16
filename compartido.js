@@ -1,5 +1,5 @@
 // ============================================================
-// ========== NOIR BLVNK — MÓDULO COMPARTIDO ==================
+// ========== NOIR BLVNK - MÓDULO COMPARTIDO ==================
 // Carrito, toasts, storage y checkout. Una sola fuente de verdad.
 // Cargar ANTES que tienda.js / producto.js
 // ============================================================
@@ -295,7 +295,7 @@
                         <span>Total</span>
                         <strong id="nbCartTotal">$0 MXN</strong>
                     </div>
-                    <button class="nb-cart-checkout" id="nbCartCheckout">Finalizar compra</button>
+                    <button class="nb-cart-checkout" id="nbCartCheckout">Ir a pagar</button>
                     <a class="nb-cart-full" href="carrito.html">Ver carrito completo →</a>
                     <button class="nb-cart-clear" id="nbCartClear">Vaciar carrito</button>
                 </footer>
@@ -308,7 +308,7 @@
         document.getElementById('nbCartClear')?.addEventListener('click', clearCart);
         document.getElementById('nbCartCheckout')?.addEventListener('click', openCheckout);
 
-        // Delegación: quitar (−) y añadir (+)
+        // Delegación: quitar (-) y añadir (+)
         document.getElementById('nbCartBody')?.addEventListener('click', (e) => {
             const minus = e.target.closest('[data-remove]');
             if (minus) { changeQty(minus.dataset.remove, -1); return; }
@@ -346,7 +346,7 @@
                         <h4>${item.name}</h4>
                         <span class="nb-cart-item-price">${formatPrice(item.price)}</span>
                         <div class="nb-cart-item-qty">
-                            <button data-remove="${item.id}" aria-label="Quitar">−</button>
+                            <button data-remove="${item.id}" aria-label="Quitar">-</button>
                             <span>${item.qty}</span>
                             <button data-add="${item.id}" aria-label="Añadir">+</button>
                         </div>
@@ -376,7 +376,7 @@
     }
 
     // ============================================================
-    // ========== CHECKOUT (Instagram DM + Copiar pedido) ========
+    // ========== CHECKOUT (Instagram DM + Copiar pedido (opcional)) ========
     // ============================================================
 
     function buildOrderText() {
@@ -384,87 +384,26 @@
         if (!cart.length) return '';
 
         const lines = cart.map(i =>
-            i.qty + 'x ' + i.name + ' — ' + formatPrice((Number(i.price) || 0) * (Number(i.qty) || 0))
+            i.qty + 'x ' + i.name + ' - ' + formatPrice((Number(i.price) || 0) * (Number(i.qty) || 0))
         );
 
         return 'Hola! Quiero hacer este pedido de NOIR BLVNK:\n\n' +
             lines.join('\n') +
             '\n\nTotal: ' + formatPrice(cartTotal()) +
-            '\n\n¿Me confirmas disponibilidad, forma de pago y envío?';
+            '\n\n¿Me confirmas disponibilidad y envío?';
     }
 
     async function copyOrder() {
         const text = buildOrderText();
         if (!text) { toast('Tu carrito está vacío', 'info'); return; }
         const ok = await copyText(text);
-        toast(ok ? 'Pedido copiado — pégalo en el chat' : 'No se pudo copiar', ok ? 'success' : 'error');
+        toast(ok ? 'Pedido copiado - pégalo en el chat' : 'No se pudo copiar', ok ? 'success' : 'error');
     }
 
     function openCheckout() {
         const cart = getCart();
         if (!cart.length) { toast('Tu carrito está vacío', 'info'); return; }
-
-        let modal = document.getElementById('nb-checkout');
-        if (!modal) {
-            document.body.insertAdjacentHTML('beforeend', `
-                <div class="nb-modal" id="nb-checkout">
-                    <div class="nb-modal-inner">
-                        <button class="nb-modal-close" id="nbCheckoutClose" aria-label="Cerrar">✕</button>
-                        <span class="nb-modal-eyebrow">Pedido</span>
-                        <h3 class="nb-modal-title">Resumen de tu pedido</h3>
-                        <div class="nb-checkout-list" id="nbCheckoutList"></div>
-                        <div class="nb-checkout-total">
-                            <span>Total</span>
-                            <strong id="nbCheckoutTotal">$0 MXN</strong>
-                        </div>
-                        <a class="nb-modal-btn nb-checkout-ig" id="nbCheckoutIg"
-                           href="${CONTACTO.instagramDM}" target="_blank" rel="noopener">Enviar por Instagram</a>
-                        <button class="nb-modal-btn nb-checkout-wa" id="nbCheckoutWa" hidden>Enviar por WhatsApp</button>
-                        <button class="nb-modal-btn nb-checkout-copy" id="nbCheckoutCopy">Copiar pedido</button>
-                        <p class="nb-modal-foot">Te respondemos para coordinar pago y envío.</p>
-                    </div>
-                </div>
-            `);
-            modal = document.getElementById('nb-checkout');
-
-            document.getElementById('nbCheckoutClose')?.addEventListener('click', closeCheckout);
-            modal?.addEventListener('click', (e) => { if (e.target === modal) closeCheckout(); });
-            document.getElementById('nbCheckoutCopy')?.addEventListener('click', copyOrder);
-
-            // Botón WhatsApp: solo visible si hay número configurado
-            const waBtn = document.getElementById('nbCheckoutWa');
-            if (CONTACTO.whatsapp && waBtn) {
-                waBtn.hidden = false;
-                waBtn.addEventListener('click', () => {
-                    const num = CONTACTO.whatsapp.replace(/\D/g, '');
-                    window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(buildOrderText()), '_blank', 'noopener');
-                });
-            }
-
-            // Al enviar por Instagram: copia el pedido para pegarlo en el DM
-            document.getElementById('nbCheckoutIg')?.addEventListener('click', copyOrder);
-
-            // Escape cierra el checkout
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeCheckout();
-            });
-        }
-
-        // Pintar contenido actual
-        const list = document.getElementById('nbCheckoutList');
-        const total = document.getElementById('nbCheckoutTotal');
-        if (list) {
-            list.innerHTML = cart.map(i => `
-                <div class="nb-checkout-row">
-                    <span>${i.qty} × ${i.name}</span>
-                    <strong>${formatPrice((Number(i.price) || 0) * (Number(i.qty) || 0))}</strong>
-                </div>
-            `).join('');
-        }
-        if (total) total.textContent = formatPrice(cartTotal());
-
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
+        window.location.href = 'checkout.html';
     }
 
     function closeCheckout() {
@@ -499,9 +438,9 @@
                                 <span class="nb-added-qty" id="nbAddedQty"></span>
                             </div>
                         </div>
-                        <button class="nb-modal-btn nb-added-pay" id="nbAddedPay">Pagar ahora</button>
+                        <button class="nb-modal-btn nb-added-pay" id="nbAddedPay">Ir a pagar</button>
                         <button class="nb-modal-btn nb-added-keep" id="nbAddedKeep">Seguir comprando</button>
-                        <p class="nb-modal-foot">Al pagar cerramos tu pedido por mensaje.</p>
+                        <p class="nb-modal-foot" style="display:none">Al pagar cerramos tu pedido por mensaje.</p>
                     </div>
                 </div>
             `);
@@ -512,7 +451,7 @@
             modal?.addEventListener('click', (e) => { if (e.target === modal) closeAdded(); });
             document.getElementById('nbAddedPay')?.addEventListener('click', () => {
                 closeAdded();
-                openCheckout();
+                window.location.href="checkout.html";
             });
 
             // Escape cierra la confirmación
@@ -528,7 +467,7 @@
         const qtyEl = document.getElementById('nbAddedQty');
         if (qtyEl) {
             qtyEl.textContent = qty + (qty === 1 ? ' pieza' : ' piezas') +
-                ' — ' + formatPrice((Number(info.price) || 0) * qty);
+                ' - ' + formatPrice((Number(info.price) || 0) * qty);
         }
 
         modal.classList.add('is-open');
